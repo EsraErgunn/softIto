@@ -31,3 +31,7 @@ softIto/
 
 - Klasör isimlendirmesi `1. gün`, `2. gün` şeklinde sırayla devam eder
 - Her commit mesajı, hangi güne ait değişiklik yapıldığını açıkça belirtmelidir (örn. `"3. gün dosyaları eklendi"`)
+
+*
+*
+*
