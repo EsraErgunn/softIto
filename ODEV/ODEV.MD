@@ -1,6 +1,6 @@
-# SOLID Prensipleri ve Clean Code
+# KahveGo Mobil Sipariş Uygulaması
 
-## SOLID İhlallerinin Tespiti ve Clean Code Refactoring Ödevi
+## Mobil Akış, REST API, SOLID & Clean Code ve Git/GitHub Uygulamaları
 
 **Ad Soyad:** Esra Ergün
 **Tarih:** 15.09.2026
