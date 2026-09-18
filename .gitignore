@@ -1,3 +1,6 @@
 # Çevresel değişken dosyaları
 .env
 .env.local
+
+# Editör ayarları
+.vscode/
