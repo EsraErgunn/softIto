@@ -6,43 +6,17 @@ softIto bünyesinde yürütülen çalışmaların günlük olarak takip edildiğ
 
 Bu repo, yapılan işlerin gün gün kayıt altına alınması ve ilgili kişiler tarafından incelenebilmesi amacıyla oluşturulmuştur.
 
-## Klasör Yapısı
+## Klasör Düzeni
 
-Her gün için tarih adını taşıyan bir klasör açılır ve o güne ait dosyalar ilgili klasörün içine eklenir:
+Repo tarih temelli klasörlerden oluşur. Her gün için o günün tarihini taşıyan bir klasör açılır (`17eylul`, `18eylul`) ve o gün işlenen konulara ait dosyalar doğrudan bu klasörün içine konur.
 
-```
-softIto/
-├── 17eyluloncesi/          # 17 Eylül öncesi çalışmalar
-│   ├── 1. Gün/
-│   │   └── Esra Ergün (Ödev).pdf
-│   ├── ODEV/
-│   │   ├── ODEV.MD         # KahveGo: akış şeması, REST API, SOLID, Git
-│   │   └── image.png
-│   ├── SOLID/
-│   │   └── solid.dart      # SOLID prensipleri örnekleri (Dart)
-│   └── profile.html
-├── 17eylul/
-│   ├── index.html          # softito
-│   └── index1.html         # kodvance-mobil Teknoloji Bülteni
-├── 17eylulodev/
-│   ├── mobil_tanitim.html  # Mobil tanıtım sayfası
-│   └── normalizasyon.md    # Öğrenci–Bölüm–Ders ilişkilerinin 3NF normalizasyonu
-├── 18eylul/
-│   ├── klavye_degiskenler.html  # Mobil sanal klavye: inputmode, autocapitalize, enterkeyhint
-│   ├── guvenli_form.html        # Regex pattern ile form doğrulama + honeypot
-│   └── mobil_odeme.html         # Paytr 3D Secure mobil ödeme sayfası
-├── .gitignore
-└── README.md
-```
+Düzen şu şekilde ilerler:
 
-## İçerik Özeti
+- **Ders klasörü:** `18eylul` gibi, o gün derste yapılan çalışmaları tutar
+- **Ödev klasörü:** aynı günün ödevi ayrı tutuluyorsa tarihin sonuna `odev` eklenir (`17eylulodev`)
+- **Öncesi:** tarih takibine geçilmeden önceki çalışmalar `17eyluloncesi` altında toplanmıştır; kendi içinde konu klasörlerine ayrılır
 
-| Klasör | Konu |
-|--------|------|
-| `17eyluloncesi` | Mobil akış şeması, REST API tasarımı, SOLID & Clean Code, Git/GitHub |
-| `17eylul` | Temel HTML sayfa yapısı, bülten sayfası |
-| `17eylulodev` | Mobil tanıtım sayfası, veritabanı normalizasyonu (1NF → 3NF, PostgreSQL DDL) |
-| `18eylul` | Mobil form teknikleri: klavye türleri, regex doğrulama, 3D Secure ödeme akışı |
+Dosyalar konu adıyla isimlendirilir (`guvenli_form.html`, `normalizasyon.md`), böylece klasöre bakıldığında o gün neyin çalışıldığı adlardan anlaşılır.
 
 ## Kullanım
 
@@ -54,6 +28,5 @@ HTML dosyaları herhangi bir kurulum gerektirmez; tarayıcıda doğrudan açıla
 
 ## Notlar
 
-- Klasör isimlendirmesi `18eylul` gibi tarih temellidir; günün çalışmaları o klasörde toplanır
 - Her commit mesajı, hangi güne ait değişiklik yapıldığını açıkça belirtmelidir (örn. `feat: 18 eylul dersleri`)
 - `.env`, `.env.local` ve `.vscode/` dosyaları `.gitignore` ile takip dışı bırakılmıştır
