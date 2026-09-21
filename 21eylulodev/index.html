@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iphone18</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f8fafc;
+        color: #1e293b;
+        margin: 0;
+      }
+      .hero {
+        background: radial-gradient(
+          circle at center,
+          #8a2c42,
+          #5c1a2b 45%,
+          #2a0a13
+        );
+        color: white;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .hero h1 {
+        margin: 0;
+        font-size: 110px;
+        font-weight: 300;
+        letter-spacing: 12px;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      }
+      .hero h1 strong {
+        font-weight: 700;
+      }
+      .scroll-hint {
+        position: absolute;
+        bottom: 30px;
+        font-size: 13px;
+        letter-spacing: 3px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 40px 20px;
+      }
+      .box {
+        background: white;
+        padding: 32px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      h3 {
+        margin-top: 0;
+        color: #1e293b;
+      }
+      .product {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+      }
+      .product img {
+        width: 55%;
+        border-radius: 8px;
+      }
+      .product-info {
+        flex: 1;
+      }
+      .price {
+        font-size: 40px;
+        font-weight: bold;
+        color: #5c1a2b;
+      }
+      .hint {
+        font-size: 12px;
+        color: #64748b;
+        margin-bottom: 16px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+      meter {
+        width: 100%;
+        height: 24px;
+        margin-bottom: 16px;
+      }
+      .color-dot {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #5c1a2b;
+        vertical-align: middle;
+        margin-left: 6px;
+      }
+      .btn-group {
+        display: flex;
+        gap: 10px;
+      }
+      button {
+        flex: 1;
+        padding: 14px;
+        border-radius: 8px;
+        border: none;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .btn-cart {
+        background: #5c1a2b;
+        color: white;
+      }
+      .btn-cart:hover {
+        background: #7a2438;
+      }
+      .btn-info {
+        background: #f1f5f9;
+        color: #1e293b;
+      }
+      .btn-info:hover {
+        background: #e2e8f0;
+      }
+      iframe {
+        width: 100%;
+        height: 560px;
+        border-radius: 8px;
+        border: none;
+      }
+      details {
+        margin-bottom: 10px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        padding: 10px;
+      }
+      summary {
+        font-weight: bold;
+        cursor: pointer;
+        color: #5c1a2b;
+      }
+      details[open] {
+        background: #fdf2f4;
+      }
+      details p {
+        font-size: 13px;
+        color: #334155;
+        margin-top: 8px;
+        margin-bottom: 0;
+      }
+      @media (max-width: 600px) {
+        .hero h1 {
+          font-size: 48px;
+          letter-spacing: 6px;
+        }
+        .box {
+          padding: 20px;
+        }
+        .product {
+          flex-direction: column;
+        }
+        .product img {
+          width: 100%;
+        }
+        iframe {
+          height: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <h1>IPHONE <strong>18</strong></h1>
+      <div class="scroll-hint">AŞAĞI KAYDIR ↓</div>
+    </div>
+
+    <div class="container">
+      <div class="box product">
+        <img src="iphone18.jpg" alt="iPhone 18 Koyu Kırmızı" />
+        <div class="product-info">
+          <div class="price">137.999 ₺</div>
+          <div class="hint">Kargo dahil</div>
+          <p>
+            <strong>Renk:</strong> Koyu kırmızı<span class="color-dot"></span>
+          </p>
+          <label for="m1">Stokta 8 adet kaldı</label>
+          <meter
+            value="8"
+            id="m1"
+            min="0"
+            max="100"
+            low="20"
+            high="80"
+            optimum="90"
+          ></meter>
+          <div class="btn-group">
+            <button class="btn-cart">Sepete ekle</button>
+            <button class="btn-info">Detaylı bilgi</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <iframe
+          src="https://www.youtube.com/embed/DDnNc60onT4?si=A-HEEfBT_c_ANreH"
+          title="YouTube video player"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div class="box">
+        <h3>Sıkça Sorulan Sorular</h3>
+        <details open>
+          <summary>Pro ile Pro Max arasındaki fark ne?</summary>
+          <p>
+            iPhone 18 Pro ile 18 Pro Max arasındaki temel fark boyut ve pil. 18
+            Pro 6,3 inç ve daha hafifken, Pro Max 6,9 inç ve daha ağır. Pro
+            Max’in daha büyük kasası sayesinde pil ömrü de daha uzun. Bunun
+            dışında işlemci, kamera sistemi, ekran teknolojisi ve genel
+            performans açısından iki model büyük ölçüde aynı.
+          </p>
+        </details>
+        <details>
+          <summary>Hangi şarj adaptorü gerekir?</summary>
+          <p>
+            Apple 40W Dinamik Güç Adaptörü (Maksimum 60W) veya USB-PD (USB Güç
+            Dağıtımı) 3.2 ile AVS (Ayarlanabilir Voltaj Beslemesi) destekleyen
+            60W ve üzeri üçüncü parti bir adaptör gerektirir.
+          </p>
+        </details>
+        <details>
+          <summary>Hangi depolama seçenekleri var?</summary>
+          <p>
+            iPhone 18 Pro ve Pro Max modellerinde 256 GB, 512 GB, 1 TB ve 2 TB
+            olmak üzere 4 farklı depolama seçeneği bulunmaktadır.
+          </p>
+        </details>
+        <div class="btn-group">
+          <button class="btn-info">Tüm teknik özellikleri gör</button>
+          <button class="btn-cart">Detaylı bilgi al</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
