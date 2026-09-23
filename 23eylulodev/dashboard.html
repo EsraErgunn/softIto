@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <a href="/" class="logo">Esr<span>aa</span></a>
+
+        <div class="profile">
+          <img src="profil.png" alt="Esra Ergün profil fotoğrafı" />
+          <p class="profile-name">Esra Ergün</p>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="#" class="sidebar-a active">
+            <span class="material-symbols-rounded">grid_view</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="#" class="sidebar-a">
+            <span class="material-symbols-rounded">folder</span>
+            <span>Projelerim</span>
+          </a>
+          <a href="#" class="sidebar-a">
+            <span class="material-symbols-rounded">description</span>
+            <span>Raporlarım</span>
+          </a>
+          <a href="#" class="sidebar-a">
+            <span class="material-symbols-rounded">calendar_month</span>
+            <span>Takvim</span>
+          </a>
+          <a href="#" class="sidebar-a">
+            <span class="material-symbols-rounded">mail</span>
+            <span>Mesajlar</span>
+          </a>
+          <a href="#" class="sidebar-a">
+            <span class="material-symbols-rounded">settings</span>
+            <span>Ayarlar</span>
+          </a>
+        </nav>
+
+        <a href="#" class="sidebar-a logout">
+          <span class="material-symbols-rounded">logout</span>
+          <span>Log out</span>
+        </a>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <h1 class="topbar-title">HELLO, ESRA!</h1>
+
+          <search class="search">
+            <span class="material-symbols-rounded">search</span>
+            <input type="search" placeholder="Arama" />
+          </search>
+
+          <div class="topbar-actions">
+            <button class="icon-btn notification" aria-label="Bildirimler">
+              <span class="material-symbols-rounded">notifications</span>
+              <span class="notification-dot"></span>
+            </button>
+            <button class="icon-btn menu" aria-label="Menü">
+              <span class="material-symbols-rounded">more_vert</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="dashboard-grid">
+          <section class="card teachers">
+            <h2 class="card-title">Danışmanlarım</h2>
+
+            <ul class="person-list">
+              <li class="person-item">
+                <span class="initials">AY</span>
+                <div class="person-info">
+                  <p class="person-name">Selahaddin ÇİFTÇİ</p>
+                  <p class="person-role">Mentor</p>
+                </div>
+                <button class="chat-btn" aria-label="Ayşe Yılmaz'a mesaj gönder">
+                  <span class="material-symbols-rounded">more_horiz</span>
+                </button>
+              </li>
+              <li class="person-item">
+                <span class="initials">MK</span>
+                <div class="person-info">
+                  <p class="person-name">Mehmet Kaya</p>
+                  <p class="person-role">Öğretmen</p>
+                </div>
+                <button class="chat-btn" aria-label="Mehmet Kaya'ya mesaj gönder">
+                  <span class="material-symbols-rounded">more_horiz</span>
+                </button>
+              </li>
+              <li class="person-item">
+                <span class="initials">ZD</span>
+                <div class="person-info">
+                  <p class="person-name">Zeynep Demir</p>
+                  <p class="person-role">Öğretim görevlisi</p>
+                </div>
+                <button class="chat-btn" aria-label="Zeynep Demir'e mesaj gönder">
+                  <span class="material-symbols-rounded">more_horiz</span>
+                </button>
+              </li>
+            </ul>
+
+            <a href="#" class="see-more">Tümünü gör ›</a>
+          </section>
+
+          <section class="card events">
+            <h2 class="card-title">Yaklaşan Etkinlikler</h2>
+
+            <ul class="event-list">
+              <li class="event-item">
+                <span class="event-icon material-symbols-rounded">smart_toy</span>
+                <div class="event-info">
+                  <p class="event-name">Yılın ana etkinliği "Robot Fest"</p>
+                  <p class="event-date">28 Eylül 2026 <span>13:00</span></p>
+                </div>
+              </li>
+              <li class="event-item">
+                <span class="event-icon material-symbols-rounded">videocam</span>
+                <div class="event-info">
+                  <p class="event-name">mobil araçlar üzerine web seminarı</p>
+                  <p class="event-date">2 Ekim 2026 <span>17:00</span></p>
+                </div>
+              </li>
+            </ul>
+
+            <a href="#" class="see-more">Tümünü gör ›</a>
+          </section>
+
+          <section class="card schedule">
+            <h2 class="card-title">Programım</h2>
+
+            <div class="schedule-content">
+              <div class="calendar">
+                <div class="calendar-header">
+                  <button class="calendar-nav" aria-label="Önceki ay">‹</button>
+                  <span class="calendar-month">Eylül 2026</span>
+                  <button class="calendar-nav" aria-label="Sonraki ay">›</button>
+                </div>
+
+                <table class="calendar-table">
+                  <thead>
+                    <tr>
+                      <th>Pzt</th><th>Sal</th><th>Çar</th><th>Per</th>
+                      <th>Cum</th><th>Cmt</th><th>Paz</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="other-month">31</td><td>1</td><td>2</td><td>3</td>
+                      <td>4</td><td>5</td><td>6</td>
+                    </tr>
+                    <tr>
+                      <td>7</td><td>8</td><td>9</td><td>10</td>
+                      <td>11</td><td>12</td><td>13</td>
+                    </tr>
+                    <tr>
+                      <td>14</td><td>15</td><td>16</td><td>17</td>
+                      <td>18</td><td>19</td><td>20</td>
+                    </tr>
+                    <tr>
+                      <td>21</td><td>22</td><td>23</td><td class="today">24</td>
+                      <td>25</td><td>26</td><td>27</td>
+                    </tr>
+                    <tr>
+                      <td>28</td><td>29</td><td>30</td><td class="other-month">1</td>
+                      <td class="other-month">2</td><td class="other-month">3</td>
+                      <td class="other-month">4</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <ul class="lesson-list">
+                <li class="lesson-item">
+                  <span class="lesson-day">24</span>
+                  <div class="lesson-info">
+                    <p class="lesson-name">Flutter dersi</p>
+                    <p class="lesson-time">19:30</p>
+                  </div>
+                </li>
+                <li class="lesson-item">
+                  <span class="lesson-day">25</span>
+                  <div class="lesson-info">
+                    <p class="lesson-name">Programming Language dersi</p>
+                    <p class="lesson-time">16:00</p>
+                  </div>
+                </li>
+                <li class="lesson-item">
+                  <span class="lesson-day">26</span>
+                  <div class="lesson-info">
+                    <p class="lesson-name">Software Engineering dersi</p>
+                    <p class="lesson-time">17:30</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+<section class="card projects">
+  <h2 class="card-title">Projelerim</h2>
+
+  <ul class="project-list">
+    <li class="project-item">
+      <div class="project-head">
+        <p class="project-name">FootballIQ</p>
+        <span class="project-percent">%70</span>
+      </div>
+      <div class="progress-bar"><span style="--value: 70"></span></div>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">OpenCV</span>
+      </div>
+    </li>
+
+    <li class="project-item">
+      <div class="project-head">
+        <p class="project-name">Bitki Hastalığı Tespiti</p>
+        <span class="project-percent">%45</span>
+      </div>
+      <div class="progress-bar"><span style="--value: 45"></span></div>
+      <div class="project-tags">
+        <span class="tag">Flutter</span>
+        <span class="tag">Deep Learning</span>
+      </div>
+    </li>
+
+    <li class="project-item">
+      <div class="project-head">
+        <p class="project-name">CV Analiz Sistemi</p>
+        <span class="project-percent">%30</span>
+      </div>
+      <div class="progress-bar"><span style="--value: 30"></span></div>
+      <div class="project-tags">
+        <span class="tag">ASP.NET Core</span>
+        <span class="tag">Microservices</span>
+      </div>
+    </li>
+  </ul>
+</section>
+
+          <aside class="card stats">
+            <div class="stat-card">
+              <p class="stat-title">Devam</p>
+              <div class="progress-ring rose" style="--value: 60">
+                <span>%60</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <p class="stat-title">Ödevler</p>
+              <div class="progress-ring teal" style="--value: 90">
+                <span>%90</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <p class="stat-title">Puan</p>
+              <div class="progress-ring yellow" style="--value: 75">
+                <span>%75</span>
+              </div>
+            </div>
+
+            <a href="#" class="see-more stats-more">Tümünü gör</a>
+          </aside>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
