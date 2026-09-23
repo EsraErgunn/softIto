@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box Model Taşma Koruması</title>
+    <link rel="stylesheet" href="../css/kutu_model.css">
+  </head>
+
+  <body>
+    <div class="box-container">
+      <h3>content-box (taşma yapan eleman)</h3>
+      <div class="broken-box">Ekrandan dışarı taşan kutu!</div>
+
+      <h3>border-box(kusursuz kutumuz)</h3>
+      <div class="fixed-box">
+        Tam ekran sınırında kalan mobil dostu kutumuz
+        <div
+          class="truncate-text"
+          title="Bu çok uzun bir Iban veya şipariş numarası veya text olabilir"
+        >
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus
+          provident illum aliquid quisquam! Quo, iusto pariatur? Facere fuga
+          architecto sequi voluptate nostrum deleniti, consectetur quibusdam
+          deserunt iste dicta sed asperiores?
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

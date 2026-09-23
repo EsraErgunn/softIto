@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bvlgari Yüzük | ESRAA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page">
+    <header class="topbar">
+      <button class="icon-btn" aria-label="Menüyü aç">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+      <a href="#" class="logo">ESRAA</a>
+      <button class="icon-btn cart-btn" id="cartOpen" aria-label="Sepeti aç">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="gallery">
+        <div class="gallery__stage">
+          <img id="galleryImg" src="ödev.jpeg" alt="Bvlgari Yüzük görseli">
+
+          <div class="badges">
+            <span class="badge badge--sale">%20 İndirim</span>
+            <span class="badge badge--ship">Kargo Bedava</span>
+          </div>
+
+          <button class="fav-btn" aria-label="Favorilere ekle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg>
+          </button>
+        </div>
+
+        <div class="thumbs">
+          <button class="thumb is-active" aria-label="Görsel 1" data-src="ödev.jpeg"></button>
+          <button class="thumb" aria-label="Görsel 2" data-src="ödev2.jpeg"></button>
+          <button class="thumb" aria-label="Görsel 3" data-src="ödev3.jpeg"></button>
+          <button class="thumb" aria-label="Görsel 4" data-src="ödev4.jpeg"></button>
+        </div>
+      </section>
+
+      <section class="info">
+        <p class="info__collection">Bvlgari Koleksiyonu</p>
+        <h1 class="info__title">Bvlgari Yüzük</h1>
+        <p class="info__material">18 ayar sarı altın, tek taş</p>
+
+        <div class="price">
+          <span class="price__now">13.000 $</span>
+          <span class="price__old">15.500 $</span>
+        </div>
+
+        <p class="info__desc">
+          Bir taş, bir söz. İnce altın gövdesi ve tek taşıyla sadeliğin en kalıcı hali.
+          Her gün takılacak kadar yalın, bir ömür saklanacak kadar değerli.
+        </p>
+      </section>
+
+      <section class="option">
+        <div class="option__head">
+          <h2 class="option__title">Yüzük numarası</h2>
+          <a href="#" class="option__link">Ölçü rehberi</a>
+        </div>
+
+        <fieldset class="chips">
+          <legend class="sr-only">Yüzük numarası seç</legend>
+          <label class="chip"><input type="radio" name="size" value="10"><span>10</span></label>
+          <label class="chip"><input type="radio" name="size" value="11"><span>11</span></label>
+          <label class="chip"><input type="radio" name="size" value="12"><span>12</span></label>
+          <label class="chip"><input type="radio" name="size" value="13"><span>13</span></label>
+          <label class="chip"><input type="radio" name="size" value="14" disabled><span>14</span></label>
+          <label class="chip"><input type="radio" name="size" value="15"><span>15</span></label>
+          <label class="chip"><input type="radio" name="size" value="16"><span>16</span></label>
+          <label class="chip"><input type="radio" name="size" value="17"><span>17</span></label>
+          <label class="chip"><input type="radio" name="size" value="18"><span>18</span></label>
+        </fieldset>
+        <p class="option__error" id="sizeError" role="alert" hidden>Sepete eklemek için bir numara seç.</p>
+      </section>
+
+      <section class="option">
+        <h2 class="option__title">Adet</h2>
+        <div class="qty">
+          <button class="qty__btn" id="qtyMinus" aria-label="Adedi azalt">−</button>
+          <output class="qty__value" id="qtyValue" aria-live="polite">1</output>
+          <button class="qty__btn" id="qtyPlus" aria-label="Adedi artır">+</button>
+        </div>
+      </section>
+
+      <section class="details">
+        <details open>
+          <summary>Ürün detayları</summary>
+          <p>Malzeme: 18 ayar katı altın. Taş: tek taş. Yüzey: el ile parlatılmış. Kişiye özel gravür eklenebilir.</p>
+        </details>
+        <details>
+          <summary>Bakım</summary>
+          <p>Parfüm ve kremlerden sonra takın. Yumuşak bir bezle silin, kendi kesesinde saklayın.</p>
+        </details>
+        <details>
+          <summary>Kargo ve iade</summary>
+          <p>Tüm siparişlerde kargo ücretsizdir. Özel kutusunda, el ile paketlenerek gönderilir.</p>
+        </details>
+      </section>
+
+      <section class="related">
+        <h2 class="related__title">Birlikte güzel durur</h2>
+        <div class="related__row">
+          <a href="#" class="card">
+            <div class="card__img">
+              <img src="necklace.jpeg" alt="Bvlgari Kolye">
+            </div>
+            <span class="card__name">Bvlgari Kolye</span>
+            <span class="card__price">8.900 $</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img">
+              <img src="earring.jpeg" alt="Bvlgari Küpe">
+            </div>
+            <span class="card__name">Bvlgari Küpe</span>
+            <span class="card__price">14.000 $</span>
+          </a>
+          <a href="#" class="card">
+            <div class="card__img">
+              <img src="bracelet.jpeg" alt="Bvlgari Bileklik">
+            </div>
+            <span class="card__name">Bvlgari Bileklik</span>
+            <span class="card__price">11.200 $</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <div class="buybar">
+      <div class="buybar__price">
+        <span class="buybar__label">Toplam</span>
+        <span class="buybar__amount" id="totalPrice">10.000 ₺</span>
+      </div>
+      <button class="buybar__btn" id="addToCart">Sepete Ekle</button>
+    </div>
+
+    <div class="overlay" id="overlay" hidden></div>
+    <aside class="cart" id="cart" aria-labelledby="cartTitle" aria-hidden="true">
+      <div class="cart__handle"></div>
+      <div class="cart__head">
+        <h2 class="cart__title" id="cartTitle">Sepetim</h2>
+        <button class="icon-btn icon-btn--dark" id="cartClose" aria-label="Sepeti kapat">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <ul class="cart__list" id="cartList"></ul>
+      <p class="cart__empty" id="cartEmpty">Sepetin boş. Beğendiğin parçayı ekleyerek başla.</p>
+
+      <div class="cart__summary">
+        <div class="cart__row"><span>Ara toplam</span><span id="cartSubtotal">0 ₺</span></div>
+        <div class="cart__row"><span>Kargo</span><span>Ücretsiz</span></div>
+        <div class="cart__row cart__row--total"><span>Toplam</span><span id="cartTotal">0 ₺</span></div>
+      </div>
+      <button class="cart__checkout">Ödemeye geç</button>
+    </aside>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.thumb').forEach(function (thumb) {
+      thumb.addEventListener('click', function () {
+        document.getElementById('galleryImg').src = thumb.dataset.src;
+        document.querySelector('.thumb.is-active').classList.remove('is-active');
+        thumb.classList.add('is-active');
+      });
+    });
+  </script>
+
+</body>
+</html>
