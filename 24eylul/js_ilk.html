@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS ilk Ders</title>
+  </head>
+  <body>
+    <script>
+      /*
+      // 1. Var felaketi Süslü parantez dinlemez dışarıya sızar.
+      if (true) {
+        var tehlikelisayı = 999;
+      }
+      console.log("var sızdı mı ? " + tehlikelisayı);
+
+      //2. Let ve const kalkanı: Süslü parantez bir oda çıkış yasak çıkamaz.
+      if(true){
+        let guvenliSayı=42;
+        const PI=3.1415;
+        console.log("oda içi",guvenliSayı,PI);
+      }
+      // console.warn(guvenliSayı);
+
+      //3. Const değişmezlik kuralı
+      const API_URL = "https://www.kodusta.com/v1";
+      console.log(API_URL);
+      // let API_URL = "tekrar eden link";
+    
+      // DİKKAT EDİN BURAYA
+      const arac={marka:"Togg", model:"T10X"};
+      console.log(arac);
+      arac.renk="Beyaz";
+      console.log(arac);
+
+      //Bu yasak kullanamazsın
+      arac={baska:"obje"};
+      console.log(arac);
+
+      //const bir arrayse içine veri ekleyebiliyoruz ama komple içi değişmiyor. ama tek bir değerse değiştirmiyoruz.
+*/
+      /*
+      //VERİ TİPLERİ & TİP DÖNÜŞÜMÜ
+
+    const isim = "Esra"; // String
+    const bataryaKapasite = 88.5; // Number (float/int olarak ayrım almıyor)
+    const sarjTamamlandı = false; // boolean
+    let sonrakiRandevu; // undefined ( Kutu var içi boş) bu const olmaz çünkü const bir kere değer alır ve değişmez.
+    const servisNotu = null; //NULL bilinçli
+    const büyükSayi = 65161616161611n; // BigInt
+    const gizliAnahtar = Symbol("id"); // Symbol
+
+    console.log(typeof isim);
+    console.log(typeof bataryaKapasite);
+    console.log(typeof sarjTamamlandı);
+    console.log(typeof sonrakiRandevu);
+    console.log(typeof servisNotu);
+
+    //otomatik tip çevirimi (çok önemli mülakatta da sorabilirlermiş)
+        console.log("5"+2); // + işareti metin birlerştirme yapar 
+        console.log("5"-2); // - işareti metini zorlayarak sayıya çevirir.
+        console.log("5"*"4"); // * sayıya çevirir.
+        console.log("bes"*2); // NaN (not a number) hatası çıkar. 
+        */
+      /*
+    //NAN ile ilgili ilginç kısım
+        console.log(typeof NAN);
+        console.log(NaN===NaN);
+        console.log(Number.isNaN(NaN));
+*/
+      /*
+//manuel Tip Dönüştürme(profesyonel yolu)
+const stringFiyat ="1473.33"; //virgül yaparsak iki farklı dğeer zanneder ve hata verir.
+const sayiFiyat=parseInt(stringFiyat);
+const pixelDegeri=parseInt("48px",10)
+const metinSayi=String(2026);
+
+
+console.log(stringFiyat);
+console.log(sayiFiyat);
+console.log(pixelDegeri);
+console.log(metinSayi);
+*/
+      /*
+//Katı Eşitlik
+//Neden her zaman === kullanmalıyız? hem tipi aynı mı hem kendi eşit mi ona bakıyor.
+console.log(5=="5"); //true (gevşek eşitlik tipi zorla çevirir asla kullanma)
+console.log(5==="5"); //false
+console.log(0 == false); //true(gevşek eşitlik felaket)
+console.log(0 === false);
+console.log(null== undefined);//true
+console.log(null=== undefined);// false
+*/
+/*
+      //template literals
+      const kullanici = "Esra Ergün";
+      const bakiye = 1000;
+      const harcama = 10000;
+
+      const eskiMesaj =
+        "Sayın" +
+        kullanici +
+        ". Kalan Bakiyemiz: " +
+        (bakiye - harcama) +
+        "TL'dir.";
+      console.log(eskiMesaj);
+
+      //Modern E6 Standartları
+      const modernMesaj = `sayın ${kullanici},Bugünkü Harcamanız: ${harcama}, Kalan Bakiyeniz: ${bakiye - harcama}₺ Durum ${bakiye - harcama >1000 ? "Güvenli Bakiye" : "Kritik Bakiye"}`;
+    */
+   /*
+   const bataryaSeviyesi=30;
+   const istasyonUygunmu=true;
+   const bakiyeTl=100;
+   const minimumGirisTutarı=500;
+
+   if(!istasyonUygunmu){
+    console.log('istasyon şuanda Servis dışı veya meşgul');
+   }else if(bakiyeTl<minimumGirisTutarı){
+    console.log(`bakiye yetersiz! en az ${minimumGirisTutarı} gereklidir. Mevcut: ${bakiyeTl}$`);
+   }else{
+    console.log("Standart Şarj Başlatılabilir.")
+   }
+*/
+/*
+//js de şu 6 değer false olarak kabul edilir
+//false,0,"",null,undefined,NaN
+//bunun dışındaki her şey [] boş dizi olarak true olarak kabul edilir.
+const kullaniciGirdisi =0;
+if(kullaniciGirdisi){
+    console.log("Girdi dolu");
+}else{
+    console.log("Girdi Boş");
+}
+    */
+
+    /*
+   //koşul ? doğruyda_deger : yanlıssa_deger
+   const soketDurumu = "mesgul";
+   const durumMesajı = soketDurumu ==="uygun" ? "Soket bosta": "soket kullanımda";
+   console.log(durumMesajı);
+   */
+/*
+   //arrow function
+   //klasik fonksiyon
+   function toplaKlasik(sayi1,sayi2){
+    return sayi1+sayi2;
+   }
+   //modern fonksiyon (es6 standartlarıyla)
+   const toplaModern=(sayi1,sayi2) => {
+    return sayi1+sayi2;
+   }
+   // tek satırlık function arrow
+   const toplaKisa = (sayi1,sayi2) => sayi1+sayi2;
+
+   //tek parametreli
+   const karesiniAl = sayi => sayi * sayi;
+
+   const profilUret=(ad, rol) =>({
+    ad:ad,
+    rol:rol,
+    kayitTarihi:2026
+   });
+
+   console.log("Toplama Sonucu",toplaModern(15,27));
+   console.log(karesiniAl(8));
+   console.log("profil",profilUret("Tuğçe","Öğrenci"));
+*/
+
+
+    </script>
+  </body>
+</html>
