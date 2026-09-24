@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Şarj Süresi Tahmini</title>
+  </head>
+  <body>
+    <script>
+      const sarjSuresiHesapla = (mevcutYuzde, hedefYuzde, bataryaKw, istasyonKw) => {
+        if (mevcutYuzde < 0 || hedefYuzde > 100) {
+          return "Yüzde değerleri 0 ile 100 arasında olmalı!";
+        }
+        if (hedefYuzde <= mevcutYuzde) {
+          return "Hedef yüzde, mevcut yüzdeden büyük olmalı!";
+        }
+        if (bataryaKw <= 0 || istasyonKw <= 0) {
+          return "Batarya ve istasyon değerleri 0'dan büyük olmalı!";
+        }
+
+        const doldurulacakEnerji = (bataryaKw * (hedefYuzde - mevcutYuzde)) / 100;
+        const saat = doldurulacakEnerji / istasyonKw;
+        const dakika = Math.round(saat * 60);
+
+        return `%${mevcutYuzde} → %${hedefYuzde} | ${bataryaKw} kWh batarya, ${istasyonKw} kW istasyon → Tahmini Süre: ${dakika} dakika`;
+      };
+
+      console.log(sarjSuresiHesapla(20, 80, 88.5, 150));
+      console.log(sarjSuresiHesapla(20, 80, 88.5, 7));
+      console.log(sarjSuresiHesapla(80, 20, 88.5, 150));
+    </script>
+  </body>
+</html>
