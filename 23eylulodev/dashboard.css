@@ -72,7 +72,7 @@ a {
 /* ========== SAYFA DÜZENİ ========== */
 .layout {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 200px 1fr;   /* sol: sidebar, sağ: içerik */
   min-height: 100vh;
 }
 

@@ -7,6 +7,16 @@
   </head>
   <body>
     <script>
+      const GUNDUZ_TARIFE = 8.5;
+      const GECE_TARIFE = 5.5;
+      const GUNDUZ_BASLANGIC = 6;
+      const GECE_BASLANGIC = 22;
+
+      const tarifeBelirle = (saat) =>
+        saat >= GUNDUZ_BASLANGIC && saat < GECE_BASLANGIC
+          ? { ad: "Gündüz", fiyat: GUNDUZ_TARIFE }
+          : { ad: "Gece", fiyat: GECE_TARIFE };
+
       const sarjSuresiHesapla = (mevcutYuzde, hedefYuzde, bataryaKw, istasyonKw) => {
         if (mevcutYuzde < 0 || hedefYuzde > 100) {
           return "Yüzde değerleri 0 ile 100 arasında olmalı!";
@@ -22,7 +32,12 @@
         const saat = doldurulacakEnerji / istasyonKw;
         const dakika = Math.round(saat * 60);
 
-        return `%${mevcutYuzde} → %${hedefYuzde} | ${bataryaKw} kWh batarya, ${istasyonKw} kW istasyon → Tahmini Süre: ${dakika} dakika`;
+        const simdi = new Date();
+        const tarife = tarifeBelirle(simdi.getHours());
+        const maliyet = (doldurulacakEnerji * tarife.fiyat).toFixed(2);
+        const saatMetni = simdi.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
+
+        return `%${mevcutYuzde} → %${hedefYuzde} | ${bataryaKw} kWh batarya, ${istasyonKw} kW istasyon → Tahmini Süre: ${dakika} dakika | Saat: ${saatMetni} (${tarife.ad} tarifesi, ${tarife.fiyat} ₺/kWh) → Maliyet: ${maliyet} ₺`;
       };
 
       console.log(sarjSuresiHesapla(20, 80, 88.5, 150));

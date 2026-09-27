@@ -1,0 +1,409 @@
+:root { /* Tüm sayfada kullanılacak CSS değişkenlerinin tanımlandığı kök seçici */
+  --primary: #6c5ce7; /* Ana tema rengi (mor) */
+  --primary-dark: #5a4bd1; /* Ana rengin koyu tonu (hover için) */
+  --bg: #f5f6fa; /* Sayfa arka plan rengi */
+  --card: #ffffff; /* Kart ve panel arka plan rengi */
+  --text: #2d3436; /* Ana yazı rengi */
+  --muted: #636e72; /* Soluk / ikincil yazı rengi */
+  --border: #dfe6e9; /* Kenarlık rengi */
+  --danger: #d63031; /* Uyarı / silme rengi (kırmızı) */
+  --radius: 12px; /* Köşe yuvarlaklığı */
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.06); /* Yumuşak gölge efekti */
+} /* :root bloğunun sonu */
+
+* { /* Sayfadaki tüm elemanları seçer */
+  box-sizing: border-box; /* Genişliğe padding ve border dahil edilir */
+  margin: 0; /* Tarayıcının varsayılan dış boşlukları sıfırlanır */
+  padding: 0; /* Tarayıcının varsayılan iç boşlukları sıfırlanır */
+} /* Genel sıfırlama bloğunun sonu */
+
+body { /* Sayfa gövdesi */
+  font-family: "Segoe UI", system-ui, sans-serif; /* Yazı tipi */
+  background: var(--bg); /* Arka plan rengi değişkenden alınır */
+  color: var(--text); /* Yazı rengi değişkenden alınır */
+  line-height: 1.5; /* Satır yüksekliği */
+} /* body bloğunun sonu */
+
+.container { /* İçeriği ortalayan kapsayıcı */
+  max-width: 1200px; /* En fazla 1200px genişlik */
+  margin: 0 auto; /* Yatayda ortalama */
+  padding: 0 16px; /* Sağ ve soldan 16px boşluk */
+} /* container bloğunun sonu */
+
+/* Header - üst menü stilleri */
+.header { /* Üst menü alanı */
+  position: sticky; /* Kaydırınca üstte yapışık kalır */
+  top: 0; /* Sayfanın en üstüne yapışır */
+  z-index: 10; /* Diğer içeriklerin üstünde görünür */
+  background: var(--card); /* Beyaz arka plan */
+  box-shadow: var(--shadow); /* Alt tarafa gölge */
+} /* header bloğunun sonu */
+
+.header__inner { /* Üst menünün iç düzeni */
+  display: flex; /* Elemanları yan yana dizer */
+  align-items: center; /* Dikeyde ortalar */
+  gap: 16px; /* Elemanlar arası boşluk */
+  height: 68px; /* Menü yüksekliği */
+} /* header__inner bloğunun sonu */
+
+.header__logo { /* Logo yazısı */
+  font-size: 1.4rem; /* Yazı boyutu */
+  font-weight: 700; /* Kalın yazı */
+  color: var(--primary); /* Ana tema rengi */
+  text-decoration: none; /* Link alt çizgisini kaldırır */
+  white-space: nowrap; /* Logonun alt satıra kaymasını engeller */
+} /* header__logo bloğunun sonu */
+
+.header__search { /* Arama kutusu */
+  flex: 1; /* Kalan boşluğun tamamını kaplar */
+  padding: 10px 14px; /* İç boşluk */
+  border: 1px solid var(--border); /* İnce kenarlık */
+  border-radius: 999px; /* Hap (pill) şeklinde köşeler */
+  font-size: 0.95rem; /* Yazı boyutu */
+  outline: none; /* Varsayılan odak çerçevesini kaldırır */
+} /* header__search bloğunun sonu */
+
+.header__search:focus { /* Arama kutusuna tıklandığında */
+  border-color: var(--primary); /* Kenarlık ana renge döner */
+} /* focus bloğunun sonu */
+
+.header__cart { /* Sepet butonu */
+  position: relative; /* Rozeti buna göre konumlandırmak için */
+  border: none; /* Kenarlık yok */
+  background: var(--bg); /* Açık gri arka plan */
+  font-size: 1.3rem; /* İkon boyutu */
+  padding: 8px 14px; /* İç boşluk */
+  border-radius: 999px; /* Yuvarlak köşeler */
+  cursor: pointer; /* Üzerine gelince el imleci */
+} /* header__cart bloğunun sonu */
+
+.header__badge { /* Sepet adedi rozeti */
+  position: absolute; /* Sepet butonuna göre konumlanır */
+  top: -4px; /* Butonun biraz üstünde */
+  right: -4px; /* Butonun biraz sağında */
+  min-width: 20px; /* En az genişlik */
+  height: 20px; /* Yükseklik */
+  padding: 0 5px; /* Çift haneli sayılar için yatay boşluk */
+  border-radius: 999px; /* Yuvarlak şekil */
+  background: var(--danger); /* Kırmızı arka plan */
+  color: #fff; /* Beyaz yazı */
+  font-size: 0.75rem; /* Küçük yazı */
+  display: grid; /* Grid ile ortalama için */
+  place-items: center; /* Sayıyı tam ortalar */
+} /* header__badge bloğunun sonu */
+
+.header__badge.bump { /* Ürün eklendiğinde rozete eklenen sınıf */
+  animation: bump 0.3s ease; /* bump animasyonunu 0.3 saniye oynatır */
+} /* bump sınıfı bloğunun sonu */
+
+@keyframes bump { /* Rozetin büyüyüp küçülme animasyonu */
+  50% { /* Animasyonun yarısında */
+    transform: scale(1.4); /* 1.4 kat büyür */
+  } /* %50 adımının sonu */
+} /* keyframes bloğunun sonu */
+
+/* Toolbar - filtre ve sıralama alanı */
+.toolbar { /* Araç çubuğu */
+  display: flex; /* Yan yana dizilim */
+  flex-wrap: wrap; /* Sığmazsa alt satıra geçer */
+  justify-content: space-between; /* Kategoriler solda, sıralama sağda */
+  align-items: center; /* Dikeyde ortalar */
+  gap: 12px; /* Elemanlar arası boşluk */
+  margin: 24px 0; /* Üstten ve alttan boşluk */
+} /* toolbar bloğunun sonu */
+
+.toolbar__categories { /* Kategori butonlarının kapsayıcısı */
+  display: flex; /* Yan yana dizer */
+  flex-wrap: wrap; /* Sığmazsa alt satıra geçer */
+  gap: 8px; /* Butonlar arası boşluk */
+} /* toolbar__categories bloğunun sonu */
+
+.chip { /* Kategori butonu */
+  border: 1px solid var(--border); /* İnce kenarlık */
+  background: var(--card); /* Beyaz arka plan */
+  padding: 6px 14px; /* İç boşluk */
+  border-radius: 999px; /* Hap şekli */
+  cursor: pointer; /* El imleci */
+  font-size: 0.9rem; /* Yazı boyutu */
+  transition: 0.2s; /* Renk değişimlerinde yumuşak geçiş */
+} /* chip bloğunun sonu */
+
+.chip:hover { /* Kategori butonunun üzerine gelince */
+  border-color: var(--primary); /* Kenarlık ana renge döner */
+} /* chip hover bloğunun sonu */
+
+.chip--active { /* Seçili kategori butonu */
+  background: var(--primary); /* Mor arka plan */
+  border-color: var(--primary); /* Mor kenarlık */
+  color: #fff; /* Beyaz yazı */
+} /* chip--active bloğunun sonu */
+
+.toolbar__sort { /* Sıralama seçim kutusu */
+  padding: 8px 12px; /* İç boşluk */
+  border: 1px solid var(--border); /* İnce kenarlık */
+  border-radius: 8px; /* Yuvarlak köşeler */
+  background: var(--card); /* Beyaz arka plan */
+} /* toolbar__sort bloğunun sonu */
+
+/* Products - ürün listesi */
+.products { /* Ürün kartlarının kapsayıcısı */
+  display: grid; /* Izgara düzeni */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Ekrana sığdığı kadar en az 220px'lik sütun */
+  gap: 20px; /* Kartlar arası boşluk */
+  padding-bottom: 40px; /* Alt boşluk */
+} /* products bloğunun sonu */
+
+.product { /* Tek bir ürün kartı */
+  background: var(--card); /* Beyaz arka plan */
+  border-radius: var(--radius); /* Yuvarlak köşeler */
+  box-shadow: var(--shadow); /* Gölge */
+  overflow: hidden; /* Taşan içerik köşelerden kesilir */
+  display: flex; /* Flex düzeni */
+  flex-direction: column; /* Elemanları alt alta dizer */
+  transition: transform 0.2s; /* Hareketlerde yumuşak geçiş */
+} /* product bloğunun sonu */
+
+.product:hover { /* Kartın üzerine gelince */
+  transform: translateY(-4px); /* Kart 4px yukarı kalkar */
+} /* product hover bloğunun sonu */
+
+.product__image { /* Ürün görsel alanı (emoji) */
+  font-size: 4rem; /* Büyük emoji */
+  height: 150px; /* Sabit yükseklik */
+  display: grid; /* Grid ile ortalama */
+  place-items: center; /* Emojiyi tam ortalar */
+  background: linear-gradient(135deg, #a29bfe33, #74b9ff33); /* Mor-mavi yarı saydam geçişli arka plan */
+} /* product__image bloğunun sonu */
+
+.product__body { /* Kartın yazı kısmı */
+  padding: 16px; /* İç boşluk */
+  display: flex; /* Flex düzeni */
+  flex-direction: column; /* Alt alta dizilim */
+  gap: 6px; /* Satırlar arası boşluk */
+  flex: 1; /* Kalan yüksekliği doldurur */
+} /* product__body bloğunun sonu */
+
+.product__category { /* Kategori etiketi */
+  font-size: 0.75rem; /* Küçük yazı */
+  color: var(--muted); /* Soluk renk */
+  text-transform: uppercase; /* Büyük harf */
+  letter-spacing: 0.5px; /* Harf aralığı */
+} /* product__category bloğunun sonu */
+
+.product__name { /* Ürün adı */
+  font-size: 1rem; /* Yazı boyutu */
+} /* product__name bloğunun sonu */
+
+.product__rating { /* Yıldız puanı */
+  font-size: 0.85rem; /* Yazı boyutu */
+  color: #fdcb6e; /* Sarı yıldız rengi */
+} /* product__rating bloğunun sonu */
+
+.product__footer { /* Fiyat ve butonun olduğu alt kısım */
+  margin-top: auto; /* Kartın en altına iter */
+  display: flex; /* Yan yana dizer */
+  justify-content: space-between; /* Fiyat solda, buton sağda */
+  align-items: center; /* Dikeyde ortalar */
+  padding-top: 8px; /* Üst boşluk */
+} /* product__footer bloğunun sonu */
+
+.product__price { /* Ürün fiyatı */
+  font-size: 1.15rem; /* Biraz büyük yazı */
+  font-weight: 700; /* Kalın yazı */
+} /* product__price bloğunun sonu */
+
+/* Buttons - buton stilleri */
+.btn { /* Genel buton stili */
+  border: none; /* Kenarlık yok */
+  border-radius: 8px; /* Yuvarlak köşeler */
+  padding: 10px 14px; /* İç boşluk */
+  font-size: 0.9rem; /* Yazı boyutu */
+  cursor: pointer; /* El imleci */
+  transition: 0.2s; /* Yumuşak geçiş */
+} /* btn bloğunun sonu */
+
+.btn--primary { /* Ana (mor) buton */
+  background: var(--primary); /* Mor arka plan */
+  color: #fff; /* Beyaz yazı */
+} /* btn--primary bloğunun sonu */
+
+.btn--primary:hover { /* Ana butonun üzerine gelince */
+  background: var(--primary-dark); /* Koyu mor olur */
+} /* btn--primary hover bloğunun sonu */
+
+.btn--primary:disabled { /* Pasif durumdaki ana buton */
+  background: var(--border); /* Gri arka plan */
+  cursor: not-allowed; /* Yasak imleci */
+} /* disabled bloğunun sonu */
+
+.btn--ghost { /* Arka plansız buton */
+  background: transparent; /* Saydam arka plan */
+  color: var(--danger); /* Kırmızı yazı */
+} /* btn--ghost bloğunun sonu */
+
+.btn--block { /* Tam genişlik buton */
+  width: 100%; /* Kapsayıcının tamamını kaplar */
+  margin-top: 8px; /* Üst boşluk */
+} /* btn--block bloğunun sonu */
+
+.empty { /* "Ürün yok" / "Sepet boş" mesajları */
+  text-align: center; /* Ortalanmış yazı */
+  color: var(--muted); /* Soluk renk */
+  padding: 24px 0; /* Üst-alt boşluk */
+} /* empty bloğunun sonu */
+
+/* Cart drawer - sepet paneli */
+.overlay { /* Arka plan karartma katmanı */
+  position: fixed; /* Ekrana sabitlenir */
+  inset: 0; /* Tüm ekranı kaplar */
+  background: rgba(0, 0, 0, 0.4); /* Yarı saydam siyah */
+  opacity: 0; /* Başlangıçta görünmez */
+  pointer-events: none; /* Görünmezken tıklamaları engellemez */
+  transition: opacity 0.3s; /* Yumuşak görünme efekti */
+  z-index: 20; /* Üst menünün üstünde */
+} /* overlay bloğunun sonu */
+
+.overlay--show { /* Karartma katmanı açıkken */
+  opacity: 1; /* Görünür olur */
+  pointer-events: auto; /* Tıklamaları yakalar (kapatmak için) */
+} /* overlay--show bloğunun sonu */
+
+.cart { /* Sepet paneli */
+  position: fixed; /* Ekrana sabitlenir */
+  top: 0; /* En üstten başlar */
+  right: 0; /* Sağ kenara yapışır */
+  width: min(380px, 100%); /* En fazla 380px, küçük ekranda tam genişlik */
+  height: 100%; /* Tam yükseklik */
+  background: var(--card); /* Beyaz arka plan */
+  z-index: 30; /* Karartma katmanının üstünde */
+  display: flex; /* Flex düzeni */
+  flex-direction: column; /* Alt alta dizilim */
+  transform: translateX(100%); /* Başlangıçta ekranın sağında gizli */
+  transition: transform 0.3s ease; /* Kayarak açılma efekti */
+} /* cart bloğunun sonu */
+
+.cart--open { /* Sepet paneli açıkken */
+  transform: translateX(0); /* Ekrana kayarak girer */
+} /* cart--open bloğunun sonu */
+
+.cart__header { /* Sepet başlık alanı */
+  display: flex; /* Yan yana dizer */
+  justify-content: space-between; /* Başlık solda, kapat butonu sağda */
+  align-items: center; /* Dikeyde ortalar */
+  padding: 20px; /* İç boşluk */
+  border-bottom: 1px solid var(--border); /* Alt çizgi */
+} /* cart__header bloğunun sonu */
+
+.cart__close { /* Kapat (✕) butonu */
+  border: none; /* Kenarlık yok */
+  background: none; /* Arka plan yok */
+  font-size: 1.2rem; /* Yazı boyutu */
+  cursor: pointer; /* El imleci */
+} /* cart__close bloğunun sonu */
+
+.cart__items { /* Sepetteki ürünler listesi */
+  list-style: none; /* Madde işaretlerini kaldırır */
+  flex: 1; /* Kalan yüksekliği doldurur */
+  overflow-y: auto; /* Çok ürün varsa dikey kaydırma */
+  padding: 0 20px; /* Yatay iç boşluk */
+} /* cart__items bloğunun sonu */
+
+.cart-item { /* Sepetteki tek ürün satırı */
+  display: flex; /* Yan yana dizer */
+  align-items: center; /* Dikeyde ortalar */
+  gap: 12px; /* Elemanlar arası boşluk */
+  padding: 14px 0; /* Üst-alt boşluk */
+  border-bottom: 1px solid var(--border); /* Satırlar arası çizgi */
+} /* cart-item bloğunun sonu */
+
+.cart-item__image { /* Sepetteki ürün emojisi */
+  font-size: 2rem; /* Emoji boyutu */
+} /* cart-item__image bloğunun sonu */
+
+.cart-item__info { /* Ürün adı ve fiyat alanı */
+  flex: 1; /* Kalan genişliği kaplar */
+} /* cart-item__info bloğunun sonu */
+
+.cart-item__name { /* Sepetteki ürün adı */
+  font-size: 0.9rem; /* Yazı boyutu */
+  font-weight: 600; /* Yarı kalın */
+} /* cart-item__name bloğunun sonu */
+
+.cart-item__price { /* Sepetteki ürün tutarı */
+  font-size: 0.85rem; /* Küçük yazı */
+  color: var(--muted); /* Soluk renk */
+} /* cart-item__price bloğunun sonu */
+
+.qty { /* Adet artır/azalt alanı */
+  display: flex; /* Yan yana dizer */
+  align-items: center; /* Dikeyde ortalar */
+  gap: 8px; /* Butonlar ve sayı arası boşluk */
+} /* qty bloğunun sonu */
+
+.qty button { /* + ve − butonları */
+  width: 26px; /* Genişlik */
+  height: 26px; /* Yükseklik */
+  border: 1px solid var(--border); /* İnce kenarlık */
+  background: var(--card); /* Beyaz arka plan */
+  border-radius: 6px; /* Yuvarlak köşeler */
+  cursor: pointer; /* El imleci */
+} /* qty button bloğunun sonu */
+
+.cart-item__remove { /* Ürünü silme (çöp kutusu) butonu */
+  border: none; /* Kenarlık yok */
+  background: none; /* Arka plan yok */
+  color: var(--danger); /* Kırmızı renk */
+  cursor: pointer; /* El imleci */
+  font-size: 1rem; /* İkon boyutu */
+} /* cart-item__remove bloğunun sonu */
+
+.cart__footer { /* Sepetin alt kısmı (toplamlar) */
+  padding: 20px; /* İç boşluk */
+  border-top: 1px solid var(--border); /* Üst çizgi */
+} /* cart__footer bloğunun sonu */
+
+.cart__row { /* Toplam satırları */
+  display: flex; /* Yan yana dizer */
+  justify-content: space-between; /* Etiket solda, tutar sağda */
+  margin-bottom: 6px; /* Satırlar arası boşluk */
+} /* cart__row bloğunun sonu */
+
+.cart__row--total { /* Genel toplam satırı */
+  font-weight: 700; /* Kalın yazı */
+  font-size: 1.1rem; /* Biraz büyük yazı */
+} /* cart__row--total bloğunun sonu */
+
+.cart__note { /* Ücretsiz kargo notu */
+  display: block; /* Kendi satırında görünür */
+  color: var(--muted); /* Soluk renk */
+  margin-bottom: 4px; /* Alt boşluk */
+} /* cart__note bloğunun sonu */
+
+/* Toast - bildirim kutusu */
+.toast { /* Bildirim kutusu */
+  position: fixed; /* Ekrana sabitlenir */
+  bottom: 24px; /* Alttan 24px yukarıda */
+  left: 50%; /* Yatayda ortaya yerleşir */
+  transform: translate(-50%, 100px); /* Tam ortalar ve ekranın altına gizler */
+  background: var(--text); /* Koyu arka plan */
+  color: #fff; /* Beyaz yazı */
+  padding: 12px 20px; /* İç boşluk */
+  border-radius: 8px; /* Yuvarlak köşeler */
+  transition: transform 0.3s; /* Kayarak görünme efekti */
+  z-index: 40; /* Her şeyin üstünde */
+} /* toast bloğunun sonu */
+
+.toast--show { /* Bildirim görünürken */
+  transform: translate(-50%, 0); /* Yukarı kayarak görünür olur */
+} /* toast--show bloğunun sonu */
+
+@media (max-width: 600px) { /* 600px ve daha küçük ekranlar (telefon) için */
+  .header__logo { /* Logo */
+    font-size: 1.1rem; /* Daha küçük yazı */
+  } /* header__logo bloğunun sonu */
+
+  .toolbar { /* Araç çubuğu */
+    flex-direction: column; /* Elemanları alt alta dizer */
+    align-items: stretch; /* Tam genişliğe yayar */
+  } /* toolbar bloğunun sonu */
+} /* media query bloğunun sonu */
