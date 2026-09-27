@@ -1,0 +1,63 @@
+<!doctype html> <!-- Belgenin HTML5 olduğunu tarayıcıya bildirir -->
+<html lang="tr"> <!-- Kök eleman; sayfa dili Türkçe -->
+  <head> <!-- Sayfa hakkında bilgi (meta veriler) bölümü -->
+    <meta charset="UTF-8" /> <!-- Türkçe karakterlerin doğru görünmesi için UTF-8 kodlaması -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Mobil cihazlarda ekran genişliğine uyum sağlar -->
+    <title>MiniShop</title> <!-- Tarayıcı sekmesinde görünen başlık -->
+    <link rel="stylesheet" href="style.css" /> <!-- Harici CSS dosyasını sayfaya bağlar -->
+  </head> <!-- head bölümünün sonu -->
+  <body> <!-- Sayfada görünen içeriğin başladığı yer -->
+    <header class="header"> <!-- Üst menü (sabit başlık alanı) -->
+      <div class="container header__inner"> <!-- İçeriği ortalayan ve yatay dizen kapsayıcı -->
+        <a href="#" class="header__logo">🛍️ MiniShop</a> <!-- Mağaza logosu / adı -->
+        <input type="search" id="search" class="header__search" placeholder="Ürün ara..." /> <!-- Ürün arama kutusu; JS "search" id'si ile yakalar -->
+        <button id="cartBtn" class="header__cart" aria-label="Sepeti aç"> <!-- Sepet panelini açan buton -->
+          🛒 <span id="cartCount" class="header__badge">0</span> <!-- Sepetteki toplam ürün adedini gösteren rozet -->
+        </button> <!-- Sepet butonunun sonu -->
+      </div> <!-- header__inner kapsayıcısının sonu -->
+    </header> <!-- Üst menünün sonu -->
+
+    <main class="container"> <!-- Sayfanın ana içerik alanı -->
+      <section class="toolbar"> <!-- Kategori filtreleri ve sıralama araç çubuğu -->
+        <div id="categories" class="toolbar__categories"></div> <!-- Kategori butonları JS ile buraya eklenir -->
+        <select id="sort" class="toolbar__sort"> <!-- Ürün sıralama seçim kutusu -->
+          <option value="default">Önerilen</option> <!-- Varsayılan sıralama (veri sırası) -->
+          <option value="price-asc">Fiyat: Artan</option> <!-- Ucuzdan pahalıya sıralama -->
+          <option value="price-desc">Fiyat: Azalan</option> <!-- Pahalıdan ucuza sıralama -->
+          <option value="name">İsim (A-Z)</option> <!-- Alfabetik sıralama -->
+        </select> <!-- Seçim kutusunun sonu -->
+      </section> <!-- Araç çubuğunun sonu -->
+
+      <p id="emptyResult" class="empty" hidden>Aradığınız kriterlere uygun ürün bulunamadı.</p> <!-- Sonuç yoksa gösterilen mesaj; başlangıçta gizli -->
+      <section id="products" class="products"></section> <!-- Ürün kartları JS ile buraya eklenir -->
+    </main> <!-- Ana içerik alanının sonu -->
+
+    <div id="overlay" class="overlay"></div> <!-- Sepet açıkken arka planı karartan katman -->
+    <aside id="cart" class="cart" aria-label="Sepet"> <!-- Sağdan kayarak açılan sepet paneli -->
+      <div class="cart__header"> <!-- Sepet panelinin başlık alanı -->
+        <h2>Sepetim</h2> <!-- Panel başlığı -->
+        <button id="closeCart" class="cart__close" aria-label="Sepeti kapat">✕</button> <!-- Sepet panelini kapatan buton -->
+      </div> <!-- Başlık alanının sonu -->
+      <ul id="cartItems" class="cart__items"></ul> <!-- Sepetteki ürünler JS ile bu listeye eklenir -->
+      <p id="cartEmpty" class="empty">Sepetiniz boş.</p> <!-- Sepet boşken gösterilen mesaj -->
+      <div class="cart__footer"> <!-- Toplamlar ve butonların bulunduğu alt kısım -->
+        <div class="cart__row"> <!-- Ara toplam satırı -->
+          <span>Ara Toplam</span><span id="subtotal">0,00 ₺</span> <!-- Etiket ve JS ile güncellenen ara toplam tutarı -->
+        </div> <!-- Ara toplam satırının sonu -->
+        <div class="cart__row"> <!-- Kargo ücreti satırı -->
+          <span>Kargo</span><span id="shipping">0,00 ₺</span> <!-- Etiket ve JS ile güncellenen kargo tutarı -->
+        </div> <!-- Kargo satırının sonu -->
+        <div class="cart__row cart__row--total"> <!-- Genel toplam satırı (kalın yazı) -->
+          <span>Toplam</span><span id="total">0,00 ₺</span> <!-- Etiket ve JS ile güncellenen genel toplam -->
+        </div> <!-- Genel toplam satırının sonu -->
+        <small class="cart__note">500 ₺ ve üzeri alışverişlerde kargo ücretsiz!</small> <!-- Ücretsiz kargo bilgilendirme notu -->
+        <button id="checkout" class="btn btn--primary btn--block">Siparişi Tamamla</button> <!-- Siparişi tamamlayan ana buton -->
+        <button id="clearCart" class="btn btn--ghost btn--block">Sepeti Temizle</button> <!-- Sepetteki tüm ürünleri silen buton -->
+      </div> <!-- Alt kısmın sonu -->
+    </aside> <!-- Sepet panelinin sonu -->
+
+    <div id="toast" class="toast"></div> <!-- Kısa bildirim mesajlarının gösterildiği kutu -->
+
+    <script src="app.js"></script> <!-- Uygulama mantığını içeren JavaScript dosyası (sayfa yüklendikten sonra çalışsın diye en altta) -->
+  </body> <!-- Görünen içeriğin sonu -->
+</html> <!-- HTML belgesinin sonu -->
