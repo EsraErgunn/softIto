@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   console.log("1. Sıra Klinik Sitesi Açıldı.");
+
+      //   setTimeout(() => {
+      //     console.log(
+      //       "2.Sıram (zamanlayıcı): Randevu Hatırlatma Sms'i gönderildi(Macro TASK)",
+      //     );
+      //   }, 0); //0 ms olsa bile web API tarafına gönderir.
+
+      //   Promise.resolve().then(() => {
+      //     console.log(
+      //       "3.Promise:Vıp müşteri öncelikli kaydı alındı (micro task)",
+      //     );
+      //   }); //promise öncelik sıramız ip gibi düşünebilirsin.
+
+      //   console.log("4.Resepsiyon işlemleri devam ediyor.");
+
+      // danisanbbul("Selin Kaya",(danisan)=>{
+      //     ciltTipiAnalizi(danisan.id),(analiz) =>{
+      //         uygunSerumBelirle(analiz.tip,(serum) =>{
+      //             stosDus(serum.id,(fatura) =>{
+      //                 console.log("İşlem Tamamlandı",fatura);
+      //             })
+      //         })
+      //     }
+      // })  //Bu bir mimari hatası kod böyle olmamalı.
+
+      const randevuOlustur = (danisanAdi, hizmet, uzmanMusaitMi) => {
+        return new Promise((resolve, reject) => {
+          console.log(`${danisanAdi} için "${hizmet}" seaansı sorgulanıyor.`);
+
+          setTimeout(() => {
+            if (uzmanMusaitMi) {
+              const randevuDetay = {
+                takipNo: "BIO-" + Math.floor(1000 + Math.random() * 9000),
+                danisan: danisanAdi,
+                hizmet: hizmet,
+                saat: "14.30",
+                onaylandi: true,
+              };
+              resolve(randevuDetay); //doğru alırsak çalışacağımız bölüm
+            } else {
+              reject(new Error("Seçilen Saatte uzman randevusu doludur.")); //bir hata veya uyarı verecek olursak çalışacapımız bölüm
+            }
+          }, 1500); //1.5 saniye sonucu geçikmesi(simülasyon)
+        });
+      };
+      // randevuOlustur("Meryem Tur", "Medikal Bakım", true)
+      //   .then((randevu) => {
+      //     console.log("Randevu Onaylandı", randevu);
+      //     return `Kayıt No: ${randevu.takipNo}`; //Bir sonraki then bölümüne aktarılır
+      //   })
+      //   .then((mesaj) => {
+      //     console.log("Sms gönderildi->", mesaj);
+      //   })
+      //   .catch((hata) => {
+      //     console.error("işlem başarısız ", hata.mesage);
+      //   })
+      //   .finally(() => {
+      //     console.log("Randevu Sorgulama Oturumu Kapatıldı/Tamamlandı");
+      //   });
+
+      //serum stok bölümü veri serimstok kontrol fonk promise olacak yeterli stok varsa. içinde varsa yes yoksa no dönecek.
+      // const serumKontrolu = (serumAdi, istenenAdet, stokSayisi) => {
+      //   return new Promise((resolve, reject) => {
+      //     console.log(`${serumAdi} için ${istenenAdet} adet stok sorgulanıyor.`);
+
+      //     setTimeout(() => {
+      //       if (stokSayisi >= istenenAdet) {
+      //         const stokDetay = {
+      //           serum: serumAdi,
+      //           istenenAdet: istenenAdet,
+      //           kalanStok: stokSayisi - istenenAdet,
+      //           durum: true,
+      //         };
+      //         resolve(stokDetay);
+      //       } else {
+      //         reject(new Error("no"));
+      //       }
+      //     }, 1500);
+      //   });
+      // };
+      // serumKontrolu("C Vitamini Serumu", 3, 10)
+      //   .then((stok) => {
+      //     console.log("Stok Yeterli", stok);
+      //     return stok.durum;
+      //   })
+      //   .then((sonuc) => {
+      //     console.log("Stok Durumu->", sonuc);
+      //   })
+      //   .catch((hata) => {
+      //     console.error("Stok Durumu->", hata.message);
+      //   })
+      //   .finally(() => {
+      //     console.log("Stok Sorgulama Tamamlandı");
+      //   });
+
+      //   const seansUcretHesapla = (hizmetTipi) => {
+      //     return new Promise((resolve) => {
+      //       setTimeout(()=>{
+      //         const tarifeler = {
+      //           "lazer Epilasyon":2800,
+      //           "İğneli Eğilasyon":4500,
+      //           "Lipo":6500
+      //       }
+      //     resolve(tarifeler[hizmetTipi] || 1500);
+      //     },1000)
+      //   })
+      // };
+
+      // const randevuSureciBasla = async(danisan , hizmet) =>{
+      //   try{
+      //     console.log(`1.Adım ${danisan} için işlem başlatılıyor`);
+      //     const randevu =await randevuOlustur(danisan,hizmet,true);
+      //     console.log(`2.Adım Randevu Onalyandı.Takip no: ${randevu.takipNo}`);
+
+      //     const tutar=await seansUcretHesapla(hizmet);
+      //     console.log(`3.Adım Seans Ücreti: ${tutar} ₺ kdc dahildir. Kayıt tamamlandı!`);
+      //     return{basarili:true,takipNo:randevu.takipNo,toplam:tutar};
+      //   }catch(err){
+      //     console.error("Hata oluştu:",err.message);
+      //     return{basarili:false,hata:err.message}
+      //   }finally{
+      //     console.log("Seans Akışı tamamlandı.")
+      //   }
+      // }
+
+      // // calıstırma
+      // randevuSureciBasla("Meryem Tur","Lipo")
+
+      
+      // // Rest Api olarak dışarıdan veri çekme
+      // const kozmetikUrunleriniGetir =async() =>{
+      //   try{
+      //     console.log("Harici Apiye Bağlanılıyor");
+      //     const response = await fetch("https://dummyjson.com/products/category/beauty");
+      //     if(!response.ok){
+      //       throw new Error(`http Hatası: ${response.status}`);
+      //     }
+      //     const data = await response.json();
+      //     console.log( `Toplam  ${data.products.length} adet kozmetik ürün çekildi`);
+
+      //     const vitrin =data.products.slice(0,3).map(p =>({urun:p.title,
+      //       fiyar:p.price,
+      //       stok:p.stock
+      //     }));
+      //     console.table(vitrin);
+      //   }catch(err){
+      //     console.warn("Api Hatası",err.message);
+      //   }
+      // }
+      // kozmetikUrunleriniGetir();
+
+      //catch ile veri çekip ilk gelen1. ve 2. veriyi alma ikiden yediye kadar olan veriyi al. ismini, açıklama katagory fiyat stok ,etiket istiyor.
+      //https://dummyjson.com/products
+
+      const urun =async() =>{
+        try{
+          console.log("Harici Api'ye bağlanılıyor");
+          const response = await fetch("https://dummyjson.com/products");
+          if(!response.ok){
+            throw new Error(`http Hatası: ${response.status}`);
+          }
+          const data =await response.json();
+          console.log(`Toplam ${data.products.length} kadar ürün çekildi.`);
+
+          const vitrin = data.products.slice(2,7).map(p => ({    urun: p.title,
+            aciklama: p.description,
+            kategori: p.category,
+            fiyat: p.price,
+            stok: p.stock,
+            etiket: p.tags,}));
+          console.log(vitrin);
+        }catch(err){
+          console.warn("Api Hatası", err.message);
+        }
+      }
+        urun();
+      
+    </script>
+  </body>
+</html>
