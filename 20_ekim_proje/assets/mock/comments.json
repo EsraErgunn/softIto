@@ -1,0 +1,296 @@
+[
+  {
+    "id": "cmt_001",
+    "postId": "pst_001",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "KDV tevkifatı ve e-arşiv fatura entegrasyonu maliyeti kesinlikle ilk gün konuşulmalı. Biz ilk ayda entegratör faturalarını görünce şok olmuştuk!",
+    "createdMinutesAgo": 25
+  },
+  {
+    "id": "cmt_002",
+    "postId": "pst_001",
+    "author": { "id": "mnt_011", "name": "Tolga Demir", "role": "mentor", "isVerified": false },
+    "content": "Sermaye paylarının tescili ve ana sözleşmedeki imza yetkileri maddesi de hayati. Özellikle birden fazla kurucu varsa müşterek imza sınırlarını iyi belirleyin.",
+    "createdMinutesAgo": 18
+  },
+  {
+    "id": "cmt_003",
+    "postId": "pst_001",
+    "author": { "id": "usr_001", "name": "Elif Karaca", "role": "entrepreneur", "isVerified": false },
+    "content": "Genç girişimci istisnası (29 yaş altı 1 yıl BAĞ-KUR prim muafiyeti ve 3 yıl 230.000 TL gelir vergisi istisnası) şartlarını sormak bize ilk yıl çok ciddi nakit kazandırdı.",
+    "createdMinutesAgo": 10
+  },
+  {
+    "id": "cmt_004",
+    "postId": "pst_002",
+    "author": { "id": "inv_002", "name": "Defne Bilgin", "role": "investor", "isVerified": true },
+    "content": "Tebrikler Mert! 50 ücretli KOBİ çok değerli bir PMF (Product-Market Fit) sinyali. 1501 Ar-Ge bütçesinde personel adam/ay oranlarını iyi kurgulayın, panelde en çok oraya bakıyorlar.",
+    "createdMinutesAgo": 65
+  },
+  {
+    "id": "cmt_005",
+    "postId": "pst_002",
+    "author": { "id": "mnt_001", "name": "Selin Aydoğan", "role": "mentor", "isVerified": true },
+    "content": "Harika haber Mert! İlk 50 müşterinin churn (ayrılma) oranını haftalık izleyin. TÜBİTAK projesinde ticarileşme taahhüdü verirken bu müşteri referans mektuplarını ekleyin.",
+    "createdMinutesAgo": 50
+  },
+  {
+    "id": "cmt_006",
+    "postId": "pst_002",
+    "author": { "id": "inv_001", "name": "Kerem Yalçın", "role": "investor", "isVerified": true },
+    "content": "Tebrikler ekip. Eğer köprü yatırım ihtiyacınız olursa ağımızdan meleklerle tanıştırmaktan memnuniyet duyarım.",
+    "createdMinutesAgo": 40
+  },
+  {
+    "id": "cmt_007",
+    "postId": "pst_003",
+    "author": { "id": "mnt_001", "name": "Selin Aydoğan", "role": "mentor", "isVerified": true },
+    "content": "Kesinlikle katılıyorum Kerem Bey. Fikir pivot edebilir, ürün baştan yazılabilir ama kurucunun direnci ve pazar içgörüsü taklit edilemez.",
+    "createdMinutesAgo": 120
+  },
+  {
+    "id": "cmt_008",
+    "postId": "pst_003",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "Yatırımcı görüşmelerinde aldığımız geri bildirimleri ürüne 48 saat içinde yansıttığımızda aldığımız tepkiler inanılmaz değişmişti. Öğrenme hızı gerçekten her şey.",
+    "createdMinutesAgo": 100
+  },
+  {
+    "id": "cmt_009",
+    "postId": "pst_003",
+    "author": { "id": "usr_004", "name": "Can Vural", "role": "investor", "isVerified": true },
+    "content": "Benim de ekleyeceğim tek şey: Dinleme kabiliyeti. Savunmaya geçmek yerine eleştiriyi hipotez gibi test edebilen kurucu 10-0 önde başlıyor.",
+    "createdMinutesAgo": 85
+  },
+  {
+    "id": "cmt_010",
+    "postId": "pst_004",
+    "author": { "id": "mnt_005", "name": "Kerem Tan", "role": "mentor", "isVerified": true },
+    "content": "Elif selam, Bergama ve Torbalı Ziraat Odası'nda teknolojiye çok açık iki sera işletmesi var. İstersen doğrudan işletme sahipleriyle seni WhatsApp üzerinden eşleştirebilirim.",
+    "createdMinutesAgo": 180
+  },
+  {
+    "id": "cmt_011",
+    "postId": "pst_004",
+    "author": { "id": "inv_003", "name": "Alp Korkmaz", "role": "investor", "isVerified": true },
+    "content": "Damla Tarım'ın sensör donanım maliyetleri ve pil ömrü hedefleri ne durumda? Saha test sonuçlarınızı görmek isteriz, tarım fonumuzun radarına aldık.",
+    "createdMinutesAgo": 150
+  },
+  {
+    "id": "cmt_012",
+    "postId": "pst_005",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "Hocam biz faturadaki kalemleri parse ederken GPT-4 yerine fine-tuned Llama 3.1 8B modeline geçtik, aylık API faturamız %80 düştü!",
+    "createdMinutesAgo": 260
+  },
+  {
+    "id": "cmt_013",
+    "postId": "pst_005",
+    "author": { "id": "mnt_009", "name": "Oğuzhan Kaya", "role": "mentor", "isVerified": true },
+    "content": "Ayrıca semantik cache için Redis veya pgvector kullanımı benzer sorgularda hem gecikmeyi 20 ms'ye indiriyor hem maliyeti sıfırlıyor.",
+    "createdMinutesAgo": 230
+  },
+  {
+    "id": "cmt_014",
+    "postId": "pst_006",
+    "author": { "id": "inv_009", "name": "Hakan Güven", "role": "investor", "isVerified": true },
+    "content": "Çok doğru bir tespit Zeynep Hanım. MDR (Medical Device Regulation) sınıflandırması yapılmamış hiçbir sağlık girişimine fonumuzdan term sheet vermiyoruz.",
+    "createdMinutesAgo": 380
+  },
+  {
+    "id": "cmt_015",
+    "postId": "pst_006",
+    "author": { "id": "usr_001", "name": "Elif Karaca", "role": "entrepreneur", "isVerified": false },
+    "content": "Klinik test süreçlerinin maliyetleri için TÜBİTAK 1003 veya KOSGEB Ar-Ge İnovasyon desteği kullanılabiliyor mu acaba?",
+    "createdMinutesAgo": 350
+  },
+  {
+    "id": "cmt_016",
+    "postId": "pst_007",
+    "author": { "id": "mnt_009", "name": "Oğuzhan Kaya", "role": "mentor", "isVerified": true },
+    "content": "NRR %110 üstüyse, mevcut müşteriye upsell ve cross-sell yapabiliyorsunuz demektir. Bu da organik büyümenin en temiz kanıtıdır.",
+    "createdMinutesAgo": 500
+  },
+  {
+    "id": "cmt_017",
+    "postId": "pst_007",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "Bizde yıllık sözleşmeye geçen KOBİ'lerin NRR'ı %118 çıktı. Bu metriği sunumumuzda en öne koyduk.",
+    "createdMinutesAgo": 460
+  },
+  {
+    "id": "cmt_018",
+    "postId": "pst_008",
+    "author": { "id": "inv_001", "name": "Kerem Yalçın", "role": "investor", "isVerified": true },
+    "content": "2 yıl önce vesting yapmadığı için 6. ayda ayrılan kurucu ortağın hissesini geri alamayan harika bir girişim battı. Vesting kurucuları koruyan bir kalkandır.",
+    "createdMinutesAgo": 620
+  },
+  {
+    "id": "cmt_019",
+    "postId": "pst_008",
+    "author": { "id": "mnt_001", "name": "Selin Aydoğan", "role": "mentor", "isVerified": true },
+    "content": "Standart sözleşmede Bad Leaver ve Good Leaver ayrımının net olması şart. Hile veya rekabet yasağı ihlalinde hisse bedelsiz şirkete dönebilmeli.",
+    "createdMinutesAgo": 590
+  },
+  {
+    "id": "cmt_020",
+    "postId": "pst_008",
+    "author": { "id": "usr_001", "name": "Elif Karaca", "role": "entrepreneur", "isVerified": false },
+    "content": "Platformun ücretsiz hukuki danışmanlık randevusunda bu sözleşme taslağını avukatla hazırlayabiliyor muyuz?",
+    "createdMinutesAgo": 550
+  },
+  {
+    "id": "cmt_021",
+    "postId": "pst_009",
+    "author": { "id": "inv_007", "name": "Kaan Öztürk", "role": "investor", "isVerified": false },
+    "content": "Deniz Bey kılavuz için teşekkürler. Özellikle Amazon ve Etsy üzerinden yurt dışına satan portföy şirketlerimiz için çok faydalı oldu.",
+    "createdMinutesAgo": 760
+  },
+  {
+    "id": "cmt_022",
+    "postId": "pst_009",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "Gümrük müşavirliği ücreti ödemeden ETGB kapsamında 15.000 Euro ve 300 kg'a kadar olan ihracatlarda KDV iadesi almak nakit akışını kurtarıyor.",
+    "createdMinutesAgo": 720
+  },
+  {
+    "id": "cmt_023",
+    "postId": "pst_010",
+    "author": { "id": "inv_005", "name": "Emre Varol", "role": "investor", "isVerified": true },
+    "content": "Ceren Hanım %100 haklı. PlayMaker hızlandırıcımıza başvuran ekiplerde CPI (maliyet) 0.30$ olsa bile D7 %10 altındaysa yatırım yapmıyoruz.",
+    "createdMinutesAgo": 880
+  },
+  {
+    "id": "cmt_024",
+    "postId": "pst_010",
+    "author": { "id": "mnt_002", "name": "Burak Çetin", "role": "mentor", "isVerified": true },
+    "content": "Level-based oyunlarda FTUE (First Time User Experience) ilk 3 dakikada drop-off oranını %50'den %20'ye indirmek retention'ı doğrudan katlıyor.",
+    "createdMinutesAgo": 840
+  },
+  {
+    "id": "cmt_025",
+    "postId": "pst_011",
+    "author": { "id": "usr_001", "name": "Elif Karaca", "role": "entrepreneur", "isVerified": false },
+    "content": "Kerem Bey çok teşekkürler bu uyarı için! Biz de laboratuvar spektrometre cihazı için başvurduk, proforma fatura şartlarına harfiyen uyduk.",
+    "createdMinutesAgo": 1000
+  },
+  {
+    "id": "cmt_026",
+    "postId": "pst_011",
+    "author": { "id": "mnt_007", "name": "Murat Güler", "role": "mentor", "isVerified": false },
+    "content": "Yerli malı belgesi olan makinelerde KOSGEB hibe oranını %15 artırıyor, mümkünse yerli üretici tercih edin.",
+    "createdMinutesAgo": 960
+  },
+  {
+    "id": "cmt_027",
+    "postId": "pst_012",
+    "author": { "id": "inv_002", "name": "Defne Bilgin", "role": "investor", "isVerified": true },
+    "content": "Kesinlikle! Seri A turuna geldiğinde kurucuların toplam hissesi %50'nin altına düşmüşse yabancı VC'ler doğrudan masadan kalkıyor.",
+    "createdMinutesAgo": 1150
+  },
+  {
+    "id": "cmt_028",
+    "postId": "pst_012",
+    "author": { "id": "mnt_010", "name": "Banu Aydın", "role": "mentor", "isVerified": true },
+    "content": "Hisse vermek yerine SAFE (Simple Agreement for Future Equity) veya konvertibl borç enstrümanı kullanmak değerleme pazarlığını bir sonraki tura öteleyebilir.",
+    "createdMinutesAgo": 1100
+  },
+  {
+    "id": "cmt_029",
+    "postId": "pst_012",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "Biz tohum turunda %10 ile kapattık. Bu tavsiyeyi erken duymuş olmak en büyük şansımız oldu.",
+    "createdMinutesAgo": 1050
+  },
+  {
+    "id": "cmt_030",
+    "postId": "pst_013",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "Bedava POC yaptığımız holding 6 ay sonra proje yöneticisi değişince bizi unuttu. Ücret ödeyen fabrika ise ilk haftada canlıya aldı!",
+    "createdMinutesAgo": 1300
+  },
+  {
+    "id": "cmt_031",
+    "postId": "pst_013",
+    "author": { "id": "inv_004", "name": "Gizem Şener", "role": "investor", "isVerified": false },
+    "content": "Kurumsal taraftan yazıyorum: Ücret ödemediğimiz POC'ler kurum içinde sahiplenilmiyor, bütçe onayı alan projeler ise yönetim kurulu gündemine giriyor.",
+    "createdMinutesAgo": 1260
+  },
+  {
+    "id": "cmt_032",
+    "postId": "pst_014",
+    "author": { "id": "inv_006", "name": "Pelin Karataş", "role": "investor", "isVerified": true },
+    "content": "Yeşil fonumuz tam olarak bu regülasyona uyum sağlayan ESG ve Kapsam 1-2-3 emisyon raporlama girişimlerini arıyor. Projesi olanlar bana yazabilir.",
+    "createdMinutesAgo": 1450
+  },
+  {
+    "id": "cmt_033",
+    "postId": "pst_014",
+    "author": { "id": "usr_001", "name": "Elif Karaca", "role": "entrepreneur", "isVerified": false },
+    "content": "Biz de sera sulamasında harcanan elektrik ve su ayak izini ölçen karbon tasarruf raporu modülü ekliyoruz.",
+    "createdMinutesAgo": 1400
+  },
+  {
+    "id": "cmt_034",
+    "postId": "pst_015",
+    "author": { "id": "inv_001", "name": "Kerem Yalçın", "role": "investor", "isVerified": true },
+    "content": "Eğitimde CAC (müşteri edinme maliyeti) B2C'de LTV'yi aşıyor. Okul bazlı B2B yıllık lisanslama tek sağlıklı büyüme yolu.",
+    "createdMinutesAgo": 1600
+  },
+  {
+    "id": "cmt_035",
+    "postId": "pst_016",
+    "author": { "id": "inv_002", "name": "Defne Bilgin", "role": "investor", "isVerified": true },
+    "content": "Şablonu inceledim Banu Hanım, özellikle SGK işveren payı ve sunucu maliyetlerindeki artış katsayısı çok gerçekçi modellenmiş.",
+    "createdMinutesAgo": 1750
+  },
+  {
+    "id": "cmt_036",
+    "postId": "pst_016",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "Banu Hanım şablonu indirdim, 18 aylık runway hesabımızı güncelledik. Çok aydınlatıcı oldu elinize sağlık.",
+    "createdMinutesAgo": 1700
+  },
+  {
+    "id": "cmt_037",
+    "postId": "pst_017",
+    "author": { "id": "mnt_001", "name": "Selin Aydoğan", "role": "mentor", "isVerified": true },
+    "content": "Guy Kawasaki'nin 10/20/30 kuralını herkese hatırlatmak isterim: 10 slayt, 20 dakika sunum, en az 30 punto yazı boyutu.",
+    "createdMinutesAgo": 1900
+  },
+  {
+    "id": "cmt_038",
+    "postId": "pst_017",
+    "author": { "id": "usr_001", "name": "Elif Karaca", "role": "entrepreneur", "isVerified": false },
+    "content": "Can Bey sunum dosyamızı 12 slayta indirdik, problem slaytına da kuraklık yüzünden telef olan ürün istatistiğini koyduk.",
+    "createdMinutesAgo": 1860
+  },
+  {
+    "id": "cmt_039",
+    "postId": "pst_018",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "Gizem Hanım Faturix olarak açık bankacılık hesap hareketleri entegrasyonumuz hazır, detayları görüşmek için eşleşme isteği gönderdim.",
+    "createdMinutesAgo": 2040
+  },
+  {
+    "id": "cmt_040",
+    "postId": "pst_019",
+    "author": { "id": "mnt_002", "name": "Burak Çetin", "role": "mentor", "isVerified": true },
+    "content": "İrem Hanım çok doğru bir noktaya değinmiş. İlk çalışanların genelci (generalist), meraklı ve sorumluluk almaktan korkmayan profiller olması gerekir.",
+    "createdMinutesAgo": 2200
+  },
+  {
+    "id": "cmt_041",
+    "postId": "pst_020",
+    "author": { "id": "mnt_011", "name": "Tolga Demir", "role": "mentor", "isVerified": false },
+    "content": "Flipping yaparken Türkiye'deki şirketin fikri mülkiyetini (IP) Delaware ana şirkete devrederken transfer fiyatlandırması ve stopaj konusuna çok dikkat edilmeli.",
+    "createdMinutesAgo": 2350
+  },
+  {
+    "id": "cmt_042",
+    "postId": "pst_020",
+    "author": { "id": "inv_002", "name": "Defne Bilgin", "role": "investor", "isVerified": true },
+    "content": "Yabancı fonların term sheet şartlarında yüzde 90 'Delaware Flip' maddesi gelir. Baştan kurmak daha sonra taşımaktan her zaman daha ucuzdur.",
+    "createdMinutesAgo": 2300
+  }
+]

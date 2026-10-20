@@ -1,0 +1,42 @@
+[
+  {
+    "id": "cns_001",
+    "name": "Av. Hakan Çelik",
+    "title": "Girişim ve Şirketler Hukuku Avukatı",
+    "field": "legal",
+    "bio": "Şirket kuruluşu, hissedarlar sözleşmesi (SHA), SAFE ve konvertibl borç sözleşmeleri uzmanı.",
+    "availableHours": ["10:00", "11:30", "14:00", "16:00"]
+  },
+  {
+    "id": "cns_002",
+    "name": "SMMM Nilgün Kaya",
+    "title": "Mali Müşavir & Vergi Danışmanı",
+    "field": "accounting",
+    "bio": "Teknopark vergi muafiyetleri, Ar-Ge bordrolama ve KDV iade süreçleri deneyimi.",
+    "availableHours": ["09:30", "11:00", "14:30", "15:30"]
+  },
+  {
+    "id": "cns_003",
+    "name": "Kemal Aktaş",
+    "title": "Kıdemli Vergi Müfettişi (E.)",
+    "field": "tax",
+    "bio": "Kurumlar vergisi, genç girişimci istisnası, transfer fiyatlandırması ve vergi inceleme rehberliği.",
+    "availableHours": ["13:00", "15:00", "16:30"]
+  },
+  {
+    "id": "cns_004",
+    "name": "Gamze Erdem",
+    "title": "SGK ve Bordro Uzmanı",
+    "field": "sgk",
+    "bio": "SGK işyeri tescili, 7263 sayılı Teknokent teşvikleri ve uzaktan çalışma bordro mevzuatı.",
+    "availableHours": ["10:30", "13:30", "15:00"]
+  },
+  {
+    "id": "cns_005",
+    "name": "Tarık Demirci",
+    "title": "Finansal Stratejist & Yatırım Danışmanı",
+    "field": "investment",
+    "bio": "Cap table yönetimi, değerleme modelleri ve uluslararası yatırım hazırlığı danışmanı.",
+    "availableHours": ["11:00", "14:00", "17:00"]
+  }
+]

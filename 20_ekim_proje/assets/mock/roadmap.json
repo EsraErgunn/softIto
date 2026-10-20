@@ -1,0 +1,98 @@
+[
+  {
+    "id": "rdm_01",
+    "order": 1,
+    "category": "legal",
+    "title": "Şirket Türünü Belirle",
+    "description": "Şahıs, Limited (Ltd. Şti.) veya Anonim Şirket (A.Ş.) türlerinin maliyet, sorumluluk ve yatırımcı algısı açısından karşılaştırılması.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_02",
+    "order": 2,
+    "category": "legal",
+    "title": "Kurucu Ortaklar Sözleşmesi",
+    "description": "Hissedarlar arası pay dağılımı, vesting (hakediş süresi) ve fikir mülkiyeti devir sözleşmesinin hazırlanması.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_03",
+    "order": 3,
+    "category": "accounting",
+    "title": "Mali Müşavir Anlaşması",
+    "description": "Şirket kuruluş evraklarının MERSİS'e girilmesi ve defter tasdikleri için bir SMMM ile anlaşma yapılması.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_04",
+    "order": 4,
+    "category": "tax",
+    "title": "Vergi Dairesi Yoklaması ve Levha",
+    "description": "Vergi dairesine kayıt, e-tebligat başvurusu, adres yoklaması ve vergi levhasının onaylanması.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_05",
+    "order": 5,
+    "category": "sgk",
+    "title": "SGK İşyeri Tescili ve BAĞ-KUR",
+    "description": "Ortakların BAĞ-KUR (4B) tescili, ilk personel istihdamında SGK işyeri sicil numarası alınması.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_06",
+    "order": 6,
+    "category": "accounting",
+    "title": "E-Dönüşüm: E-Fatura & E-İmza",
+    "description": "E-imza temini, Gelir İdaresi Başkanlığı e-arşiv ve e-fatura portalı aktivasyonu.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_07",
+    "order": 7,
+    "category": "legal",
+    "title": "Marka Tescili ve Fikri Haklar",
+    "description": "TÜRKPATENT nezdinde marka tescil başvurusu yapılması ve alan adlarının güvenceye alınması.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_08",
+    "order": 8,
+    "category": "tax",
+    "title": "Genç Girişimci İstisnası",
+    "description": "29 yaş altı girişimciler için 1 yıl prim ve 3 yıl 230.000 TL gelir vergisi istisnası belgesinin alınması.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_09",
+    "order": 9,
+    "category": "accounting",
+    "title": "Ticari Banka Hesabı & Sanal POS",
+    "description": "Şirket adına ticari banka hesabı açılışı, sanal POS veya ödeme kuruluşu entegrasyonu.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_010",
+    "order": 10,
+    "category": "sgk",
+    "title": "Teknokent / Ar-Ge Teşvik Başvurusu",
+    "description": "4691 veya 7263 sayılı kanun kapsamında çalışan yazılımcı personelin SGK ve stopaj muafiyet kaydı.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_011",
+    "order": 11,
+    "category": "legal",
+    "title": "KVKK ve Çerez Politikası",
+    "description": "Web ve mobil uygulama için kullanıcı aydınlatma metni, gizlilik politikası ve VERBİS muafiyet kontrolü.",
+    "isCompleted": false
+  },
+  {
+    "id": "rdm_012",
+    "order": 12,
+    "category": "tax",
+    "title": "KDV Tevkifatı ve Geçici Vergi",
+    "description": "Üçer aylık geçici vergi dönemleri ve KOBİ'lere kesilen faturalarda tevkifat takviminin takibi.",
+    "isCompleted": false
+  }
+]
