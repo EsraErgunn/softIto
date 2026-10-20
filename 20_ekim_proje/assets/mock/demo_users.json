@@ -1,0 +1,55 @@
+[
+  {
+    "id": "usr_001",
+    "name": "Elif Karaca",
+    "role": "entrepreneur",
+    "email": "elif@ornek.com",
+    "city": "İzmir",
+    "bio": "Tarımda sulama verimliliği ve sensör ağları üzerine çalışıyorum.",
+    "verificationStatus": "notStarted",
+    "hasBusinessPlan": false,
+    "businessProfile": {
+      "startupName": "Damla Tarım",
+      "sector": "agriculture",
+      "stage": "idea",
+      "teamSize": 2,
+      "needs": ["legal", "tax", "accounting"]
+    }
+  },
+  {
+    "id": "usr_002",
+    "name": "Mert Özkan",
+    "role": "entrepreneur",
+    "email": "mert@ornek.com",
+    "city": "İstanbul",
+    "bio": "KOBİ'ler için yapay zekâ destekli ön muhasebe ve e-fatura platformu.",
+    "verificationStatus": "approved",
+    "hasBusinessPlan": true,
+    "businessProfile": {
+      "startupName": "Faturix",
+      "sector": "fintech",
+      "stage": "earlyRevenue",
+      "teamSize": 5,
+      "businessPlanFileName": "faturix_is_plani.pdf",
+      "needs": ["accounting", "investment"]
+    }
+  },
+  {
+    "id": "usr_003",
+    "name": "Ayşe Demirtaş",
+    "role": "mentor",
+    "email": "ayse@ornek.com",
+    "city": "Ankara",
+    "bio": "Büyüme aşamasındaki girişimlere ürün ve pazar uyumu danışmanlığı veriyorum.",
+    "verificationStatus": "approved"
+  },
+  {
+    "id": "usr_004",
+    "name": "Can Vural",
+    "role": "investor",
+    "email": "can@ornek.com",
+    "city": "İstanbul",
+    "bio": "Erken aşama B2B SaaS ve fintek girişimlerine tohum yatırım yapıyorum.",
+    "verificationStatus": "approved"
+  }
+]

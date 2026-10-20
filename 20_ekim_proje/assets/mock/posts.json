@@ -1,0 +1,206 @@
+[
+  {
+    "id": "pst_001",
+    "author": { "id": "mnt_001", "name": "Selin Aydoğan", "role": "mentor", "isVerified": true },
+    "content": "Şirket kurmadan önce mali müşavirinizle hangi soruları konuşmalısınız? Yorumlara yazın, derleyip topluluk için bir kontrol listesi paylaşacağım.",
+    "tags": ["hukuk", "muhasebe", "şirket"],
+    "createdMinutesAgo": 35,
+    "likeCount": 38,
+    "repostCount": 12,
+    "commentCount": 3
+  },
+  {
+    "id": "pst_002",
+    "author": { "id": "usr_002", "name": "Mert Özkan", "role": "entrepreneur", "isVerified": true },
+    "content": "Faturix ekibi olarak ilk 50 ücretli KOBİ müşterimize ulaştık! 🚀 Sıradaki hedefimiz TÜBİTAK 1501 çağrısı ile yapay zekâ tabanlı denetim modülünü geliştirmek.",
+    "imageAsset": "assets/images/posts/celebration.jpg",
+    "tags": ["fintek", "milestone", "kutlama"],
+    "createdMinutesAgo": 75,
+    "likeCount": 64,
+    "repostCount": 18,
+    "commentCount": 3
+  },
+  {
+    "id": "pst_003",
+    "author": { "id": "inv_001", "name": "Kerem Yalçın", "role": "investor", "isVerified": true },
+    "content": "Melek yatırımcı olarak en çok baktığım şey: Pazarın büyüklüğünden önce kurucu ekibin problemle olan bağı ve hızla öğrenme kabiliyetidir.",
+    "tags": ["yatırım", "tavsiye", "melek"],
+    "createdMinutesAgo": 140,
+    "likeCount": 92,
+    "repostCount": 27,
+    "commentCount": 3
+  },
+  {
+    "id": "pst_004",
+    "author": { "id": "usr_001", "name": "Elif Karaca", "role": "entrepreneur", "isVerified": false },
+    "content": "Tarım teknolojisi projemiz için İzmir çevresinde pilot sera arıyoruz. Sulama sensörlerimizi sahada ücretsiz test edip verimi ölçmek isteyen üreticiler iletişime geçebilir mi?",
+    "imageAsset": "assets/images/posts/greenhouse.jpg",
+    "tags": ["tarım", "pilot", "iot"],
+    "createdMinutesAgo": 210,
+    "likeCount": 45,
+    "repostCount": 15,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_005",
+    "author": { "id": "mnt_002", "name": "Burak Çetin", "role": "mentor", "isVerified": true },
+    "content": "Yapay zekâ modellerini ürünleştirirken API maliyetlerini kontrol altında tutmak sanıldığından daha kritik. Prompt caching ve küçük modelleri hafife almayın.",
+    "tags": ["yapay zeka", "saas", "maliyet"],
+    "createdMinutesAgo": 300,
+    "likeCount": 51,
+    "repostCount": 19,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_006",
+    "author": { "id": "mnt_003", "name": "Zeynep Koç", "role": "mentor", "isVerified": true },
+    "content": "Sağlık teknolojilerinde yazılım geliştiren ekiplerin en büyük yanılgısı regülasyonu son aya bırakmak. CE medikal yazılım sertifikası olmadan hastane entegrasyonu imkansız.",
+    "tags": ["sağlık", "regülasyon", "ce-belgesi"],
+    "createdMinutesAgo": 420,
+    "likeCount": 34,
+    "repostCount": 8,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_007",
+    "author": { "id": "inv_002", "name": "Defne Bilgin", "role": "investor", "isVerified": true },
+    "content": "Erken aşama B2B SaaS girişimleri için 'Net Revenue Retention (NRR)' metriği yüzde 110'un üzerindeyse, müşteri edinme maliyetini dert etmeden büyüme turuna çıkabilirsiniz.",
+    "imageAsset": "assets/images/posts/runway_chart.jpg",
+    "tags": ["saas", "metrik", "yatırım"],
+    "createdMinutesAgo": 540,
+    "likeCount": 78,
+    "repostCount": 24,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_008",
+    "author": { "id": "mnt_011", "name": "Tolga Demir", "role": "mentor", "isVerified": false },
+    "content": "Kurucu ortaklar arasında vesting sözleşmesi (1 yıl cliff + 4 yıl hakediş) imzalanmamışsa melek yatırım masasına oturmayın. Yatırımcının ilk baktığı şey bu belgedir.",
+    "tags": ["hukuk", "vesting", "kurucular"],
+    "createdMinutesAgo": 660,
+    "likeCount": 85,
+    "repostCount": 31,
+    "commentCount": 3
+  },
+  {
+    "id": "pst_009",
+    "author": { "id": "mnt_004", "name": "Deniz Arslan", "role": "mentor", "isVerified": false },
+    "content": "Mikro ihracat yapan e-ticaret girişimcileri için ETGB ve KDV iadesi kılavuzu hazırladım. Aracı kargo firmalarının kestiği komisyonlara dikkat!",
+    "tags": ["e-ticaret", "ihracat", "vergi"],
+    "createdMinutesAgo": 800,
+    "likeCount": 46,
+    "repostCount": 11,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_010",
+    "author": { "id": "mnt_006", "name": "Ceren Şahin", "role": "mentor", "isVerified": true },
+    "content": "Mobil oyun stüdyolarının en sık yaptığı hata: D1 retention %35 ve D7 retention %12 olmadan reklamla kullanıcı çekmeye çalışmak. Önce core mekanik tutmalı.",
+    "tags": ["oyun", "retention", "pazarlama"],
+    "createdMinutesAgo": 920,
+    "likeCount": 59,
+    "repostCount": 17,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_011",
+    "author": { "id": "mnt_005", "name": "Kerem Tan", "role": "mentor", "isVerified": true },
+    "content": "KOSGEB İleri Girişimci desteğiyle donanım alan arkadaşlar faturaları doğrudan tedarikçiye kestirip banka dekontu açıklamalarına dikkat etsin. İncelemede çok titizler.",
+    "tags": ["kosgeb", "donanım", "hibe"],
+    "createdMinutesAgo": 1050,
+    "likeCount": 31,
+    "repostCount": 9,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_012",
+    "author": { "id": "inv_003", "name": "Alp Korkmaz", "role": "investor", "isVerified": true },
+    "content": "Tohum öncesi aşamada yüzde 25'ten fazla hisse veren kurucular sonraki turlarda seyreltme çıkmazına giriyor. Erken aşamada hissenizi ucuza dağıtmayın.",
+    "tags": ["yatırım", "cap-table", "hisse"],
+    "createdMinutesAgo": 1200,
+    "likeCount": 110,
+    "repostCount": 42,
+    "commentCount": 3
+  },
+  {
+    "id": "pst_013",
+    "author": { "id": "mnt_009", "name": "Oğuzhan Kaya", "role": "mentor", "isVerified": true },
+    "content": "B2B kurumsal satışta ilk müşteriye asla tamamen ücretsiz POC (demo test) vermeyin. Sembolik de olsa bir bütçe veya üst yönetim taahhüdü isteyin.",
+    "tags": ["satış", "b2b", "kurumsal"],
+    "createdMinutesAgo": 1350,
+    "likeCount": 67,
+    "repostCount": 16,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_014",
+    "author": { "id": "mnt_007", "name": "Murat Güler", "role": "mentor", "isVerified": false },
+    "content": "AB Yeşil Mutabakatı ve Sınırda Karbon Düzenleme Mekanizması (SKDM) 2026'da yürürlüğe giriyor. İhracatçı sanayi şirketlerine karbon ayak izi yazılımı sunan fintek/SaaS'lar çok büyüyecek.",
+    "tags": ["yeşil-ekonomi", "ab", "sürdürülebilirlik"],
+    "createdMinutesAgo": 1500,
+    "likeCount": 49,
+    "repostCount": 14,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_015",
+    "author": { "id": "mnt_008", "name": "Ebru Yılmaz", "role": "mentor", "isVerified": true },
+    "content": "Eğitim teknolojilerinde veliye doğrudan satış yapmak inanılmaz pahalı. Özel okul zincirleri ve etüt merkezleriyle kurumsal paket anlaşmaları çok daha sürdürülebilir.",
+    "tags": ["edtech", "b2b", "eğitim"],
+    "createdMinutesAgo": 1650,
+    "likeCount": 41,
+    "repostCount": 7,
+    "commentCount": 1
+  },
+  {
+    "id": "pst_016",
+    "author": { "id": "mnt_010", "name": "Banu Aydın", "role": "mentor", "isVerified": true },
+    "content": "Yatırımcı sunumunda en çok zorlanılan konu 'Finansal Projeksiyon'. Önümüzdeki 18 ayın aylık burn rate, runway ve işe alım maliyetlerini içeren basit bir şablon paylaşıyorum.",
+    "tags": ["finans", "runway", "yatırım"],
+    "createdMinutesAgo": 1800,
+    "likeCount": 95,
+    "repostCount": 38,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_017",
+    "author": { "id": "usr_004", "name": "Can Vural", "role": "investor", "isVerified": true },
+    "content": "Pitch deck'inizin ilk 3 slaytında problem ve pazar ihtiyacı kristal netliğinde anlatılmamışsa, çözüm slaytına kimse odaklanamaz. Sade ve vurucu olun.",
+    "imageAsset": "assets/images/posts/pitch_summit.jpg",
+    "tags": ["pitching", "deck", "tavsiye"],
+    "createdMinutesAgo": 1950,
+    "likeCount": 104,
+    "repostCount": 45,
+    "commentCount": 2
+  },
+  {
+    "id": "pst_018",
+    "author": { "id": "inv_004", "name": "Gizem Şener", "role": "investor", "isVerified": false },
+    "content": "Açık bankacılık ve ödeme sistemleri alanında TCMB ve BDDK onaylı lisans süreçlerine hazırlanan fintek ekipleriyle stratejik ortaklık ve kurumsal fonlama konuşmak istiyoruz.",
+    "tags": ["fintek", "kurumsal-vc", "entegrasyon"],
+    "createdMinutesAgo": 2100,
+    "likeCount": 53,
+    "repostCount": 10,
+    "commentCount": 1
+  },
+  {
+    "id": "pst_019",
+    "author": { "id": "mnt_012", "name": "İrem Ersoy", "role": "mentor", "isVerified": true },
+    "content": "Erken aşama bir girişimde ilk 5 mühendisi işe alırken büyük şirket tecrübesinden ziyade kaos ortamında çözüm üretme refleksi ve sahiplenme duygusu aramalısınız.",
+    "tags": ["ik", "ekip", "kültür"],
+    "createdMinutesAgo": 2250,
+    "likeCount": 73,
+    "repostCount": 22,
+    "commentCount": 1
+  },
+  {
+    "id": "pst_020",
+    "author": { "id": "inv_010", "name": "Bora Soydan", "role": "investor", "isVerified": true },
+    "content": "Global pazara açılırken Delaware C-Corp mu yoksa İngiltere LTD mi? ABD fonlarından yatırım alacaksanız Delaware tartışmasız standarttır. Flipping masraflarını baştan planlayın.",
+    "tags": ["global", "delaware", "şirket"],
+    "createdMinutesAgo": 2400,
+    "likeCount": 88,
+    "repostCount": 35,
+    "commentCount": 2
+  }
+]
