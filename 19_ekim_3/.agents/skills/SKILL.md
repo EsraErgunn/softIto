@@ -57,7 +57,7 @@ test/features/<feature_name>/
 
 Tüm bu yapıyı, modelleri, controller'ı, widget'ı, view'ı ve birim testini tek komutla standartlara uygun üretmek için hazır script kullanılır:
 
-- **Script Dosyası:** [.agents/skills/script/generate_feature.sh](file:///Users/d1-13/Documents/GitHub/softIto/19_ekim_3/.agents/skills/script/generate_feature.sh)
+- **Script Dosyası:** [.agents/skills/script/generate_feature.sh](file:///Users/d1-13/19_ekim_3/.agents/skills/script/generate_feature.sh)
 
 ### Çalıştırma Örneği:
 ```bash
@@ -278,9 +278,9 @@ class _WaterTrackerViewState extends State<WaterTrackerView> {
 
 ## 5. Referans ve Örnek Kaynaklar
 
-- **Detaylı Mimari ve Durum Akışı:** [.agents/skills/references/state_flow.md](file:///Users/d1-13/Documents/GitHub/softIto/19_ekim_3/.agents/skills/references/state_flow.md)
-- **Kapsamlı Örnek Ekran Kodu:** [.agents/skills/examples/sample_screen.dart](file:///Users/d1-13/Documents/GitHub/softIto/19_ekim_3/.agents/skills/examples/sample_screen.dart)
-- **Proje Kuralları ve Kırmızı Çizgiler:** [.agents/project.md](file:///Users/d1-13/Documents/GitHub/softIto/19_ekim_3/.agents/project.md)
+- **Detaylı Mimari ve Durum Akışı:** [.agents/skills/references/state_flow.md](file:///Users/d1-13/19_ekim_3/.agents/skills/references/state_flow.md)
+- **Kapsamlı Örnek Ekran Kodu:** [.agents/skills/examples/sample_screen.dart](file:///Users/d1-13/19_ekim_3/.agents/skills/examples/sample_screen.dart)
+- **Proje Kuralları ve Kırmızı Çizgiler:** [.agents/project.md](file:///Users/d1-13/19_ekim_3/.agents/project.md)
 
 ---
 
