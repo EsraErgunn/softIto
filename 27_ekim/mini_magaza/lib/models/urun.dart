@@ -5,18 +5,20 @@
 // =============================================================================
 
 import 'kategori.dart';
+import 'degerlendirme.dart';
 
-class Urun{
-    final int id;
-    final String baslik;
-    final String aciklama;
-    final double fiyat;
-    final String resimUrl;
-    final Kategori kategori;
-    final int stokAdedi;
-    final bool favoriMi;
-    
+class Urun {
+  final int id;
+  final String baslik;
+  final String aciklama;
+  final double fiyat;
+  final String resimUrl;
+  final Kategori kategori;
+  final int stokAdedi;
+  final bool favoriMi;
+  final Degerlendirme degerlendirme;
 
+<<<<<<< Updated upstream
     const Urun({
         required this.id,
         required this.baslik,
@@ -60,5 +62,64 @@ class Urun{
         return "Urun(id: $id,baslik: $baslik, fiyat: $fiyat, favoriMi: $favoriMi)";
         
     }
+=======
+  const Urun({
+    required this.id,
+    required this.baslik,
+    required this.aciklama,
+    required this.fiyat,
+    required this.resimUrl,
+    required this.kategori,
+    required this.stokAdedi,
+    required this.degerlendirme,
+    this.favoriMi = false,
+  });
 
+  factory Urun.fromJson(Map<String, dynamic> json) {
+    final ratingMap = json['rating'] as Map<String, dynamic>? ?? {};
+
+    return Urun(
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      baslik: json['title'] as String? ?? '',
+      fiyat: (json['price'] as num?)?.toDouble() ?? 0.0,
+      aciklama: json['description'] as String? ?? '',
+      kategori: KategoriExtension.apiMetindenUret(
+        json['category'] as String? ?? '',
+      ),
+      resimUrl: json['image'] as String? ?? '',
+      stokAdedi: (ratingMap['count'] as num?)?.toInt() ?? 0,
+      degerlendirme: Degerlendirme.fromJson(ratingMap),
+      favoriMi: false,
+    );
+  }
+>>>>>>> Stashed changes
+
+  Urun copyWith({
+    int? id,
+    String? baslik,
+    String? aciklama,
+    double? fiyat,
+    String? resimUrl,
+    Kategori? kategori,
+    int? stokAdedi,
+    Degerlendirme? degerlendirme,
+    bool? favoriMi,
+  }) {
+    return Urun(
+      id: id ?? this.id,
+      baslik: baslik ?? this.baslik,
+      aciklama: aciklama ?? this.aciklama,
+      fiyat: fiyat ?? this.fiyat,
+      resimUrl: resimUrl ?? this.resimUrl,
+      kategori: kategori ?? this.kategori,
+      stokAdedi: stokAdedi ?? this.stokAdedi,
+      degerlendirme: degerlendirme ?? this.degerlendirme,
+      favoriMi: favoriMi ?? this.favoriMi,
+    );
+  }
+
+  @override
+  String toString() {
+    return "Urun(id: $id,baslik: $baslik, fiyat: $fiyat, favoriMi: $favoriMi)";
+  }
 }

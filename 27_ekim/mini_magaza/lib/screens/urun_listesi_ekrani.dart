@@ -9,11 +9,13 @@
 // =============================================================================
 
 import 'package:flutter/material.dart';
+
 import '../models/urun.dart';
 import '../models/kategori.dart';
 import '../services/mock_urun_servisi.dart';
 import '../services/i_urun_servisi.dart';
 import '../widgets/urun_karti.dart';
+import '../services/api_urun_servisi.dart';
 
 // Arama metni, seçili kategori ve favoriler değiştiği için StatefulWidget.
 class UrunListesiEkrani extends StatefulWidget {
@@ -24,9 +26,13 @@ class UrunListesiEkrani extends StatefulWidget {
 }
 
 class _UrunListesiEkraniState extends State<UrunListesiEkrani> {
+<<<<<<< Updated upstream
   // Tip arayüz (IUrunServisi), nesne Mock. İleride gerçek API servisi yazılınca
   // sadece bu satır değişir, ekranın geri kalanı aynen çalışır.
   final IUrunServisi _servis = MockUrunServisi();
+=======
+  final IUrunServisi _servis = ApiUrunServisi();
+>>>>>>> Stashed changes
 
   // Arama kutusundaki metni okumak ve temizlemek için kullanılır.
   final TextEditingController _aramaController = TextEditingController();
@@ -37,7 +43,14 @@ class _UrunListesiEkraniState extends State<UrunListesiEkrani> {
   List<Urun> _filtrelenmisUrunler = [];
   // true iken ekranda yükleniyor animasyonu gösterilir.
   bool _yukleniyorMu = true;
+<<<<<<< Updated upstream
   Kategori _seciliKategori = Kategori.hepsi; // başlangıç değeri bu. başlangıçta hepsi seçili.
+=======
+  Kategori _seciliKategori =
+      Kategori.hepsi; // başlangıç değeri bu. başlangıçta hepsi seçili.
+  String _aramaKelimesi = "";
+  List<Urun> _gosterilenUrunler = [];
+>>>>>>> Stashed changes
 
   @override
   // Ekran ilk oluşturulduğunda bir kez çalışır; veri yükleme için doğru yer.
@@ -83,9 +96,11 @@ class _UrunListesiEkraniState extends State<UrunListesiEkrani> {
 
     setState(() {
       _filtrelenmisUrunler = _tumUrunler.where((urun) {
-        final kategoriUygunMu = (_seciliKategori == Kategori.hepsi) ||
+        final kategoriUygunMu =
+            (_seciliKategori == Kategori.hepsi) ||
             (urun.kategori == _seciliKategori);
-        final aramaUygunMu = aranan.isEmpty ||
+        final aramaUygunMu =
+            aranan.isEmpty ||
             urun.baslik.toLowerCase().contains(aranan) ||
             urun.aciklama.toLowerCase().contains(aranan);
 
@@ -178,17 +193,6 @@ class _UrunListesiEkraniState extends State<UrunListesiEkrani> {
                 final seciliMi = _seciliKategori == kategori;
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: ChoiceChip(
-                    avatar: Text(kategori.ikon),
-                    label: Text(kategori.baslik),
-                    selected: seciliMi,
-                    onSelected: (secildi) {
-                      if (secildi) {
-                        _seciliKategori = kategori;
-                        _filtreyiUygula();
-                      }
-                    },
-                  ),
                 );
               }).toList(),
             ),
@@ -200,26 +204,16 @@ class _UrunListesiEkraniState extends State<UrunListesiEkrani> {
             child: _yukleniyorMu
                 ? const Center(child: CircularProgressIndicator())
                 : _filtrelenmisUrunler.isEmpty
-                    ? Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.search_off_rounded,
-                              size: 64,
-                              color: Colors.grey.shade400,
-                            ),
-                            const SizedBox(height: 12),
-                            Text(
-                              'Aradığınız kriterlere uygun ürün bulunamadı.',
-                              style: TextStyle(
-                                color: Colors.grey.shade600,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.search_off_rounded,
+                          size: 64,
+                          color: Colors.grey.shade400,
                         ),
+<<<<<<< Updated upstream
                       )
                     // ListView.builder sadece ekranda görünen kartları oluşturur (performanslı).
                     : ListView.builder(
@@ -238,9 +232,38 @@ class _UrunListesiEkraniState extends State<UrunListesiEkrani> {
                                 ),
                               );
                             },
+=======
+                        const SizedBox(height: 12),
+                        Text(
+                          'Aradığınız kriterlere uygun ürün bulunamadı.',
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : ListView.builder(
+                    itemCount: _filtrelenmisUrunler.length,
+                    itemBuilder: (context, index) {
+                      final urun = _filtrelenmisUrunler[index];
+                      return UrunKarti(
+                        urun: urun,
+                        onFavoriTiklandi: () => _favoriyiDegistir(urun),
+                        onDetayTiklandi: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('${urun.baslik} TIKLANDI!'),
+                              duration: const Duration(milliseconds: 600),
+                            ),
+>>>>>>> Stashed changes
                           );
                         },
-                      ),
+                      );
+                    },
+                  ),
           ),
         ],
       ),

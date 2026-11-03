@@ -1,9 +1,13 @@
+<<<<<<< Updated upstream
 // =============================================================================
 // mock_urun_servisi.dart - Sahte (mock) ürün servisi
 // Gerçek bir backend olmadan uygulamayı geliştirmek için sabit ürün listesi döner.
 // Future.delayed ile ağ gecikmesi taklit edilir, böylece yükleniyor durumu da test edilir.
 // =============================================================================
 
+=======
+/*
+>>>>>>> Stashed changes
 import '../models/kategori.dart';
 import '../models/urun.dart';
 import 'i_urun_servisi.dart';
@@ -19,6 +23,7 @@ class MockUrunServisi implements IUrunServisi{
             resimUrl: "https://picsum.photos/400/400",
             kategori: Kategori.elektronik,
             stokAdedi: 15,
+            degerlendirme:Degerlendirme(puan:7.4,onSayisi:23),
         ),
         Urun(
             id: 2,
@@ -28,6 +33,7 @@ class MockUrunServisi implements IUrunServisi{
             resimUrl: "https://picsum.photos/400/400",
             kategori: Kategori.elektronik,
             stokAdedi: 15,
+            degerlendirme:Degerlendirme(puan:7.4,onSayisi:23),
         ),
         Urun(
             id: 3,
@@ -37,6 +43,7 @@ class MockUrunServisi implements IUrunServisi{
             resimUrl: "https://picsum.photos/400/400",
             kategori: Kategori.giyim,
             stokAdedi: 20,
+            degerlendirme:Degerlendirme(puan:7.4,onSayisi:23),
         ),
         Urun(
             id: 4,
@@ -46,6 +53,7 @@ class MockUrunServisi implements IUrunServisi{
             resimUrl: "https://picsum.photos/400/400",
             kategori: Kategori.ayakkabi,
             stokAdedi: 38,
+            degerlendirme:Degerlendirme(puan:7.4,onSayisi:23),
         ),
         Urun(
             id: 5,
@@ -55,6 +63,7 @@ class MockUrunServisi implements IUrunServisi{
             resimUrl: "https://picsum.photos/400/400",
             kategori: Kategori.aksesuar,
             stokAdedi: 23,
+            degerlendirme:Degerlendirme(puan:7.4,onSayisi:23),
         ),
         Urun(
             id: 6,
@@ -64,6 +73,7 @@ class MockUrunServisi implements IUrunServisi{
             resimUrl: "https://picsum.photos/400/400",
             kategori: Kategori.giyim,
             stokAdedi: 5,
+            degerlendirme:Degerlendirme(puan:7.4,onSayisi:23),
         ),
         Urun(
             id: 7,
@@ -73,6 +83,7 @@ class MockUrunServisi implements IUrunServisi{
             resimUrl: "https://picsum.photos/400/400",
             kategori: Kategori.giyim,
             stokAdedi: 12,
+            degerlendirme:Degerlendirme(puan:7.4,onSayisi:23),
         ),
         Urun(
             id: 8,
@@ -82,6 +93,7 @@ class MockUrunServisi implements IUrunServisi{
             resimUrl: "https://picsum.photos/400/400",
             kategori: Kategori.ayakkabi,
             stokAdedi: 7,
+            degerlendirme:Degerlendirme(puan:7.4,onSayisi:23),
         ),
         Urun(
             id: 9,
@@ -91,6 +103,7 @@ class MockUrunServisi implements IUrunServisi{
             resimUrl: "https://picsum.photos/400/400",
             kategori: Kategori.aksesuar,
             stokAdedi: 10,
+            degerlendirme:Degerlendirme(puan:7.4,onSayisi:23),
         ),
     ];
 
@@ -128,3 +141,4 @@ class MockUrunServisi implements IUrunServisi{
     }
     
 }
+*/
