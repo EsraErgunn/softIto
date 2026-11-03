@@ -20,7 +20,7 @@ Girişimciler hukuki ve mali süreçleri (şirket kuruluşu, vergi, SGK, mali m�
 | Platform | Flutter (Android + iOS), Material 3 |
 | Backend | **YOK.** Tüm veri `assets/mock/*.json` dosyalarından okunur, oturum boyunca bellekte değiştirilir |
 | Kalıcılık | Tema, oturum/kullanıcı durumu, beğeniler, kaydedilen programlar ve eşleşmeler `shared_preferences` ile saklanır |
-| Sunucu olayları | Uzman onayı, eşleşme kabulü gibi olaylar **Demo Paneli** ile simüle edilir |
+| Sunucu olayları | ÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷÷Uzman onayı, eşleşme kabulü gibi olaylar **Demo Paneli** ile simüle edilir |
 | Dil | Kod tanımlayıcıları İngilizce, arayüz metinleri Türkçe (ileride l10n ile İngilizce eklenebilir) |
 | Renk paleti | ⏸️ **Karar bekliyor.** Geçici seed renk kullanılır (bkz. design-system skill) |
 
