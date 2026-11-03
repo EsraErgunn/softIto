@@ -1,3 +1,9 @@
+// =============================================================================
+// login_page.dart - Giriş sayfası (demo: gerçek doğrulama yok)
+// Ad ve e-posta ile sahte bir kullanıcı oluşturulup oturum açılır.
+// Rol, önceki sayfadan URL parametresi olarak gelir (/login?role=mentor).
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -5,6 +11,8 @@ import '../../../../app/theme/app_tokens.dart';
 import '../../../../core/models/models.dart';
 import '../../../../core/session/session_provider.dart';
 
+// ConsumerStatefulWidget: hem kendi state'i (form controller'ları) olan hem de
+// "ref" ile provider'lara erişebilen widget.
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key, this.roleName});
   final String? roleName;
@@ -14,7 +22,9 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
+  // Form'un tüm alanlarını birlikte doğrulamak (validate) için anahtar.
   final _formKey = GlobalKey<FormState>();
+  // Demo kolaylığı için alanlar örnek verilerle dolu başlar.
   final _nameController = TextEditingController(text: 'Mert Özkan');
   final _emailController = TextEditingController(text: 'mert@ornek.com');
 
@@ -26,8 +36,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   }
 
   void _handleLogin() {
+    // Herhangi bir alanın validator'ı hata mesajı dönerse giriş yapılmaz.
     if (!_formKey.currentState!.validate()) return;
 
+    // URL'deki metin rol enum'una çevrilir; tanınmayan/boş değer girişimci kabul edilir.
     final role = switch (widget.roleName) {
       'mentor' => UserRole.mentor,
       'investor' => UserRole.investor,
@@ -35,6 +47,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     };
 
     final user = AppUser(
+      // Benzersiz kullanıcı id'si zaman damgasından üretilir.
       id: 'usr_${DateTime.now().millisecondsSinceEpoch}',
       name: _nameController.text.trim(),
       email: _emailController.text.trim(),
@@ -45,8 +58,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       hasBusinessPlan: false,
     );
 
+    // ref.read: bir defalık işlem (dinleme yok). .notifier ile Notifier'ın metotlarına erişilir.
     ref.read(sessionProvider.notifier).login(user);
     if (role == UserRole.entrepreneur) {
+      // go: geçmişi değiştirerek sayfaya gider (geri tuşu giriş sayfasına dönmez).
       context.go('/onboarding');
     } else {
       context.go('/mentors');
@@ -72,6 +87,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     labelText: 'Ad Soyad',
                     prefixIcon: Icon(Icons.person_outline),
                   ),
+                  // validator null dönerse alan geçerli, metin dönerse o metin hata olarak gösterilir.
                   validator: (v) => (v == null || v.trim().isEmpty) ? 'Lütfen adınızı girin' : null,
                 ),
                 const SizedBox(height: AppSpacing.md),

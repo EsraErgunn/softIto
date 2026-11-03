@@ -1,3 +1,7 @@
+// =============================================================================
+// workout_controller_test.dart - Egzersiz controller'ı birim testleri
+// =============================================================================
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:susadim/features/workout/controller/workout_controller.dart';
 
@@ -20,6 +24,7 @@ void main() {
     });
 
     test('addWorkout değeri ve kalori miktarını artırmalıdır', () {
+      // Başlangıç (20 dk, 180 kcal, 1 egzersiz) üzerine eklenir -> 35 dk, 300 kcal, 2 egzersiz.
       controller.addWorkout(minutes: 15, calories: 120);
       expect(controller.current.activeMinutes, 35);
       expect(controller.current.caloriesBurned, 300);

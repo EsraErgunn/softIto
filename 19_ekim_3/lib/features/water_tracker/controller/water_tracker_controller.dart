@@ -1,3 +1,7 @@
+// =============================================================================
+// water_tracker_controller.dart - Su takibi ve haftalık puan mantığı
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 import '../models/water_tracker_model.dart';
 
@@ -11,7 +15,9 @@ class WaterTrackerController {
     if (amountMl <= 0) return;
 
     final newWater = current.currentWaterMl + amountMl;
+    // Hedef "tam bu eklemeyle" mi aşıldı? Önceden aşıldıysa bonus tekrar verilmez.
     final reachedNow = newWater >= current.dailyGoalMl && !current.isGoalReached;
+    // Her 25 ml = 1 puan (~/ tam sayı bölmesi). Hedef ilk kez tutturulduysa +50 bonus.
     final earnedPoints = (amountMl ~/ 25) + (reachedNow ? 50 : 0);
     final updatedPoints = current.weeklyPoints + earnedPoints;
 
@@ -21,6 +27,7 @@ class WaterTrackerController {
       pet = 'Akıllı Su Samuru';
     }
 
+    // Hedef bugün ilk kez tamamlandıysa seri (streak) 1 artar.
     final newStreak = reachedNow
         ? current.completedDaysStreak + 1
         : current.completedDaysStreak;
@@ -33,6 +40,7 @@ class WaterTrackerController {
     );
   }
 
+  // Sadece günlük su sıfırlanır; haftalık puan ve seri korunur.
   void resetWater() {
     state.value = current.copyWith(
       currentWaterMl: 0,

@@ -1,3 +1,8 @@
+// =============================================================================
+// person_profile_page.dart - Başka bir kullanıcının profil sayfası
+// Şimdilik yer tutucu: sadece URL'den gelen kullanıcı id'sini gösterir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 class PersonProfilePage extends StatelessWidget {

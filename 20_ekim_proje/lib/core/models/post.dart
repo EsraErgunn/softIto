@@ -1,3 +1,7 @@
+// =============================================================================
+// post.dart - Topluluk gönderisi, yazarı ve yorum modelleri (freezed)
+// =============================================================================
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'enums.dart';
 
@@ -5,6 +9,7 @@ part 'post.freezed.dart';
 part 'post.g.dart';
 
 @freezed
+// Gönderi/yorum sahibinin özet bilgisi (tam kullanıcı nesnesi yerine gereken alanlar).
 abstract class PostAuthor with _$PostAuthor {
   const factory PostAuthor({
     required String id,
@@ -18,6 +23,7 @@ abstract class PostAuthor with _$PostAuthor {
 }
 
 @freezed
+// Gönderi: içerik, etiketler ve beğeni / paylaşım / yorum sayaçları.
 abstract class Post with _$Post {
   const factory Post({
     required String id,

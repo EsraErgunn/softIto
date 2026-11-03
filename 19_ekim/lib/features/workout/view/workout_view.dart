@@ -1,3 +1,9 @@
+// =============================================================================
+// workout_view.dart - Egzersiz sekmesi
+// Özet kartı, hızlı şablonlar, "Özel Ekle" butonu ve antrenman günlüğünden oluşur.
+// Tüm veriler WorkoutController'dan okunur; ekleme/silme de controller'a yaptırılır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../controller/workout_controller.dart';
@@ -14,6 +20,7 @@ class WorkoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Controller her değiştiğinde (ekleme/silme) bu builder yeniden çalışır.
     return ListenableBuilder(
       listenable: controller,
       builder: (context, _) {
@@ -30,6 +37,8 @@ class WorkoutView extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               _PresetsHeader(
+                // "Özel Ekle"ye basınca alttan açılan form (bottom sheet) gösterilir; form
+                // kaydedilince onAdd callback'i ile controller'a yeni antrenman eklenir.
                 onCustomTap: () => AddWorkoutSheet.show(
                   context,
                   onAdd: (title, duration, calories) {
@@ -38,6 +47,7 @@ class WorkoutView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
+              // Hazır şablona dokunulunca tek adımda antrenman eklenir.
               WorkoutQuickPresets(
                 onSelect: (title, duration, calories) {
                   controller.addWorkout(title: title, durationMinutes: duration, caloriesBurned: calories);
@@ -59,6 +69,7 @@ class WorkoutView extends StatelessWidget {
   }
 }
 
+// "Hızlı Şablonlar" başlığı ve sağdaki "Özel Ekle" butonu.
 class _PresetsHeader extends StatelessWidget {
   final VoidCallback onCustomTap;
   const _PresetsHeader({required this.onCustomTap});
@@ -91,6 +102,7 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
+// Antrenman günlüğü: boşsa bilgilendirme kartı, doluysa kayıt listesi.
 class _WorkoutList extends StatelessWidget {
   final List<WorkoutEntry> entries;
   final void Function(String id) onDelete;
@@ -120,6 +132,7 @@ class _WorkoutList extends StatelessWidget {
       );
     }
 
+    // Sayfa zaten kaydırıldığı için listenin kendi kaydırması kapalı (shrinkWrap + NeverScrollable).
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),

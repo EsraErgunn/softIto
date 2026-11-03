@@ -1,3 +1,8 @@
+// =============================================================================
+// welcome_page.dart - Karşılama sayfası (giriş yapmamış kullanıcının ilk gördüğü ekran)
+// Uygulamanın 3 temel faydası listelenir; "Başla" ile rol seçimine geçilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../app/theme/app_tokens.dart';
@@ -19,6 +24,7 @@ class WelcomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Spacer(),
+              // Üstteki ve alttaki Spacer'lar içeriği dikeyde ortalar, butonu en alta iter.
               Icon(Icons.rocket_launch, size: 72, color: colorScheme.primary),
               const SizedBox(height: AppSpacing.lg),
               Text(
@@ -56,6 +62,7 @@ class WelcomePage extends StatelessWidget {
     );
   }
 
+  // "Value proposition" satırı: ikon + başlık + kısa açıklama.
   Widget _buildValueProp(BuildContext context, IconData icon, String title, String desc) {
     final theme = Theme.of(context);
     return Row(

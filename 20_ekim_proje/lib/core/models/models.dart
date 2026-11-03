@@ -1,3 +1,9 @@
+// =============================================================================
+// models.dart - "Barrel" dosyası
+// Tüm modelleri tek yerden dışa aktarır. Böylece diğer dosyalarda 10 ayrı import
+// yerine sadece "import '../core/models/models.dart';" yazmak yeterli olur.
+// =============================================================================
+
 export 'enums.dart';
 export 'contact_info.dart';
 export 'app_user.dart';

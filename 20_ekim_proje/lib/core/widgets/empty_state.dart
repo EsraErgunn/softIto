@@ -1,3 +1,7 @@
+// =============================================================================
+// empty_state.dart - "Sonuç yok" ekranı (ikon + başlık + açıklama + opsiyonel buton)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../app/theme/app_tokens.dart';
 
@@ -17,6 +21,9 @@ class EmptyState extends StatelessWidget {
   final String? actionLabel;
   final VoidCallback? onAction;
 
+  // Hazır kalıplar (named factory): her liste türü için uygun ikon ve metinle
+  // EmptyState.mentors(), EmptyState.posts() ... şeklinde kısa kullanım sağlar.
+  // Callback (onAction) verilmezse buton gösterilmez.
   factory EmptyState.mentors({VoidCallback? onAction}) => EmptyState(
         icon: Icons.person_search_outlined,
         title: 'Henüz Mentör Bulunamadı',
@@ -72,6 +79,7 @@ class EmptyState extends StatelessWidget {
 
     return Center(
       child: ConstrainedBox(
+        // Geniş ekranlarda (tablet/web) metin satırları çok uzamasın diye genişlik sınırı.
         constraints: const BoxConstraints(maxWidth: 320),
         child: Padding(
           padding: AppSpacing.screenPadding,
@@ -108,6 +116,7 @@ class EmptyState extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
+              // Collection if + spread: koşul sağlanırsa boşluk ve buton birlikte eklenir.
               if (actionLabel != null && onAction != null) ...[
                 const SizedBox(height: AppSpacing.lg),
                 FilledButton.tonal(

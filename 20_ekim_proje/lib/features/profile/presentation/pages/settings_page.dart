@@ -1,3 +1,7 @@
+// =============================================================================
+// settings_page.dart - Ayarlar: tema seçimi, sürüm bilgisi ve oturumu kapatma
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -12,6 +16,8 @@ class SettingsPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsPageState extends ConsumerState<SettingsPage> {
+  // "Gizli menü" sayacı: sürüm satırına 5 kez dokununca Demo Paneli açılır
+  // (Android'deki geliştirici seçeneklerine benzer).
   int _versionTapCount = 0;
 
   void _onVersionTap() {
@@ -24,6 +30,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Seçili tema segmenti için mevcut mod.
     final currentThemeMode = ref.watch(themeModeProvider);
 
     return Scaffold(
@@ -43,6 +50,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ],
               selected: {currentThemeMode},
               onSelectionChanged: (set) {
+                // Seçim hem anında uygulanır hem de cihaza kaydedilir.
                 ref.read(themeModeProvider.notifier).setThemeMode(set.first);
               },
             ),

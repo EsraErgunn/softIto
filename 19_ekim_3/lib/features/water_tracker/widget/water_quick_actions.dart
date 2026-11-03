@@ -1,3 +1,7 @@
+// =============================================================================
+// water_quick_actions.dart - +250 / +500 ml ve sıfırlama butonları
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 class WaterQuickActions extends StatelessWidget {
@@ -27,6 +31,7 @@ class WaterQuickActions extends StatelessWidget {
             ),
             const SizedBox(width: 12),
             Expanded(
+              // tonal: dolgu rengi daha yumuşak olan buton varyantı (ikinci derece aksiyon).
               child: FilledButton.tonalIcon(
                 onPressed: () => onAddWater(500),
                 icon: const Icon(Icons.add, size: 18),

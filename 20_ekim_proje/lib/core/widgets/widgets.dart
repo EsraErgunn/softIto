@@ -1,3 +1,7 @@
+// =============================================================================
+// widgets.dart - Ortak widget'ları tek import ile kullanmak için barrel dosyası
+// =============================================================================
+
 export 'async_value_view.dart';
 export 'skeleton_list.dart';
 export 'empty_state.dart';

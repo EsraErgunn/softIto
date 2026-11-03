@@ -1,3 +1,9 @@
+// =============================================================================
+// post_card.dart - Topluluk gönderi kartı
+// Yazar bilgisi, içerik, opsiyonel görsel, etiketler ve aksiyon çubuğu
+// (beğen, yeniden paylaş, yorum, paylaş). Görsele çift dokununca beğenilir (Instagram gibi).
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,6 +27,8 @@ class PostCard extends ConsumerStatefulWidget {
   ConsumerState<PostCard> createState() => _PostCardState();
 }
 
+// SingleTickerProviderStateMixin: AnimationController için "vsync" sağlar
+// (animasyon sadece ekran görünürken kare üretir, pil tasarrufu).
 class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderStateMixin {
   late AnimationController _likeAnimController;
   late Animation<double> _likeScaleAnim;
@@ -29,10 +37,12 @@ class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
+    // Beğeni ikonunun "zıplama" animasyonu (250 ms).
     _likeAnimController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
+    // İki aşamalı ölçek: 1.0 -> 1.35 (büyü) -> 1.0 (geri dön).
     _likeScaleAnim = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.35), weight: 50),
       TweenSequenceItem(tween: Tween(begin: 1.35, end: 1.0), weight: 50),
@@ -56,6 +66,8 @@ class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderSt
     }
   }
 
+  // Çift dokunuşta: beğenilmemişse beğenir (beğeniyi geri ALMAZ), ortada kalp gösterir,
+  // 600 ms sonra kalbi gizler.
   void _onDoubleTapLike() {
     final isLiked = ref.read(likedPostIdsProvider).contains(widget.post.id);
     if (!isLiked) {
@@ -75,6 +87,7 @@ class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderSt
     final isLiked = ref.watch(likedPostIdsProvider).contains(widget.post.id);
     final isReposted = ref.watch(repostedPostIdsProvider).contains(widget.post.id);
 
+    // Sunucudaki sayı + kullanıcının kendi beğenisi (yerel olarak eklenir).
     final displayLikes = widget.post.likeCount + (isLiked ? 1 : 0);
     final displayReposts = widget.post.repostCount + (isReposted ? 1 : 0);
 
@@ -82,6 +95,7 @@ class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderSt
       margin: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
       child: InkWell(
         borderRadius: BorderRadius.circular(AppRadius.md),
+        // Özel onTap verilmediyse karta dokununca detay sayfası açılır.
         onTap: widget.onTap ?? () => context.push('/community/post/${widget.post.id}'),
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.md),
@@ -98,6 +112,8 @@ class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderSt
                       name: widget.post.author.name,
                       isVerified: widget.post.author.isVerified,
                       size: AvatarSize.md,
+                      // Hero etiketi ekranda benzersiz olmalı; aynı yazarın birden çok gönderisi
+                      // olabileceği için gönderi id'si de eklenir.
                       heroTag: 'author_${widget.post.author.id}_${widget.post.id}',
                     ),
                   ),
@@ -156,6 +172,7 @@ class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderSt
                 ),
               ),
 
+              // Görsel varsa gösterilir; üstünde çift dokunma ile beğenme ve kalp animasyonu.
               // Image (if any) with Double-Tap like animation
               if (widget.post.imageAsset != null) ...[
                 const SizedBox(height: AppSpacing.md),
@@ -167,6 +184,7 @@ class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderSt
                       ClipRRect(
                         borderRadius: BorderRadius.circular(AppRadius.md),
                         child: AspectRatio(
+                          // Görsel her ekranda 16:9 oranında kırpılarak gösterilir.
                           aspectRatio: 16 / 9,
                           child: Image.asset(
                             widget.post.imageAsset!,
@@ -228,6 +246,7 @@ class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderSt
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    // Beğen: önce animasyonu baştan oynatır, sonra beğeni durumunu tersine çevirir.
                     // Like button
                     InkWell(
                       borderRadius: BorderRadius.circular(AppRadius.full),
@@ -313,6 +332,7 @@ class _PostCardState extends ConsumerState<PostCard> with SingleTickerProviderSt
                       ),
                     ),
 
+                    // Demo: gerçek paylaşım yerine bilgilendirme mesajı (SnackBar) gösterilir.
                     // Share button
                     IconButton(
                       icon: Icon(Icons.share_outlined, size: 20, color: colorScheme.onSurfaceVariant),

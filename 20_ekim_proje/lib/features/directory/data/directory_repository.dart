@@ -1,3 +1,7 @@
+// =============================================================================
+// directory_repository.dart - Mentör ve yatırımcı rehberinin veri kaynağı (Repository)
+// =============================================================================
+
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,9 +19,11 @@ class MockDirectoryRepository implements DirectoryRepository {
   MockDirectoryRepository(this._ref);
   final Ref _ref;
 
+  // Bellek önbelleği: JSON dosyası sadece ilk istekte okunur.
   List<Mentor>? _mentors;
   List<Investor>? _investors;
 
+  // Demo ayarlarına göre gecikme / hata simülasyonu.
   Future<void> _simulateNetwork() async {
     final demo = _ref.read(demoSettingsProvider);
     if (demo.latency > Duration.zero) {
@@ -36,6 +42,7 @@ class MockDirectoryRepository implements DirectoryRepository {
     final raw = await rootBundle.loadString('assets/mock/mentors.json');
     final list = (jsonDecode(raw) as List)
         .cast<Map<String, dynamic>>()
+        // JSON "kind: mentor" içerdiği için freezed Mentor üretir; "as Mentor" ile tip daraltılır.
         .map((j) => DirectoryProfile.fromJson(j) as Mentor)
         .toList();
 
@@ -60,6 +67,7 @@ class MockDirectoryRepository implements DirectoryRepository {
 
   @override
   Future<DirectoryProfile> getById(String id) async {
+    // id ön eki türü belirler: "mnt_" mentör, diğerleri yatırımcı.
     if (id.startsWith('mnt_')) {
       final mentors = await getMentors();
       return mentors.firstWhere(

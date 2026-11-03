@@ -1,3 +1,7 @@
+// =============================================================================
+// role_select_page.dart - Rol seçimi (Girişimci / Mentör / Yatırımcı)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../app/theme/app_tokens.dart';
@@ -11,6 +15,7 @@ class RoleSelectPage extends StatefulWidget {
 }
 
 class _RoleSelectPageState extends State<RoleSelectPage> {
+  // Varsayılan seçim girişimci.
   UserRole _selectedRole = UserRole.entrepreneur;
 
   @override
@@ -38,6 +43,7 @@ class _RoleSelectPageState extends State<RoleSelectPage> {
               _buildRoleCard(UserRole.investor, 'Yatırımcı', 'Yenilikçi projelere sermaye sağlamak istiyorum.', Icons.trending_up),
               const Spacer(),
               FilledButton(
+                // Seçilen rol query parametresi olarak giriş sayfasına taşınır (.name -> 'mentor').
                 onPressed: () => context.go('/login?role=${_selectedRole.name}'),
                 child: const Text('Devam Et'),
               ),
@@ -49,6 +55,7 @@ class _RoleSelectPageState extends State<RoleSelectPage> {
     );
   }
 
+  // Tek rol kartı; seçiliyse renkli zemin, kalın kenarlık ve tik ikonu.
   Widget _buildRoleCard(UserRole role, String title, String subtitle, IconData icon) {
     final isSelected = _selectedRole == role;
     final theme = Theme.of(context);

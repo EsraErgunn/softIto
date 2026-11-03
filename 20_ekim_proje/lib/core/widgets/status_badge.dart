@@ -1,8 +1,14 @@
+// =============================================================================
+// status_badge.dart - Durum rozeti (Doğrulandı, Bekliyor, Reddedildi, X gün kaldı ...)
+// Renkler temadaki StatusColors uzantısından gelir; açık/koyu temaya uyumludur.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_tokens.dart';
 import '../models/enums.dart';
 
+// Rozetin renk tonu.
 enum StatusBadgeTone { approved, pending, rejected, info, neutral }
 
 class StatusBadge extends StatelessWidget {
@@ -17,6 +23,7 @@ class StatusBadge extends StatelessWidget {
   final IconData icon;
   final StatusBadgeTone tone;
 
+  // Doğrulama durumunu uygun etiket/ikon/renkli rozete çevirir.
   factory StatusBadge.verification(VerificationStatus status) {
     return switch (status) {
       VerificationStatus.approved => const StatusBadge(
@@ -42,6 +49,7 @@ class StatusBadge extends StatelessWidget {
     };
   }
 
+  // Eşleşme durumunu rozete çevirir.
   factory StatusBadge.match(MatchStatus status) {
     return switch (status) {
       MatchStatus.accepted => const StatusBadge(
@@ -67,6 +75,7 @@ class StatusBadge extends StatelessWidget {
     };
   }
 
+  // Son başvuru tarihine kalan güne göre: geçmişse kırmızı, 7 gün veya azsa turuncu, değilse mavi.
   factory StatusBadge.deadline(int daysLeft) {
     if (daysLeft < 0) {
       return const StatusBadge(
@@ -92,8 +101,10 @@ class StatusBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    // Temadan özel durum renkleri alınır; tanımlı değilse açık tema renkleri kullanılır.
     final statusColors = theme.extension<StatusColors>() ?? StatusColors.light;
 
+    // Dart 3 record + destructuring: switch iki renk birden döner ve bg / fg değişkenlerine açılır.
     final (Color bg, Color fg) = switch (tone) {
       StatusBadgeTone.approved => (statusColors.approvedContainer, statusColors.onApprovedContainer),
       StatusBadgeTone.pending => (statusColors.pendingContainer, statusColors.onPendingContainer),

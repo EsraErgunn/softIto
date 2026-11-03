@@ -1,3 +1,7 @@
+// =============================================================================
+// achievement_badge.dart - Rozet modeli
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 @immutable
@@ -18,6 +22,7 @@ class AchievementBadge {
     this.isUnlocked = false,
   });
 
+  // Sadece isUnlocked değişebildiği için copyWith yalnızca onu parametre alır.
   AchievementBadge copyWith({bool? isUnlocked}) {
     return AchievementBadge(
       id: id,

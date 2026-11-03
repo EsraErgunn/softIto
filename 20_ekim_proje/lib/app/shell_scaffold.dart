@@ -1,3 +1,8 @@
+// =============================================================================
+// shell_scaffold.dart - Alt menülü ana iskelet (AppBar + içerik + NavigationBar)
+// StatefulShellRoute tarafından her sekmede bu iskelet kullanılır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -10,8 +15,10 @@ class ShellScaffold extends ConsumerWidget {
     required this.navigationShell,
   });
 
+  // GoRouter'ın verdiği nesne: aktif sekmenin index'i ve içeriği (body) bunun içinde.
   final StatefulNavigationShell navigationShell;
 
+  // Aktif sekmeye göre AppBar başlığı.
   String _getTitle(int index) {
     return switch (index) {
       0 => 'Mentörler',
@@ -24,6 +31,7 @@ class ShellScaffold extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Oturum değişirse (ör. isim/onay durumu) AppBar'daki avatar güncellenir.
     final session = ref.watch(sessionProvider);
     final user = session.user;
 
@@ -34,9 +42,11 @@ class ShellScaffold extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: GestureDetector(
+              // push: profili mevcut sayfanın ÜSTÜNE açar (geri tuşuyla dönülebilir).
               onTap: () => context.push('/profile'),
               child: VerifiedAvatar(
                 name: user?.name ?? 'Misafir',
+                // Hesap onaylıysa avatarda doğrulama rozeti gösterilir.
                 isVerified: ref.watch(isApprovedProvider),
                 size: AvatarSize.sm,
               ),
@@ -48,6 +58,8 @@ class ShellScaffold extends ConsumerWidget {
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
         onDestinationSelected: (index) {
+          // Seçilen sekmeye geçer. Zaten açık sekmeye tekrar basılırsa (initialLocation: true)
+          // o sekmenin başlangıç sayfasına geri döner.
           navigationShell.goBranch(
             index,
             initialLocation: index == navigationShell.currentIndex,

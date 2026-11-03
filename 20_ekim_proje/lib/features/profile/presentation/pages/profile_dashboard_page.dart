@@ -1,3 +1,9 @@
+// =============================================================================
+// profile_dashboard_page.dart - Profil paneli
+// Kullanıcı özeti (avatar, ad, e-posta, doğrulama rozeti) ve tüm kişisel
+// sayfalara giden menü: düzenle, doğrulama, girişimim, eşleşmeler, destekler, demo, çıkış.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +17,7 @@ class ProfileDashboardPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Oturum değişince (ör. doğrulama durumu) panel otomatik güncellenir.
     final session = ref.watch(sessionProvider);
     final user = session.user;
 
@@ -46,6 +53,7 @@ class ProfileDashboardPage extends ConsumerWidget {
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(height: AppSpacing.xs),
+                // Doğrulama durumuna göre renkli rozet.
                 StatusBadge.verification(user?.verificationStatus ?? VerificationStatus.notStarted),
               ],
             ),
@@ -55,6 +63,7 @@ class ProfileDashboardPage extends ConsumerWidget {
             leading: const Icon(Icons.edit_outlined),
             title: const Text('Profili Düzenle'),
             trailing: const Icon(Icons.chevron_right),
+            // Her satır ilgili sayfayı mevcut sayfanın üstüne açar (geri tuşuyla dönülür).
             onTap: () => context.push('/profile/edit'),
           ),
           ListTile(
@@ -98,6 +107,7 @@ class ProfileDashboardPage extends ConsumerWidget {
             leading: const Icon(Icons.logout, color: Colors.red),
             title: const Text('Çıkış Yap', style: TextStyle(color: Colors.red)),
             onTap: () async {
+              // Çıkışta oturum temizlenir; router da kullanıcıyı giriş sayfalarına yönlendirir.
               await ref.read(sessionProvider.notifier).logout();
               if (context.mounted) context.go('/welcome');
             },

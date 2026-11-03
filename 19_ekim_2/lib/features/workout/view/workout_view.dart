@@ -1,3 +1,9 @@
+// =============================================================================
+// workout_view.dart - Egzersiz & kalori sekmesi
+// Kalori özet kartı + bugünkü egzersiz listesi. "Yeni Egzersiz Kaydet" butonu
+// alttan açılan formu (AddWorkoutBottomSheet) gösterir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_strings.dart';
@@ -20,6 +26,7 @@ class WorkoutView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        // Controller'daki model değişince (ekle/sil) builder yeni "summary" ile tekrar çalışır.
         child: ValueListenableBuilder<WorkoutSummaryModel>(
           valueListenable: controller.state,
           builder: (context, summary, _) {
@@ -43,9 +50,11 @@ class WorkoutView extends StatelessWidget {
         const SizedBox(height: 24),
         _buildSectionTitle(summary.workouts.length),
         const SizedBox(height: 12),
+        // Collection if: liste içinde koşullu eleman. Kayıt yoksa boş durum kartı, varsa kartlar.
         if (summary.workouts.isEmpty)
           _buildEmptyState()
         else
+          // Spread operatörü (...): map'in ürettiği kartları tek tek children listesine açar.
           ...summary.workouts.map(
             (item) => WorkoutItemCard(
               workout: item,
@@ -78,6 +87,7 @@ class WorkoutView extends StatelessWidget {
     );
   }
 
+  // "Bugünün Antrenmanları" başlığı ve sağda kayıt sayısı.
   Widget _buildSectionTitle(int count) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,6 +112,7 @@ class WorkoutView extends StatelessWidget {
     );
   }
 
+  // Hiç kayıt yokken gösterilen bilgi kutusu.
   Widget _buildEmptyState() {
     return Container(
       padding: const EdgeInsets.all(24),
@@ -119,6 +130,7 @@ class WorkoutView extends StatelessWidget {
     );
   }
 
+  // Formu açar; form kaydedildiğinde gelen değerler controller.addWorkout'a aktarılır.
   void _openAddSheet(BuildContext context) {
     AddWorkoutBottomSheet.show(
       context,

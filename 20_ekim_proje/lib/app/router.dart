@@ -1,3 +1,12 @@
+// =============================================================================
+// router.dart - Uygulamanın tüm sayfa rotaları ve giriş kontrolü (auth guard)
+// Yapı:
+//   - /welcome, /role, /login       -> giriş yapmamış kullanıcı sayfaları
+//   - /onboarding                    -> girişimcinin ilk kurulum adımı
+//   - StatefulShellRoute (4 sekme)   -> alt menülü ana bölüm (mentör, yatırımcı, program, topluluk)
+//   - /profile, /settings, /demo ... -> alt menü dışında tam ekran açılan sayfalar
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -30,18 +39,23 @@ import '../features/support/presentation/pages/funding_support_page.dart';
 import '../features/verification/presentation/pages/verification_page.dart';
 import 'shell_scaffold.dart';
 
+// Her yönlendirmede çalışan kontrol fonksiyonu.
+// null dönerse kullanıcı istediği sayfaya gider; bir yol dönerse oraya yönlendirilir.
 String? authGuard(SessionState session, String location) {
   final user = session.user;
   final isAuthRoute = location == '/welcome' || location.startsWith('/role') || location.startsWith('/login');
 
+  // Giriş yapılmamışsa: sadece giriş sayfalarına izin var, diğerleri /welcome'a.
   if (user == null) {
     return isAuthRoute ? null : '/welcome';
   }
 
+  // Giriş yapmış kullanıcı tekrar giriş sayfasına gitmeye çalışırsa ana sayfaya yollanır.
   if (isAuthRoute) {
     return '/mentors';
   }
 
+  // Girişimci onboarding'i bitirmediyse başka hiçbir sayfaya geçemez.
   if (!session.onboardingDone && user.role == UserRole.entrepreneur) {
     if (location != '/onboarding') {
       return '/onboarding';
@@ -49,6 +63,7 @@ String? authGuard(SessionState session, String location) {
     return null;
   }
 
+  // Demo paneli kapalıysa /demo adresine erişim engellenir.
   if (location == '/demo' && !kDemoPanelEnabled) {
     return '/profile';
   }
@@ -56,14 +71,20 @@ String? authGuard(SessionState session, String location) {
   return null;
 }
 
+// GoRouter Riverpod provider'ı olarak üretilir; böylece oturum durumuna erişebilir.
 final routerProvider = Provider<GoRouter>((ref) {
+  // Oturum durumu bir ValueNotifier'a kopyalanır ve her değişiklikte güncellenir.
+  // GoRouter'ın refreshListenable'ı bunu dinler: giriş/çıkış olunca redirect tekrar çalışır.
+  // Router'ı ref.watch ile yeniden oluşturmak yerine bu yöntem gezinme geçmişini korur.
   final session = ValueNotifier(ref.read(sessionProvider));
   ref.listen(sessionProvider, (_, next) => session.value = next);
+  // Provider yok edilince notifier da temizlenir.
   ref.onDispose(session.dispose);
 
   return GoRouter(
     initialLocation: '/mentors',
     refreshListenable: session,
+    // Her sayfa geçişinden önce authGuard kontrolü yapılır.
     redirect: (context, state) => authGuard(session.value, state.matchedLocation),
     routes: [
       GoRoute(
@@ -84,6 +105,8 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/onboarding',
         builder: (context, state) => const OnboardingPage(),
       ),
+      // Alt menülü yapı: her sekme (branch) kendi gezinme yığınını (stack) korur.
+      // Ör. Mentörler'de detaya girip Topluluk'a geçip geri dönünce detay sayfası hâlâ açıktır.
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return ShellScaffold(navigationShell: navigationShell);
@@ -92,6 +115,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
+                // 1. sekme: Mentörler. Alt rota ':id' -> /mentors/42 gibi detay sayfası.
                 path: '/mentors',
                 builder: (context, state) => const MentorsPage(),
                 routes: [
@@ -160,6 +184,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         ],
       ),
       GoRoute(
+        // Profil ve alt sayfaları sekmelerin dışında, tam ekran açılır.
         path: '/profile',
         builder: (context, state) => const ProfileDashboardPage(),
         routes: [
@@ -174,6 +199,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         ],
       ),
       GoRoute(
+        // ":id" dinamik parametredir; state.pathParameters['id'] ile okunur.
         path: '/people/:id',
         builder: (context, state) => PersonProfilePage(
           id: state.pathParameters['id']!,

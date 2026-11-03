@@ -1,3 +1,8 @@
+// =============================================================================
+// widget_test.dart - Birim ve widget testleri
+// Tema controller'ı, su ve egzersiz controller'ları ile uygulamanın açılışı test edilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:susadim/core/constants/app_strings.dart';
@@ -8,6 +13,7 @@ import 'package:susadim/main.dart';
 
 void main() {
   group('Susadım v1 Unit & Widget Testleri', () {
+    // toggleTheme döngüsü: system -> dark -> light -> system.
     test('ThemeController tema modu değiştirme testi', () {
       final themeController = ThemeController();
       expect(themeController.currentMode, ThemeMode.system);
@@ -34,6 +40,7 @@ void main() {
       controller.addWater(250);
       expect(controller.value.consumedMl, initialConsumed + 250);
 
+      // Geri alma sonrası miktar başlangıç değerine dönmeli.
       controller.removeLastIntake();
       expect(controller.value.consumedMl, initialConsumed);
 
@@ -64,9 +71,11 @@ void main() {
       controller.dispose();
     });
 
+    // "Duman (smoke) testi": uygulama çökmeden açılıyor mu, temel öğeler ekranda mı?
     testWidgets('SusadimApp başlatma ve temel arayüz duman testi',
         (WidgetTester tester) async {
       await tester.pumpWidget(const SusadimApp());
+      // pump: tek bir kare çizer (pumpAndSettle'dan farklı olarak animasyonları beklemez).
       await tester.pump();
 
       // Uygulama başlığı ve tab etiketlerinin varlığı kontrol edilir

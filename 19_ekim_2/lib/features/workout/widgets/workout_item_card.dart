@@ -1,3 +1,8 @@
+// =============================================================================
+// workout_item_card.dart - Tek bir egzersiz kaydının kartı
+// Kategoriye göre renkli ikon, başlık, süre/kalori bilgisi ve silme butonu.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/workout_model.dart';
@@ -38,6 +43,7 @@ class WorkoutItemCard extends StatelessWidget {
     );
   }
 
+  // Kategori adına göre ikon ve renk seçilir; tanımsız kategoriler "default" ile fitness ikonu alır.
   Widget _buildCategoryIcon() {
     IconData icon;
     Color color;
@@ -64,6 +70,7 @@ class WorkoutItemCard extends StatelessWidget {
       width: 44,
       height: 44,
       decoration: BoxDecoration(
+        // withAlpha(0-255): rengin saydamlığını ayarlar; 35 -> çok hafif renkli arka plan.
         color: color.withAlpha(35),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: color.withAlpha(80)),
@@ -72,6 +79,7 @@ class WorkoutItemCard extends StatelessWidget {
     );
   }
 
+  // Expanded: ikon ve sil butonundan kalan tüm genişliği kullanır.
   Widget _buildWorkoutDetails(BuildContext context) {
     final titleColor =
         Theme.of(context).textTheme.bodyLarge?.color ?? AppColors.textPrimary;
@@ -118,6 +126,7 @@ class WorkoutItemCard extends StatelessWidget {
     );
   }
 
+  // Silme işini kart yapmaz; onDelete ile üst ekrana bildirir.
   Widget _buildDeleteButton() {
     return IconButton(
       icon: const Icon(Icons.delete_outline_rounded,

@@ -1,3 +1,11 @@
+// =============================================================================
+// community_repository.dart - Topluluk verilerinin kaynağı (Repository deseni)
+// Repository: verinin NEREDEN geldiğini (API, veritabanı, JSON dosyası) ekranlardan gizler.
+//   - CommunityRepository      -> sözleşme (abstract), ekranlar sadece bunu bilir
+//   - MockCommunityRepository  -> assets/mock/*.json dosyalarından okuyan sahte uygulama
+// Gerçek backend geldiğinde sadece yeni bir sınıf yazılıp provider'da değiştirilir.
+// =============================================================================
+
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,11 +33,16 @@ abstract class CommunityRepository {
 
 class MockCommunityRepository implements CommunityRepository {
   MockCommunityRepository(this._ref);
+  // Ref: demo ayarlarını (gecikme, hata) okumak için provider'lara erişim.
   final Ref _ref;
 
+  // Bellek önbelleği (cache): JSON bir kez okunur, sonraki çağrılarda buradan döner.
+  // Yeni gönderi/yorum eklemeleri de bu listelere yapılır (uygulama kapanınca kaybolur).
   List<Post>? _posts;
   List<Comment>? _comments;
 
+  // Gerçek bir ağ isteğini taklit eder: demo ayarındaki kadar bekler,
+  // hata simülasyonu açıksa AppException fırlatır.
   Future<void> _simulateNetwork() async {
     final demo = _ref.read(demoSettingsProvider);
     if (demo.latency > Duration.zero) {
@@ -45,14 +58,17 @@ class MockCommunityRepository implements CommunityRepository {
     await _simulateNetwork();
     if (_posts != null) return _posts!;
 
+    // rootBundle: uygulamaya gömülü (pubspec'te assets altında tanımlı) dosyaları okur.
     final raw = await rootBundle.loadString('assets/mock/posts.json');
     final now = DateTime.now();
     final list = (jsonDecode(raw) as List)
         .cast<Map<String, dynamic>>()
         .map((j) => resolveRelativeDates(j, now))
+        // "createdMinutesAgo" gibi göreceli alanlar gerçek tarihe çevrilir, sonra modele dönüştürülür.
         .map((j) => Post.fromJson(j))
         .toList();
 
+    // En yeni gönderi en üstte olacak şekilde (azalan) sıralanır.
     list.sort((a, b) => b.createdAt.compareTo(a.createdAt));
     _posts = list;
     return _posts!;
@@ -63,6 +79,7 @@ class MockCommunityRepository implements CommunityRepository {
     final posts = await getPosts();
     return posts.firstWhere(
       (p) => p.id == id,
+      // Bulunamazsa anlaşılır bir hata mesajı fırlatılır; ekranda ErrorState gösterilir.
       orElse: () => throw AppException('Gönderi bulunamadı: $id'),
     );
   }
@@ -81,6 +98,7 @@ class MockCommunityRepository implements CommunityRepository {
     }
 
     final postComments = _comments!.where((c) => c.postId == postId).toList();
+    // Yorumlar eskiden yeniye (artan) sıralanır, sohbet gibi okunur.
     postComments.sort((a, b) => a.createdAt.compareTo(b.createdAt));
     return postComments;
   }
@@ -100,6 +118,8 @@ class MockCommunityRepository implements CommunityRepository {
       createdAt: DateTime.now(),
     );
 
+    // "...?" null-aware spread: liste null ise hiçbir şey eklemez, değilse elemanlarını açar.
+    // Böylece mevcut yorumlar + yeni yorum ile YENİ bir liste oluşturulur.
     _comments = [...?_comments, newComment];
 
     // Gönderideki commentCount'u 1 artır
@@ -135,6 +155,7 @@ class MockCommunityRepository implements CommunityRepository {
       commentCount: 0,
     );
 
+    // Yeni gönderi listenin en başına eklenir.
     _posts = [newPost, ...?_posts];
     return newPost;
   }

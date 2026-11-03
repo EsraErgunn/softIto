@@ -1,9 +1,14 @@
+// =============================================================================
+// achievement_model.dart - Başarım durumu (immutable)
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 
 @immutable
 class AchievementModel {
   final int totalScore;
   final int targetScoreForPet;
+  // Henüz hayvan kazanılmadıysa null.
   final String? awardedPet;
   final List<String> unlockedBadges;
 
@@ -14,6 +19,7 @@ class AchievementModel {
     required this.unlockedBadges,
   });
 
+  // Demo başlangıcı: 360 puan, hedef 500, iki açık rozet.
   factory AchievementModel.initial() {
     return const AchievementModel(
       totalScore: 360,
@@ -23,9 +29,12 @@ class AchievementModel {
     );
   }
 
+  // Hedefe ilerleme oranı; hedef 0 ise sıfıra bölmemek için 1'e bölünür.
   double get scoreRatio =>
       (totalScore / (targetScoreForPet > 0 ? targetScoreForPet : 1)).clamp(0.0, 1.0);
 
+  // NOT: "??" kullanıldığı için copyWith ile bir alan null'a geri çekilemez
+  // (awardedPet: null verilirse eski değer korunur). Sıfırlamak için initial() kullanılır.
   AchievementModel copyWith({
     int? totalScore,
     int? targetScoreForPet,

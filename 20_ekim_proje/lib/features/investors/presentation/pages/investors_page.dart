@@ -1,3 +1,7 @@
+// =============================================================================
+// investors_page.dart - Yatırımcı listesi (arama + filtre çipleri + liste)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +16,9 @@ class InvestorsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Filtrelenmiş liste: arama veya çip değişince otomatik yeniden hesaplanır.
     final filteredAsync = ref.watch(filteredInvestorsProvider);
+    // Çiplerin seçili görünmesi ve temizle butonu için mevcut filtre.
     final filter = ref.watch(investorFilterProvider);
     final theme = Theme.of(context);
 
@@ -26,6 +32,7 @@ class InvestorsPage extends ConsumerWidget {
             child: Column(
               children: [
                 TextField(
+                  // Her tuşta arama metni filtreye yazılır (canlı arama).
                   onChanged: (q) => ref.read(investorFilterProvider.notifier).setSearchQuery(q),
                   decoration: InputDecoration(
                     hintText: 'Yatırımcı, fon veya portföy ara...',
@@ -41,6 +48,7 @@ class InvestorsPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: AppSpacing.xs),
                 SingleChildScrollView(
+                  // Çipler ekrana sığmazsa yatay kaydırılabilir.
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
@@ -57,6 +65,7 @@ class InvestorsPage extends ConsumerWidget {
                         onSelected: (val) => ref.read(investorFilterProvider.notifier).setVerifiedOnly(val),
                       ),
                       const SizedBox(width: AppSpacing.xs),
+                      // Her yatırımcı tipi için bir filtre çipi; aynı çipe tekrar basmak seçimi kaldırır.
                       ...InvestorType.values.map((type) {
                         return Padding(
                           padding: const EdgeInsets.only(right: AppSpacing.xs),
@@ -77,6 +86,7 @@ class InvestorsPage extends ConsumerWidget {
           // Investor List
           Expanded(
             child: RefreshIndicator(
+              // Aşağı çekince liste kaynaktan yeniden yüklenir.
               onRefresh: () async => ref.invalidate(investorsProvider),
               child: AsyncValueView(
                 value: filteredAsync,
@@ -93,6 +103,7 @@ class InvestorsPage extends ConsumerWidget {
                       final investor = list[index];
                       return PersonCard(
                         profile: investor,
+                        // push: detay sayfası bu sekmenin yığınına eklenir, geri tuşuyla listeye dönülür.
                         onTap: () => context.push('/investors/${investor.id}'),
                       );
                     },

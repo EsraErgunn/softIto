@@ -1,3 +1,8 @@
+// =============================================================================
+// calorie_summary_card.dart - Günlük kalori ve süre özet kartı
+// Üst satır (başlık + hedef etiketi), büyük rakamlar, ilerleme çubuğu ve ekleme butonu.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/workout_model.dart';
@@ -16,6 +21,7 @@ class CalorieSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    // Renkler aktif temadan okunur (açık/koyu uyumlu).
     final cardColor = theme.cardTheme.color ?? AppColors.surfaceCard;
     final borderColor = theme.dividerTheme.color ?? AppColors.surfaceBorder;
 
@@ -49,6 +55,7 @@ class CalorieSummaryCard extends StatelessWidget {
     );
   }
 
+  // Başlık ve sağdaki "Hedef: 600 kcal" etiketi.
   Widget _buildTopRow(BuildContext context) {
     final titleColor =
         Theme.of(context).textTheme.bodyLarge?.color ?? AppColors.textPrimary;
@@ -94,6 +101,7 @@ class CalorieSummaryCard extends StatelessWidget {
     );
   }
 
+  // Toplam kalori ve toplam süre yan yana, aralarında ince dikey çizgi.
   Widget _buildMainStats(BuildContext context) {
     final mainColor =
         Theme.of(context).textTheme.bodyLarge?.color ?? AppColors.textPrimary;
@@ -157,6 +165,7 @@ class CalorieSummaryCard extends StatelessWidget {
     );
   }
 
+  // Hedef yüzdesi, kalan kalori ve yatay ilerleme çubuğu.
   Widget _buildProgressBar(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final barBg = isDark ? AppColors.surfaceElevated : AppColors.lightSurfaceElevated;
@@ -199,6 +208,7 @@ class CalorieSummaryCard extends StatelessWidget {
     );
   }
 
+  // Basılınca onAddWorkout callback'i ile ekleme paneli açılır.
   Widget _buildActionBtn() {
     return SizedBox(
       width: double.infinity,

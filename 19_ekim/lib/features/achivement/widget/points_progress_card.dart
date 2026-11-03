@@ -1,7 +1,12 @@
+// =============================================================================
+// points_progress_card.dart - Toplam puan ve sıradaki ödüle ilerleme kartı
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/pet_reward.dart';
 
+// nextPet nullable: tüm petler açılmışsa sıradaki ödül yoktur (null).
 class PointsProgressCard extends StatelessWidget {
   final int points;
   final PetReward? nextPet;
@@ -14,6 +19,7 @@ class PointsProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // "?." null güvenli erişim: nextPet null ise hata vermeden null döner; "?? 1000" ile varsayılan hedef.
     final nextTarget = nextPet?.requiredPoints ?? 1000;
     final progress = (points / nextTarget).clamp(0.0, 1.0);
 
@@ -38,6 +44,7 @@ class PointsProgressCard extends StatelessWidget {
   }
 }
 
+// "Toplam Puan (XP)" başlığı ve büyük puan değeri.
 class _PointsHeader extends StatelessWidget {
   final int points;
   const _PointsHeader({required this.points});
@@ -67,6 +74,7 @@ class _PointsHeader extends StatelessWidget {
   }
 }
 
+// Sıradaki ödüle ilerleme çubuğu.
 class _ProgressBar extends StatelessWidget {
   final double progress;
   const _ProgressBar({required this.progress});
@@ -85,6 +93,7 @@ class _ProgressBar extends StatelessWidget {
   }
 }
 
+// Sıradaki pet ve kalan XP bilgisi; tüm ödüller açıldıysa tebrik mesajı.
 class _NextPetInfo extends StatelessWidget {
   final PetReward? nextPet;
   final int points;
@@ -98,6 +107,7 @@ class _NextPetInfo extends StatelessWidget {
       return Text('Tüm hayvan ödülleri açıldı! Efsanesin! 🎉', style: theme.textTheme.labelSmall);
     }
 
+    // "!" (null assertion): yukarıda null kontrolü yapıldığı için burada null olmadığından eminiz.
     final diff = nextPet!.requiredPoints - points;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

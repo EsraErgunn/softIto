@@ -1,3 +1,7 @@
+// =============================================================================
+// water_tracker_controller_test.dart - Su takibi controller'ı birim testleri
+// =============================================================================
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:susadim/features/water_tracker/controller/water_tracker_controller.dart';
 
@@ -20,6 +24,7 @@ void main() {
     });
 
     test('addWater metodu su miktarını ve haftalık puanı artırmalıdır', () {
+      // 250 ml -> 250 ~/ 25 = 10 puan; 240 + 10 = 250.
       controller.addWater(250);
       expect(controller.current.currentWaterMl, 250);
       expect(controller.current.weeklyPoints, 250); // 240 + 10

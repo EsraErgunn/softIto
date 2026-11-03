@@ -1,7 +1,13 @@
+// =============================================================================
+// water_quick_add_buttons.dart - Tek dokunuşla su ekleme butonları
+// Bardak (150), Kupa (250), Şişe (500), Termos (750) ml.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 
 class WaterQuickAddButtons extends StatelessWidget {
+  // Basılan miktarı üst katmana (controller.addIntake) iletir.
   final void Function(int amount) onAdd;
 
   const WaterQuickAddButtons({super.key, required this.onAdd});
@@ -22,6 +28,7 @@ class WaterQuickAddButtons extends StatelessWidget {
   }
 }
 
+// Tek bir hızlı ekle kartı. Expanded sayesinde 4 kart satırı eşit paylaşır.
 class _QuickAddCard extends StatelessWidget {
   final int amount;
   final String label;
@@ -42,6 +49,8 @@ class _QuickAddCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(16),
+        // Ink: InkWell'in dalga efektinin dekorasyonlu (renkli) arka planın ÜSTÜNDE
+        // görünmesini sağlar; Container kullanılsaydı efekt görünmezdi.
         child: Ink(
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(

@@ -1,3 +1,9 @@
+// =============================================================================
+// water_tracker_view.dart - Su takibi sekmesi
+// Controller'ın state'ini (ValueNotifier) dinler; model her değiştiğinde
+// builder yeni modelle ekranı yeniden çizer.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_strings.dart';
 import '../controllers/water_tracker_controller.dart';
@@ -19,6 +25,7 @@ class WaterTrackerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        // ValueListenableBuilder: state.value her değiştiğinde builder'ı yeni "model" ile çalıştırır.
         child: ValueListenableBuilder<WaterTrackerModel>(
           valueListenable: controller.state,
           builder: (context, model, _) {
@@ -38,6 +45,7 @@ class WaterTrackerView extends StatelessWidget {
         WaterProgressGauge(model: model),
         const SizedBox(height: 20),
         QuickAddCard(
+          // Butonlar iş mantığını bilmez; controller metotları callback olarak verilir.
           onAddWater: controller.addWater,
           onUndo: controller.removeLastIntake,
           onReset: controller.resetWater,
@@ -49,6 +57,7 @@ class WaterTrackerView extends StatelessWidget {
     );
   }
 
+  // Ekran başlığı ve alt başlık (metinler AppStrings'ten).
   Widget _buildHeader() {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,

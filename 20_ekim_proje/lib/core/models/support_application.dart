@@ -1,3 +1,7 @@
+// =============================================================================
+// support_application.dart - Fon/destek başvurusu modeli
+// =============================================================================
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'enums.dart';
 

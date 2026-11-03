@@ -1,3 +1,7 @@
+// =============================================================================
+// achievement_controller_test.dart - Başarım controller'ı birim testleri
+// =============================================================================
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:susadim/features/achievement/controller/achievement_controller.dart';
 
@@ -9,6 +13,7 @@ void main() {
       controller = AchievementController();
     });
 
+    // tearDown: her testten SONRA çalışır; controller'ı kapatıp kaynakları temizler.
     tearDown(() {
       controller.dispose();
     });
@@ -20,6 +25,7 @@ void main() {
     });
 
     test('addPoints puanı artırmalı ve 500 puanda hayvan hediye edilmelidir', () {
+      // 510 >= 500 olduğu için hayvan ve "Hayvan Dostu" rozeti verilmeli.
       controller.addPoints(150); // 360 + 150 = 510
       expect(controller.current.totalScore, 510);
       expect(controller.current.awardedPet, 'Akıllı Su Samuru');

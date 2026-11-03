@@ -1,3 +1,7 @@
+// =============================================================================
+// roadmap_step.dart - Şirket kuruluş yol haritasındaki tek bir adım
+// =============================================================================
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'enums.dart';
 

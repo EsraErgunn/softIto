@@ -1,3 +1,9 @@
+// =============================================================================
+// app_theme.dart - Koyu (darkTheme) ve açık (lightTheme) tema tanımları
+// İki tema aynı bileşenleri (AppBar, Card, Button, Dialog, NavigationBar, Text)
+// farklı renklerle tanımlar. main.dart'ta MaterialApp'e ikisi birden verilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
@@ -6,6 +12,7 @@ class AppTheme {
   AppTheme._();
 
   /// Koyu Tema (Dark Obsidian & Neon)
+  // Koyu tema: obsidyen arka plan + neon cyan vurgular.
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
@@ -140,6 +147,7 @@ class AppTheme {
   }
 
   /// Aydınlık Tema (Ferah & Canlı Açık Spor Paleti)
+  // Açık tema: beyaz/açık gri yüzeyler + su mavisi vurgular.
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,

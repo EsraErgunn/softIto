@@ -1,3 +1,7 @@
+// =============================================================================
+// programs_repository.dart - Destek programları veri kaynağı (Repository)
+// =============================================================================
+
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +21,7 @@ class MockProgramsRepository implements ProgramsRepository {
 
   List<Program>? _programs;
 
+  // Demo ayarlarına göre gecikme / hata simülasyonu.
   Future<void> _simulateNetwork() async {
     final demo = _ref.read(demoSettingsProvider);
     if (demo.latency > Duration.zero) {
@@ -36,6 +41,7 @@ class MockProgramsRepository implements ProgramsRepository {
     final now = DateTime.now();
     final list = (jsonDecode(raw) as List)
         .cast<Map<String, dynamic>>()
+        // "deadlineInDays" alanı bugünün tarihine göre gerçek son başvuru tarihine çevrilir.
         .map((j) => resolveRelativeDates(j, now))
         .map((j) => Program.fromJson(j))
         .toList();

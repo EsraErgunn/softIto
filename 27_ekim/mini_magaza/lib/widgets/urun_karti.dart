@@ -1,9 +1,16 @@
+// =============================================================================
+// urun_karti.dart - Listede tek bir ürünü gösteren kart
+// Stateless'tır: favori durumunu kendisi tutmaz. Tıklamaları callback'lerle
+// (onFavoriTiklandi, onDetayTiklandi) üst ekrana iletir; state ekranda yönetilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../models/urun.dart';
 import 'stok_rozeti.dart';
 
 class UrunKarti extends StatelessWidget {
     final Urun urun;
+    // VoidCallback = parametre almayan, değer döndürmeyen fonksiyon (void Function()).
     final VoidCallback onFavoriTiklandi;
     final VoidCallback onDetayTiklandi;
 
@@ -22,6 +29,7 @@ class UrunKarti extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             elevation: 2,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            // InkWell: kartı tıklanabilir yapar ve dokunulduğunda dalga (ripple) efekti verir.
             child: InkWell(
                 borderRadius: BorderRadius.circular(16),
                 onTap: onDetayTiklandi,
@@ -30,6 +38,7 @@ class UrunKarti extends StatelessWidget {
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                            // Resmin köşelerini yuvarlatmak için kırpar.
                             ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: Image.network(
@@ -37,6 +46,7 @@ class UrunKarti extends StatelessWidget {
                                     width: 90,
                                     height: 90,
                                     fit: BoxFit.cover,
+                                    // Resim inerken spinner gösterilir; progress null ise yükleme bitmiştir.
                                     loadingBuilder: (context, child, progress) {
                                         if (progress == null) return child;
                                         return Container(
@@ -48,6 +58,7 @@ class UrunKarti extends StatelessWidget {
                                             ),
                                         );
                                     },
+                                    // İnternet yoksa veya URL bozuksa uygulama çökmesin diye yedek ikon gösterilir.
                                     errorBuilder: (context, error, stackTrace) {
                                         return Container(
                                             width: 90,
@@ -59,6 +70,7 @@ class UrunKarti extends StatelessWidget {
                                 ),
                             ),
                             const SizedBox(width: 14),
+                            // Expanded: resim ve kalp butonundan kalan tüm genişliği metin sütununa verir.
                             Expanded(
                                 child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,6 +112,7 @@ class UrunKarti extends StatelessWidget {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
+                                            // toStringAsFixed(2): fiyatı her zaman 2 ondalık basamakla gösterir (1499 -> 1499.00).
                                             '${urun.fiyat.toStringAsFixed(2)} ₺',
                                             style: TextStyle(
                                                 color: Theme.of(context).colorScheme.primary,
@@ -112,6 +125,7 @@ class UrunKarti extends StatelessWidget {
                             ),
                             IconButton(
                                 icon: Icon(
+                                    // Favoriyse dolu kırmızı kalp, değilse boş gri kalp.
                                     urun.favoriMi ? Icons.favorite : Icons.favorite_border,
                                     color: urun.favoriMi ? Colors.red : Colors.grey,
                                 ),

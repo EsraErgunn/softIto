@@ -1,3 +1,7 @@
+// =============================================================================
+// widget_test.dart - Uygulama açılış (duman) testi
+// =============================================================================
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:susadim/main.dart';
 

@@ -1,3 +1,7 @@
+// =============================================================================
+// workout_model.dart - Günlük egzersiz durumu (immutable)
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -16,6 +20,7 @@ class WorkoutModel {
     required this.exercisesCompleted,
   });
 
+  // Demo başlangıcı: 20 / 45 dk, 180 / 400 kcal, 1 egzersiz.
   factory WorkoutModel.initial() {
     return const WorkoutModel(
       activeMinutes: 20,
@@ -26,6 +31,7 @@ class WorkoutModel {
     );
   }
 
+  // Süre ve kalori hedeflerine ilerleme oranları (0.0 - 1.0).
   double get minutesRatio =>
       (activeMinutes / (targetMinutes > 0 ? targetMinutes : 1)).clamp(0.0, 1.0);
   double get caloriesRatio =>

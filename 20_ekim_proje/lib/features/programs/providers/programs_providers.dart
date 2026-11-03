@@ -1,3 +1,7 @@
+// =============================================================================
+// programs_providers.dart - Program listesi, filtreleri, detayı ve kaydedilen programlar
+// =============================================================================
+
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/models/models.dart';
@@ -14,6 +18,7 @@ final programsProvider = FutureProvider<List<Program>>((ref) async {
   return ref.watch(programsRepositoryProvider).getPrograms();
 });
 
+// Program filtresi: arama, tür, kapsam (yurt içi/dışı) ve "süresi dolanları gizle".
 class ProgramFilter {
   const ProgramFilter({
     this.searchQuery = '',
@@ -43,6 +48,7 @@ class ProgramFilter {
     );
   }
 
+  // Program tüm koşulları sağlıyor mu? Arama başlık, kurum, özet ve etiketlerde yapılır.
   bool matches(Program program) {
     final now = DateTime.now();
     final isExpired = program.deadline.isBefore(now);
@@ -91,6 +97,7 @@ final programFilterProvider = NotifierProvider<ProgramFilterNotifier, ProgramFil
   ProgramFilterNotifier.new,
 );
 
+// Filtrelenmiş program listesi (ekran bunu izler).
 final filteredProgramsProvider = Provider<AsyncValue<List<Program>>>((ref) {
   final filter = ref.watch(programFilterProvider);
   return ref.watch(programsProvider).whenData((list) {
@@ -102,6 +109,7 @@ final programProvider = FutureProvider.family<Program, String>((ref, id) async {
   return ref.watch(programsRepositoryProvider).getProgramById(id);
 });
 
+// Kullanıcının kaydettiği (yer imi) programlar; cihazda kalıcı saklanır.
 class SavedProgramIdsNotifier extends Notifier<Set<String>> {
   @override
   Set<String> build() {
@@ -112,6 +120,8 @@ class SavedProgramIdsNotifier extends Notifier<Set<String>> {
 
   Future<void> toggle(String programId) async {
     HapticFeedback.lightImpact();
+    // State doğrudan değiştirilmez; kopyası alınıp yeni Set olarak atanır
+    // (aynı nesne atanırsa Riverpod değişikliği algılamaz).
     final current = {...state};
     if (current.contains(programId)) {
       current.remove(programId);

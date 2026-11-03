@@ -1,3 +1,8 @@
+// =============================================================================
+// pet_rewards_shelf.dart - Evcil hayvan ödülleri vitrini (2 sütunlu ızgara)
+// Açılmış bir pete dokununca kutlama penceresi (dialog) açılır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/pet_reward.dart';
@@ -9,10 +14,12 @@ class PetRewardsShelf extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // GridView.builder: elemanları ızgara (grid) düzeninde dizer.
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: pets.length,
+      // Sabit 2 sütun; childAspectRatio = genişlik / yükseklik oranı (1.15 -> hafif yatay kart).
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 12,
@@ -27,10 +34,12 @@ class PetRewardsShelf extends StatelessWidget {
   }
 }
 
+// Tek pet kartı: emoji, ad ve durum etiketi.
 class _PetCard extends StatelessWidget {
   final PetReward pet;
   const _PetCard({required this.pet});
 
+  // showDialog ile ekranın ortasında kutlama penceresi açar.
   void _showCelebration(BuildContext context) {
     showDialog(
       context: context,
@@ -44,6 +53,7 @@ class _PetCard extends StatelessWidget {
     final isUnlocked = pet.isUnlocked;
 
     return InkWell(
+      // onTap null verilirse kart tıklanamaz olur; kilitli petlerde dialog açılmaz.
       onTap: isUnlocked ? () => _showCelebration(context) : null,
       borderRadius: BorderRadius.circular(16),
       child: Ink(
@@ -71,6 +81,7 @@ class _PetCard extends StatelessWidget {
   }
 }
 
+// Açıksa "Hediye Edildi", kilitliyse gereken XP miktarını gösterir.
 class _PetStatusBadge extends StatelessWidget {
   final PetReward pet;
   const _PetStatusBadge({required this.pet});
@@ -85,6 +96,7 @@ class _PetStatusBadge extends StatelessWidget {
   }
 }
 
+// Kutlama penceresi; "Harika!" butonu Navigator.pop ile pencereyi kapatır.
 class _PetDialog extends StatelessWidget {
   final PetReward pet;
   const _PetDialog({required this.pet});

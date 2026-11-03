@@ -1,3 +1,8 @@
+// =============================================================================
+// badges_grid_view.dart - Başarı rozetleri listesi
+// Açılmış rozetler amber (altın) renkle vurgulanır, kilitliler soluk gösterilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/achievement_badge.dart';
@@ -9,6 +14,7 @@ class BadgesGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Dış sayfa kaydırdığı için listenin kendi kaydırması kapalı.
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -22,6 +28,7 @@ class BadgesGridView extends StatelessWidget {
   }
 }
 
+// Tek rozet satırı: ikon, başlık/açıklama ve kazandırdığı XP etiketi.
 class _BadgeTile extends StatelessWidget {
   final AchievementBadge badge;
   const _BadgeTile({required this.badge});
@@ -29,6 +36,7 @@ class _BadgeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    // Aşağıdaki tüm renk seçimleri bu değere göre yapılır (açık: amber, kilitli: gri).
     final isUnlocked = badge.isUnlocked;
 
     return Container(

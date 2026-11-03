@@ -1,3 +1,8 @@
+// =============================================================================
+// water_tracker_view.dart - Su takibi sekmesi
+// Controller'ı kendisi oluşturur; su kartı, haftalık puan kartı ve hızlı butonları dizer.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../controller/water_tracker_controller.dart';
 import '../models/water_tracker_model.dart';
@@ -18,6 +23,7 @@ class _WaterTrackerViewState extends State<WaterTrackerView> {
   @override
   void initState() {
     super.initState();
+    // initState'te bir kez oluşturulur, dispose'da kapatılır.
     _controller = WaterTrackerController();
   }
 
@@ -30,6 +36,7 @@ class _WaterTrackerViewState extends State<WaterTrackerView> {
   @override
   Widget build(BuildContext context) {
     // 40 satır kuralına uygun
+    // Su eklendikçe tüm kartlar aynı yeni "data" ile güncellenir.
     return ValueListenableBuilder<WaterTrackerModel>(
       valueListenable: _controller.state,
       builder: (context, data, _) {

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 class Cloud implements Exception {
   final String hataKodu;
   final String mesaj;
@@ -67,7 +69,7 @@ void main() {
     print("Aksiyon: Otomatik Aws Açma isteği Gönderildi.");
   }on Cloud catch(e){
     print("Bulut hatası: ${e.mesaj}");
-  }catch(e,stackTrace){
+  }catch(e){
     print("Bilinmedik Sistem Hatası $e");
   }finally{
     print("Pod tahsis günlüğü kapatıldı.");

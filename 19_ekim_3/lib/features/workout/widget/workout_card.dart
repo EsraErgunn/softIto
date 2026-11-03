@@ -1,3 +1,7 @@
+// =============================================================================
+// workout_card.dart - Günlük egzersiz özet kartı
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../models/workout_model.dart';
 
@@ -29,6 +33,7 @@ class WorkoutCard extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             LinearProgressIndicator(
+              // Çubuk dakika hedefine göre dolar; kalori bilgisi altta metin olarak gösterilir.
               value: data.minutesRatio,
               color: theme.colorScheme.secondary,
               minHeight: 10,

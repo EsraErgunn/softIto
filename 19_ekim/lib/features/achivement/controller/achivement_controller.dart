@@ -1,15 +1,27 @@
+// =============================================================================
+// achivement_controller.dart - Başarım (oyunlaştırma) sistemi
+// Kullanıcının su ve antrenman verilerine göre:
+//   - rozet (badge) kilitlerini açar,
+//   - puan (XP) hesaplar,
+//   - puan eşiğine ulaşılınca evcil hayvan (pet) ödüllerini açar,
+//   - haftalık ilerleme tablosunda "bugün" satırını günceller.
+// Veriler, HomeView'daki syncWithActivities çağrısıyla diğer controller'lardan gelir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../models/achievement_badge.dart';
 import '../models/pet_reward.dart';
 import '../models/weekly_day_progress.dart';
 
 class AchivementController extends ChangeNotifier {
+  // Controller oluşturulurken başlangıç verileri (rozetler, petler, hafta) hazırlanır.
   AchivementController() {
     _initBadges();
     _initPets();
     _initWeeklyProgress();
   }
 
+  // Başlangıç puanı; syncWithActivities'te aynı 120 değeri baz alınarak yeniden hesaplanır.
   int _basePoints = 120;
   List<AchievementBadge> _badges = [];
   List<PetReward> _pets = [];
@@ -20,9 +32,11 @@ class AchivementController extends ChangeNotifier {
   List<PetReward> get pets => List.unmodifiable(_pets);
   List<WeeklyDayProgress> get weeklyDays => List.unmodifiable(_weeklyDays);
 
+  // Açılmış pet ve rozet sayıları (özet kartlarında gösterilir).
   int get unlockedPetsCount => _pets.where((p) => p.isUnlocked).length;
   int get unlockedBadgesCount => _badges.where((b) => b.isUnlocked).length;
 
+  // Kazanılabilecek rozetlerin listesi. "weekly_streak" demo amaçlı açık başlar.
   void _initBadges() {
     _badges = [
       const AchievementBadge(
@@ -64,6 +78,7 @@ class AchivementController extends ChangeNotifier {
     ];
   }
 
+  // Puan eşiklerine göre açılan evcil hayvan ödülleri (200, 350, 500, 750 XP).
   void _initPets() {
     _pets = [
       const PetReward(
@@ -102,6 +117,7 @@ class AchivementController extends ChangeNotifier {
     _checkPetUnlocks();
   }
 
+  // Haftanın örnek (sabit) verileri; sadece "Paz" (isToday) gerçek veriyle güncellenir.
   void _initWeeklyProgress() {
     _weeklyDays = [
       const WeeklyDayProgress(dayName: 'Pzt', waterMl: 2500, waterGoalMl: 2500, caloriesBurned: 520, calorieGoal: 500),
@@ -114,6 +130,9 @@ class AchivementController extends ChangeNotifier {
     ];
   }
 
+  // Su ve antrenman controller'larındaki güncel değerleri alıp başarımları yeniden hesaplar.
+  // hasChanges ile gerçekten bir şey değiştiyse notifyListeners çağrılır; böylece
+  // gereksiz yeniden çizimlerin önüne geçilir.
   void syncWithActivities({
     required int waterMl,
     required int waterGoalMl,
@@ -138,14 +157,18 @@ class AchivementController extends ChangeNotifier {
     }
 
     // Rozetleri ve puanları kontrol et
+    // "_unlockBadge(...) || hasChanges" sırası önemli: önce metot çalışsın diye solda.
+    // (hasChanges || _unlockBadge() yazılsaydı hasChanges true iken metot hiç çalışmazdı.)
     if (waterMl > 0) hasChanges = _unlockBadge('first_water') || hasChanges;
     if (waterMl >= waterGoalMl && waterGoalMl > 0) hasChanges = _unlockBadge('water_goal') || hasChanges;
     if (caloriesBurned > 0) hasChanges = _unlockBadge('first_workout') || hasChanges;
     if (caloriesBurned >= calorieGoal && calorieGoal > 0) hasChanges = _unlockBadge('calorie_goal') || hasChanges;
 
     // Su ve kalori bazlı dinamik XP ekle (100ml = 5 XP, 50 kcal = 10 XP)
+    // "~/" tam sayı bölmesidir: 250 ~/ 100 = 2. Yani her tam 100 ml -> 5 XP, her tam 50 kcal -> 10 XP.
     final activityPoints = (waterMl ~/ 100) * 5 + (caloriesBurned ~/ 50) * 10;
     final totalBadgePoints = _badges.where((b) => b.isUnlocked).fold<int>(0, (sum, b) => sum + b.pointsReward);
+    // Toplam puan = başlangıç (120) + aktivite puanı + açılan rozetlerin ödül puanları.
     final calculatedTotal = 120 + activityPoints + totalBadgePoints;
 
     if (_basePoints != calculatedTotal) {
@@ -162,6 +185,7 @@ class AchivementController extends ChangeNotifier {
     }
   }
 
+  // Rozet kilitliyse açar ve true döner; zaten açıksa veya bulunamazsa false.
   bool _unlockBadge(String id) {
     final index = _badges.indexWhere((b) => b.id == id);
     if (index != -1 && !_badges[index].isUnlocked) {
@@ -171,6 +195,7 @@ class AchivementController extends ChangeNotifier {
     return false;
   }
 
+  // Yeterli puana ulaşılan ama henüz açılmamış petleri açar; en az biri açıldıysa true.
   bool _checkPetUnlocks() {
     bool unlockedAny = false;
     for (int i = 0; i < _pets.length; i++) {
@@ -183,6 +208,7 @@ class AchivementController extends ChangeNotifier {
     return unlockedAny;
   }
 
+  // Dışarıdan ekstra puan vermek için.
   void addBonusPoints(int points) {
     if (points <= 0) return;
     _basePoints += points;

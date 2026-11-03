@@ -1,3 +1,7 @@
+// =============================================================================
+// section_header.dart - Bölüm başlığı ve sağda opsiyonel "Tümünü gör" gibi buton
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../app/theme/app_tokens.dart';
 

@@ -1,9 +1,15 @@
+// =============================================================================
+// water_history_list.dart - Bugünkü su kayıtlarının listesi
+// Kayıt yoksa boş durum kartı, varsa silinebilir kayıt satırları gösterilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/water_intake.dart';
 
 class WaterHistoryList extends StatelessWidget {
   final List<WaterIntake> intakes;
+  // Silme işini widget yapmaz; hangi kaydın silineceğini id ile üst katmana bildirir.
   final void Function(String id) onDelete;
 
   const WaterHistoryList({
@@ -19,9 +25,13 @@ class WaterHistoryList extends StatelessWidget {
     }
 
     return ListView.separated(
+      // Liste, bir SingleChildScrollView içinde olduğu için:
+      // shrinkWrap -> içerik kadar yer kaplar,
+      // NeverScrollableScrollPhysics -> kendi kaydırması kapalıdır (dış sayfa kaydırır).
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: intakes.length,
+      // ListView.separated: her eleman arasına 8 px boşluk koyar.
       separatorBuilder: (context, index) => const SizedBox(height: 8),
       itemBuilder: (context, index) {
         final item = intakes[index];
@@ -34,6 +44,7 @@ class WaterHistoryList extends StatelessWidget {
   }
 }
 
+// Liste boşken gösterilen bilgilendirme kartı.
 class _EmptyIntakeState extends StatelessWidget {
   const _EmptyIntakeState();
 
@@ -59,6 +70,7 @@ class _EmptyIntakeState extends StatelessWidget {
   }
 }
 
+// Tek bir kayıt satırı: miktar, saat ve sil butonu.
 class _IntakeTile extends StatelessWidget {
   final WaterIntake item;
   final VoidCallback onDelete;
@@ -88,6 +100,7 @@ class _IntakeTile extends StatelessWidget {
             icon: const Icon(Icons.close_rounded, color: AppColors.textMuted, size: 18),
             onPressed: onDelete,
             padding: EdgeInsets.zero,
+            // IconButton'un varsayılan 48x48 minimum boyutunu kaldırır, buton küçük kalır.
             constraints: const BoxConstraints(),
             tooltip: 'Kaydı Sil',
           ),

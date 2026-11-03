@@ -1,3 +1,7 @@
+// =============================================================================
+// workout_entry.dart - Tek bir antrenman kaydı (değiştirilemez model)
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -16,6 +20,7 @@ class WorkoutEntry {
     required this.timestamp,
   });
 
+  // Kaydın saatini "HH:mm" biçiminde döner.
   String get formattedTime {
     final hour = timestamp.hour.toString().padLeft(2, '0');
     final minute = timestamp.minute.toString().padLeft(2, '0');

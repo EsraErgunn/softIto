@@ -1,3 +1,9 @@
+// =============================================================================
+// funding_support_page.dart - Maddi destek (hibe) başvurusu
+// Sadece doğrulanmış girişimciler başvurabilir; değilse sayfa kilitli görünür.
+// Demo: form değerleri henüz kaydedilmiyor, gönderince bilgilendirme mesajı çıkar.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -15,6 +21,7 @@ class FundingSupportPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Maddi Destek Başvurusu')),
       body: LockedOverlay(
+        // isApprovedProvider false ise kilit katmanı gösterilir.
         isLocked: !isApproved,
         onAction: () => context.push('/verification'),
         child: Padding(

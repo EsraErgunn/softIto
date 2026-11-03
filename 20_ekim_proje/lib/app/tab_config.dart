@@ -1,3 +1,7 @@
+// =============================================================================
+// tab_config.dart - Girişim (startup) sayfasındaki sekmelerin yapılandırması
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 class TabConfig {
@@ -7,6 +11,7 @@ class TabConfig {
   final IconData icon;
 }
 
+// İş planı olan kullanıcı ile olmayan kullanıcıya farklı sekmeler gösterilir.
 List<TabConfig> startupTabsFor({required bool hasBusinessPlan}) => hasBusinessPlan
     ? const [
         TabConfig(id: 'overview', label: 'Girişimim', icon: Icons.rocket_launch_outlined),

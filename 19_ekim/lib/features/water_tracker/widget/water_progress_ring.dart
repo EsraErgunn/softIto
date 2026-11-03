@@ -1,3 +1,11 @@
+// =============================================================================
+// water_progress_ring.dart - Günlük su ilerlemesini gösteren dairesel halka
+// Stack ile üç katman üst üste konur:
+//   1) gri arka plan halkası (%100 dolu)
+//   2) neon renkli ilerleme halkası (progress kadar dolu)
+//   3) ortadaki metinler (ml ve yüzde)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 
@@ -15,6 +23,7 @@ class WaterProgressRing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 0.0-1.0 arası oranı tam sayı yüzdeye çevirir (0.42 -> 42).
     final percent = (progress * 100).toInt();
     final theme = Theme.of(context);
 
@@ -40,6 +49,7 @@ class WaterProgressRing extends StatelessWidget {
   }
 }
 
+// value: 1.0 -> tam dolu gri halka; ilerleme halkasının arkasında "boş kısım" gibi görünür.
 class _RingBackground extends StatelessWidget {
   const _RingBackground();
 
@@ -57,6 +67,7 @@ class _RingBackground extends StatelessWidget {
   }
 }
 
+// Asıl ilerleme halkası. StrokeCap.round uçları yuvarlak yapar.
 class _RingIndicator extends StatelessWidget {
   final double progress;
   const _RingIndicator({required this.progress});
@@ -76,6 +87,7 @@ class _RingIndicator extends StatelessWidget {
   }
 }
 
+// Halkanın ortasındaki yazılar.
 class _RingContent extends StatelessWidget {
   final int currentMl;
   final int goalMl;

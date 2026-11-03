@@ -1,8 +1,15 @@
+// =============================================================================
+// mock_urun_servisi.dart - Sahte (mock) ürün servisi
+// Gerçek bir backend olmadan uygulamayı geliştirmek için sabit ürün listesi döner.
+// Future.delayed ile ağ gecikmesi taklit edilir, böylece yükleniyor durumu da test edilir.
+// =============================================================================
+
 import '../models/kategori.dart';
 import '../models/urun.dart';
 import 'i_urun_servisi.dart';
 
 class MockUrunServisi implements IUrunServisi{
+    // Bellekteki "veritabanı". const olduğu için değiştirilemez.
     final List<Urun> _urunDeposu = const [
         Urun(
             id: 1,
@@ -89,6 +96,9 @@ class MockUrunServisi implements IUrunServisi{
 
     @override
     Future<List<Urun>> tumUrunleriGetir() async{
+        // 1,5 sn bekleme: gerçek bir API çağrısını taklit eder.
+        // Aşağıdaki List.from ile KOPYA döndürülür; const liste değiştirilemediği için ekran
+        // (ör. favori güncellemesi) kopya üzerinde rahatça çalışabilir.
         await Future.delayed(const Duration(milliseconds:1500));
         return List.from(_urunDeposu);
     }
@@ -99,6 +109,7 @@ class MockUrunServisi implements IUrunServisi{
         if(kategori==Kategori.hepsi){
             return List.from(_urunDeposu);
         }
+        // where: koşulu sağlayan elemanları süzer; toList ile listeye çevrilir.
         return _urunDeposu.where((u) => u.kategori==kategori).toList();
     }
     @override
@@ -108,6 +119,7 @@ class MockUrunServisi implements IUrunServisi{
             return List.from(_urunDeposu);
         }
         return _urunDeposu.where((urun){
+            // Büyük/küçük harf farkını yok saymak için iki tarafı da küçük harfe çeviriyoruz.
             final baslikKucuk = urun.baslik.toLowerCase();
             final arananKucuk = aramaMetni.toLowerCase();
             return baslikKucuk.contains(arananKucuk);

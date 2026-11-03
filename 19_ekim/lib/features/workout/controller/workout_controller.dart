@@ -1,7 +1,14 @@
+// =============================================================================
+// workout_controller.dart - Antrenman takibinin iş mantığı
+// WaterController ile aynı yapıdadır: kayıtlar private listede tutulur,
+// değişiklikten sonra notifyListeners() ile ekran güncellenir.
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 import '../models/workout_entry.dart';
 
 class WorkoutController extends ChangeNotifier {
+  // Varsayılan günlük kalori yakım hedefi 500 kcal.
   WorkoutController({int initialCalorieGoal = 500})
       : _dailyCalorieGoal = initialCalorieGoal;
 
@@ -9,23 +16,28 @@ class WorkoutController extends ChangeNotifier {
   final List<WorkoutEntry> _entries = [];
 
   int get dailyCalorieGoal => _dailyCalorieGoal;
+  // Dışarıya salt okunur liste verilir.
   List<WorkoutEntry> get entries => List.unmodifiable(_entries);
 
+  // Bugün yakılan toplam kalori (fold ile tüm kayıtlar toplanır).
   int get totalCalories {
     return _entries.fold<int>(0, (sum, item) => sum + item.caloriesBurned);
   }
 
+  // Bugünkü toplam antrenman süresi (dakika).
   int get totalMinutes {
     return _entries.fold<int>(0, (sum, item) => sum + item.durationMinutes);
   }
 
   double get progress {
     if (_dailyCalorieGoal <= 0) return 0.0;
+    // Hedefe ilerleme oranı, 0.0 ile 1.0 arasına sınırlanır.
     return (totalCalories / _dailyCalorieGoal).clamp(0.0, 1.0);
   }
 
   bool get isGoalReached => totalCalories >= _dailyCalorieGoal;
 
+  // Yeni antrenman ekler. Süre veya kalori 0/negatifse kayıt yapılmaz.
   void addWorkout({
     required String title,
     required int durationMinutes,
@@ -45,6 +57,7 @@ class WorkoutController extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Antrenmanı id'sine göre siler.
   void removeWorkout(String id) {
     _entries.removeWhere((item) => item.id == id);
     notifyListeners();
@@ -55,6 +68,7 @@ class WorkoutController extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Kalori hedefini günceller.
   void updateGoal(int newGoal) {
     if (newGoal <= 0) return;
     _dailyCalorieGoal = newGoal;

@@ -1,3 +1,8 @@
+// =============================================================================
+// pet_reward.dart - Evcil hayvan ödül modeli
+// requiredPoints puana ulaşıldığında isUnlocked true olur.
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -20,6 +25,7 @@ class PetReward {
     this.isUnlocked = false,
   });
 
+  // Kilidi açılmış yeni bir kopya üretmek için kullanılır.
   PetReward copyWith({bool? isUnlocked}) {
     return PetReward(
       id: id,

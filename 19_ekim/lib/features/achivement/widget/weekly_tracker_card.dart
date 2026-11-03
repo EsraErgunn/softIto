@@ -1,3 +1,9 @@
+// =============================================================================
+// weekly_tracker_card.dart - 7 günlük takip kartı
+// Her gün için iki nokta (su / egzersiz hedefi) ve bir yıldız (mükemmel gün) gösterilir.
+// Bugünün sütunu cyan kenarlıkla vurgulanır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/weekly_day_progress.dart';
@@ -23,6 +29,7 @@ class WeeklyTrackerCard extends StatelessWidget {
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            // Her gün verisi bir sütuna dönüştürülür.
             children: days.map((day) => _DayColumn(day: day)).toList(),
           ),
           const SizedBox(height: 12),
@@ -33,6 +40,7 @@ class WeeklyTrackerCard extends StatelessWidget {
   }
 }
 
+// Kart başlığı.
 class _CardHeader extends StatelessWidget {
   const _CardHeader();
 
@@ -55,6 +63,7 @@ class _CardHeader extends StatelessWidget {
   }
 }
 
+// Tek bir günün sütunu: gün adı, su noktası, egzersiz noktası ve yıldız.
 class _DayColumn extends StatelessWidget {
   final WeeklyDayProgress day;
   const _DayColumn({required this.day});
@@ -89,6 +98,7 @@ class _DayColumn extends StatelessWidget {
   }
 }
 
+// Hedef tamamlandıysa dolu renkli, değilse boş (sadece kenarlıklı) küçük daire.
 class _DayDot extends StatelessWidget {
   final bool isMet;
   final Color color;
@@ -112,6 +122,7 @@ class _DayDot extends StatelessWidget {
   }
 }
 
+// Kartın altındaki açıklama (lejant): hangi renk neyi temsil ediyor.
 class _LegendRow extends StatelessWidget {
   const _LegendRow();
 

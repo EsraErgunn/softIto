@@ -1,3 +1,8 @@
+// =============================================================================
+// match_request.dart - Eşleşme (bağlantı) isteği modeli
+// Girişimcinin bir mentör veya yatırımcıya gönderdiği istek.
+// =============================================================================
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'enums.dart';
 

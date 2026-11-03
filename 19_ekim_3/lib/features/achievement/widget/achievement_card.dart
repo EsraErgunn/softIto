@@ -1,3 +1,7 @@
+// =============================================================================
+// achievement_card.dart - Puan ilerlemesi, hediye hayvan ve rozetleri gösteren kart
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../models/achievement_model.dart';
 
@@ -13,6 +17,7 @@ class AchievementCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // 40 satır kuralına uygun
     final theme = Theme.of(context);
+    // Hayvan kazanılıp kazanılmadığına göre alttaki bant farklı içerik gösterir.
     final hasPet = data.awardedPet != null;
 
     return Card(
@@ -43,6 +48,7 @@ class AchievementCard extends StatelessWidget {
             Wrap(
               spacing: 8,
               runSpacing: 8,
+              // Her açık rozet bir Chip'e dönüştürülür; Wrap sığmayanları alt satıra taşır.
               children: data.unlockedBadges
                   .map((badge) => Chip(
                         avatar: const Icon(Icons.star, size: 16),
@@ -57,6 +63,7 @@ class AchievementCard extends StatelessWidget {
   }
 }
 
+// Kazanıldıysa hayvanın adı, kazanılmadıysa kilit ikonu ve hedef mesajı.
 class _PetRewardBanner extends StatelessWidget {
   final bool hasPet;
   final String? petName;

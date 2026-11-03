@@ -1,3 +1,8 @@
+// =============================================================================
+// stok_rozeti.dart - Stok durumunu gösteren küçük renkli etiket
+// Stok 0 ise kırmızı "Tükendi", değilse yeşil "Stok: X" gösterir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 class StokRozeti extends StatelessWidget {
@@ -7,6 +12,7 @@ class StokRozeti extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Tüm renk ve metin seçimleri bu tek koşula göre yapılır.
     final tukendiMi = stok == 0;
 
     return Container(

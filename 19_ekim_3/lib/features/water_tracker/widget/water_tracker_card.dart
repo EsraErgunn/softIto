@@ -1,3 +1,7 @@
+// =============================================================================
+// water_tracker_card.dart - Bugünkü su tüketimi kartı (yüzde + ilerleme çubuğu + istatistikler)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../models/water_tracker_model.dart';
 
@@ -13,6 +17,7 @@ class WaterTrackerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // 40 satır kuralına uygun
     final theme = Theme.of(context);
+    // 0.0-1.0 oranını tam sayı yüzdeye çevirir.
     final percentage = (data.progressRatio * 100).toInt();
 
     return Card(
@@ -69,6 +74,7 @@ class WaterTrackerCard extends StatelessWidget {
   }
 }
 
+// "İçilen" ve "Hedef" bilgisini gösteren küçük ikonlu kutu.
 class _StatTile extends StatelessWidget {
   final IconData icon;
   final String label;
