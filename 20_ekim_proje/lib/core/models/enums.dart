@@ -1,3 +1,10 @@
+// Kullanıcı rolü; görünen sayfalar ve izinler role göre değişir.
+// =============================================================================
+// enums.dart - Uygulama genelindeki sabit seçenek listeleri (enum)
+// Her enum'da "label" getter'ı vardır: kodda İngilizce değer (ör. Sector.fintech),
+// ekranda Türkçe etiket (ör. "Fintek") gösterilir. Dart 3 switch ifadesi ile yazılmıştır.
+// =============================================================================
+
 enum UserRole {
   entrepreneur,
   mentor,
@@ -10,6 +17,7 @@ enum UserRole {
   };
 }
 
+// Hesap doğrulama süreci: başvurulmadı -> incelemede -> onaylandı / reddedildi.
 enum VerificationStatus {
   notStarted,
   pending,
@@ -24,6 +32,7 @@ enum VerificationStatus {
   };
 }
 
+// Girişim / yatırım sektörleri (filtrelemede kullanılır).
 enum Sector {
   fintech,
   health,
@@ -50,6 +59,7 @@ enum Sector {
   };
 }
 
+// Girişimin olgunluk aşaması.
 enum StartupStage {
   idea,
   prototype,
@@ -66,6 +76,7 @@ enum StartupStage {
   };
 }
 
+// Girişimcinin ihtiyaç duyduğu destek türleri.
 enum NeedType {
   legal,
   tax,
@@ -98,6 +109,7 @@ enum InvestorType {
   };
 }
 
+// Destek programı türü.
 enum ProgramType {
   grant,
   equity,
@@ -124,6 +136,7 @@ enum ProgramScope {
   };
 }
 
+// Mentör/yatırımcı ile eşleşme isteğinin durumu.
 enum MatchStatus {
   none,
   pending,
@@ -166,6 +179,7 @@ enum SupportStatus {
   };
 }
 
+// Kuruluş yol haritası adımlarının kategorileri.
 enum RoadmapCategory {
   legal,
   tax,

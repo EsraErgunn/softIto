@@ -1,3 +1,7 @@
+// =============================================================================
+// weekly_day_progress.dart - Haftalık tablodaki tek bir günün verisi
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -18,7 +22,9 @@ class WeeklyDayProgress {
     this.isToday = false,
   });
 
+  // Hesaplanan (computed) getter'lar: ayrı alan tutmak yerine her seferinde hesaplanır.
   bool get isWaterCompleted => waterMl >= waterGoalMl;
   bool get isWorkoutCompleted => caloriesBurned >= calorieGoal;
+  // Hem su hem antrenman hedefi tamamlandıysa "mükemmel gün".
   bool get isPerfectDay => isWaterCompleted && isWorkoutCompleted;
 }

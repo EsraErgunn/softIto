@@ -1,3 +1,9 @@
+// =============================================================================
+// person_card.dart - Rehber listesindeki kişi kartı (mentör veya yatırımcı)
+// Tek widget iki türü de gösterir: profil Investor ise yatırım aralığı, portföy ve
+// sektörler; Mentor ise unvan, şehir ve biyografi gösterilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../../app/theme/app_tokens.dart';
 import '../../../../core/models/models.dart';
@@ -13,9 +19,11 @@ class PersonCard extends StatelessWidget {
   final DirectoryProfile profile;
   final VoidCallback? onTap;
 
+  // Büyük tutarları kısaltır: 2.500.000 -> ₺2.5M, 1.000.000 -> ₺1M, 250.000 -> ₺250B (bin).
   String _formatCurrency(int amount) {
     if (amount >= 1000000) {
       final m = amount / 1000000;
+      // Tam sayıysa ondalık gösterilmez (₺1M), değilse 1 basamak (₺2.5M).
       return '₺${m.toStringAsFixed(m.truncateToDouble() == m ? 0 : 1)}M';
     } else if (amount >= 1000) {
       return '₺${(amount ~/ 1000)}B';
@@ -28,6 +36,7 @@ class PersonCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
+    // "is" ile tip kontrolü: freezed union'ın hangi alt türü olduğu belirlenir.
     if (profile is Investor) {
       final inv = profile as Investor;
       return Card(
@@ -47,6 +56,7 @@ class PersonCard extends StatelessWidget {
                       name: inv.name,
                       isVerified: inv.isVerified,
                       size: AvatarSize.md,
+                      // Detay sayfasındaki avatarla aynı Hero etiketi: geçişte avatar uçarak büyür.
                       heroTag: 'avatar_${inv.id}',
                     ),
                     const SizedBox(width: AppSpacing.md),
@@ -126,6 +136,7 @@ class PersonCard extends StatelessWidget {
                   ],
                 ),
 
+                // Portföy boş değilse virgülle birleştirilip tek satırda gösterilir.
                 if (inv.portfolio.isNotEmpty) ...[
                   const SizedBox(height: AppSpacing.xs),
                   Text(
@@ -144,6 +155,7 @@ class PersonCard extends StatelessWidget {
                 Wrap(
                   spacing: AppSpacing.xs,
                   runSpacing: AppSpacing.xxs,
+                  // Kart sade kalsın diye en fazla 3 sektör gösterilir.
                   children: inv.sectors.take(3).map((s) {
                     return Container(
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -164,6 +176,7 @@ class PersonCard extends StatelessWidget {
         ),
       );
     } else {
+      // Mentör kartı (daha sade bir düzen).
       final mentor = profile as Mentor;
       return Card(
         margin: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),

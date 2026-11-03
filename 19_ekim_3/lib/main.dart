@@ -1,3 +1,10 @@
+// =============================================================================
+// main.dart - "Susadım" (19_ekim_3 sürümü) giriş noktası
+// Sade bir mimari: her sekme (View) kendi controller'ını kendisi oluşturur.
+// Tema, tek bir ortak ThemeController (singleton) üzerinden yönetilir.
+// Kural: her build metodu en fazla ~40 satır olacak şekilde küçük widget'lara bölünmüştür.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'core/theme/app_theme.dart';
 import 'core/theme/theme_controller.dart';
@@ -24,6 +31,8 @@ class SusadimApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
+          // Tema modu değişince ValueListenableBuilder MaterialApp'i yeniden kurar;
+          // theme (açık) / darkTheme (koyu) arasından themeMode'a göre seçim yapılır.
           themeMode: themeMode,
           home: const MainHomeScreen(),
         );
@@ -39,15 +48,19 @@ class MainHomeScreen extends StatefulWidget {
   State<MainHomeScreen> createState() => _MainHomeScreenState();
 }
 
+// Alt menülü ana ekran.
 class _MainHomeScreenState extends State<MainHomeScreen> {
   int _currentIndex = 0;
 
+  // Sekmeler const olarak bir kez tanımlanır. Her biri kendi controller'ını
+  // initState'te oluşturduğu için burada controller verilmez.
   static const List<Widget> _pages = [
     WaterTrackerView(),
     WorkoutView(),
     AchievementView(),
   ];
 
+  // Seçili sekmeye göre AppBar başlığı bu listeden alınır.
   static const List<String> _titles = [
     'Susadım - Su Takibi',
     'Susadım - Egzersiz & Kalori',
@@ -63,6 +76,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         actions: const [_ThemeToggleButton()],
       ),
       body: SafeArea(
+        // IndexedStack sayesinde sekme değişince sayfalar yok edilmez, durumları korunur.
         child: IndexedStack(
           index: _currentIndex,
           children: _pages,
@@ -81,6 +95,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   }
 }
 
+// AppBar'daki tema butonu: koyu moddaysa ay, değilse güneş ikonu gösterir.
 class _ThemeToggleButton extends StatelessWidget {
   const _ThemeToggleButton();
 

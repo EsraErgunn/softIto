@@ -1,3 +1,9 @@
+// =============================================================================
+// workout_summary_card.dart - Günlük aktivite özet kartı
+// Üstte başlık + yüzde rozeti, ortada Yakılan/Süre/Hedef metrikleri,
+// altta yatay ilerleme çubuğu bulunur.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 
@@ -38,6 +44,7 @@ class WorkoutSummaryCard extends StatelessWidget {
   }
 }
 
+// Kart başlığı ve sağdaki yüzde rozeti.
 class _CardHeader extends StatelessWidget {
   final double progress;
   const _CardHeader({required this.progress});
@@ -76,6 +83,7 @@ class _CardHeader extends StatelessWidget {
   }
 }
 
+// Üç metrik yan yana; aralarında 1 px'lik dikey ayırıcı çizgiler var.
 class _MetricsRow extends StatelessWidget {
   final int totalCalories;
   final int totalMinutes;
@@ -103,6 +111,7 @@ class _MetricsRow extends StatelessWidget {
   }
 }
 
+// Tek metrik: etiket, büyük değer ve birim.
 class _MetricItem extends StatelessWidget {
   final String label;
   final String value;
@@ -129,6 +138,7 @@ class _MetricItem extends StatelessWidget {
   }
 }
 
+// Hedefe ilerlemeyi gösteren çubuk. ClipRRect ile köşeleri yuvarlatılır.
 class _ProgressBar extends StatelessWidget {
   final double progress;
   const _ProgressBar({required this.progress});

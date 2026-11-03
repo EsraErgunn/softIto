@@ -1,3 +1,7 @@
+// =============================================================================
+// water_tracker_model.dart - Su takibi durumu (immutable)
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -26,6 +30,7 @@ class WaterTrackerModel {
     );
   }
 
+  // Hesaplanan değerler: ayrıca saklanmaz, her seferinde mevcut alanlardan hesaplanır.
   bool get isGoalReached => currentWaterMl >= dailyGoalMl;
   double get progressRatio =>
       (currentWaterMl / (dailyGoalMl > 0 ? dailyGoalMl : 1)).clamp(0.0, 1.0);
@@ -46,6 +51,7 @@ class WaterTrackerModel {
     );
   }
 
+  // JSON (Map) -> nesne. Eksik alanlarda "??" ile varsayılan değer kullanılır.
   factory WaterTrackerModel.fromJson(Map<String, dynamic> json) {
     return WaterTrackerModel(
       currentWaterMl: json['currentWaterMl'] as int? ?? 0,
@@ -67,6 +73,9 @@ class WaterTrackerModel {
   }
 
   @override
+  // Eşitlik operatörü override edildi: iki model nesnesi farklı olsa bile alanları
+  // aynıysa "eşit" sayılır. ValueNotifier, yeni değer eskisine == ise dinleyicilere
+  // haber VERMEZ; böylece değişmeyen veri için gereksiz yeniden çizim olmaz.
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     return other is WaterTrackerModel &&
@@ -78,6 +87,7 @@ class WaterTrackerModel {
   }
 
   @override
+  // == override edilince hashCode da aynı alanlardan üretilmelidir (Map/Set'te doğru çalışması için).
   int get hashCode => Object.hash(
         currentWaterMl,
         dailyGoalMl,

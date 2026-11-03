@@ -1,3 +1,8 @@
+// =============================================================================
+// matches_page.dart - Eşleşmelerim sayfası (Bekleyen / Kabul Edilen / Reddedilen sekmeleri)
+// Şimdilik her sekmede boş durum gösterilir; eşleşme verisi henüz bağlanmadı.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/widgets.dart';
 
@@ -6,6 +11,7 @@ class MatchesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // DefaultTabController: TabBar ve TabBarView'ı ayrı controller yazmadan senkronlar.
     return DefaultTabController(
       length: 3,
       child: Scaffold(

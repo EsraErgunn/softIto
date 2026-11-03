@@ -1,3 +1,8 @@
+// =============================================================================
+// mentors_page.dart - Mentör listesi (arama + sektör filtreleri + liste)
+// Yapısı investors_page.dart ile aynıdır; filtre olarak sektör kullanılır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -12,6 +17,7 @@ class MentorsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Filtrelenmiş mentör listesi.
     final filteredAsync = ref.watch(filteredMentorsProvider);
     final filter = ref.watch(mentorFilterProvider);
     final theme = Theme.of(context);
@@ -57,6 +63,7 @@ class MentorsPage extends ConsumerWidget {
                         onSelected: (val) => ref.read(mentorFilterProvider.notifier).setVerifiedOnly(val),
                       ),
                       const SizedBox(width: AppSpacing.xs),
+                      // Çip kalabalığı olmasın diye ilk 6 sektör gösterilir.
                       ...Sector.values.take(6).map((sector) {
                         return Padding(
                           padding: const EdgeInsets.only(right: AppSpacing.xs),
@@ -77,6 +84,7 @@ class MentorsPage extends ConsumerWidget {
           // Mentors List
           Expanded(
             child: RefreshIndicator(
+              // Aşağı çekerek yenileme.
               onRefresh: () async => ref.invalidate(mentorsProvider),
               child: AsyncValueView(
                 value: filteredAsync,

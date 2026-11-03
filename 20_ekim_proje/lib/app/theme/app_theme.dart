@@ -1,3 +1,8 @@
+// =============================================================================
+// app_theme.dart - Açık ve koyu tema
+// İki tema da aynı tohum renkten (kSeedColor) türetilir; sadece brightness farklıdır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
 import 'app_tokens.dart';
@@ -13,6 +18,7 @@ abstract final class AppTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: colorScheme.surface,
+      // Özel durum renkleri temaya eklenir.
       extensions: const [StatusColors.light],
       cardTheme: CardThemeData(
         elevation: 0,
@@ -54,6 +60,7 @@ abstract final class AppTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: colorScheme.surface,
+      // Koyu temaya koyu durum renkleri eklenir.
       extensions: const [StatusColors.dark],
       cardTheme: CardThemeData(
         elevation: 0,

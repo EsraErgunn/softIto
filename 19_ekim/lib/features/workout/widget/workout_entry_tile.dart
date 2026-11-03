@@ -1,3 +1,9 @@
+// =============================================================================
+// workout_entry_tile.dart - Antrenman günlüğündeki tek satır
+// Satır üç parçaya bölünmüştür: ikon, detaylar (ad, süre, saat) ve sağ taraf (kalori + sil).
+// Küçük widget'lara bölmek build metodunu okunur tutar.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/workout_entry.dart';
@@ -35,6 +41,7 @@ class WorkoutEntryTile extends StatelessWidget {
   }
 }
 
+// Soldaki yuvarlak antrenman ikonu.
 class _EntryIcon extends StatelessWidget {
   const _EntryIcon();
 
@@ -48,6 +55,7 @@ class _EntryIcon extends StatelessWidget {
   }
 }
 
+// Antrenman adı ve "30 dakika • 14:05" bilgisi. Expanded ile ortadaki boşluğu doldurur.
 class _EntryDetails extends StatelessWidget {
   final WorkoutEntry entry;
   final TextTheme textTheme;
@@ -70,6 +78,7 @@ class _EntryDetails extends StatelessWidget {
   }
 }
 
+// Sağdaki yakılan kalori ve silme butonu.
 class _EntryMeta extends StatelessWidget {
   final WorkoutEntry entry;
   final VoidCallback onDelete;

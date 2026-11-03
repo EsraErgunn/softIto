@@ -1,3 +1,9 @@
+// =============================================================================
+// water_tracker_view.dart - Su takibi sekmesi
+// Controller'ı dinler ve küçük widget'ları (halka, istatistik, hızlı ekle, geçmiş)
+// alt alta dizer. Kendi state'i yoktur; tüm veri controller'dan gelir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../controller/water_controller.dart';
 import '../widget/water_history_list.dart';
@@ -12,6 +18,8 @@ class WaterTrackerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ListenableBuilder: controller notifyListeners() çağırdığında sadece builder
+    // kısmını yeniden çizer (setState'e gerek kalmaz).
     return ListenableBuilder(
       listenable: controller,
       builder: (context, _) {
@@ -34,6 +42,7 @@ class WaterTrackerView extends StatelessWidget {
               const SizedBox(height: 24),
               const _SectionTitle(title: 'Hızlı Ekle'),
               const SizedBox(height: 12),
+              // Metot referansı (tear-off): controller.addIntake fonksiyonun kendisi callback olarak verilir.
               WaterQuickAddButtons(onAdd: controller.addIntake),
               const SizedBox(height: 24),
               const _SectionTitle(title: 'Bugünkü Kayıtlar'),
@@ -51,6 +60,7 @@ class WaterTrackerView extends StatelessWidget {
   }
 }
 
+// Bölüm başlıkları için tekrar kullanılan küçük widget (dosyaya özel, "_" ile başlar).
 class _SectionTitle extends StatelessWidget {
   final String title;
   const _SectionTitle({required this.title});

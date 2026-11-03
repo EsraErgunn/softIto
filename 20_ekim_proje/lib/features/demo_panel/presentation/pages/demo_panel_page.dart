@@ -1,3 +1,12 @@
+// =============================================================================
+// demo_panel_page.dart - Demo ve simülasyon paneli (sunum / test amaçlı)
+// Uygulamayı farklı senaryolarda hızlıca denemek için:
+//   - hazır kullanıcılarla (persona) tek tıkla giriş,
+//   - doğrulama durumunu değiştirme (kilitli özellikleri görmek için),
+//   - iş planı var/yok geçişi,
+//   - ağ gecikmesi ve hata simülasyonu.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../app/theme/app_tokens.dart';
@@ -12,6 +21,7 @@ class DemoPanelPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final session = ref.watch(sessionProvider);
     final user = session.user;
+    // Ayar değişince panel kendini yeniden çizer (seçili çipler güncellenir).
     final demoSettings = ref.watch(demoSettingsProvider);
 
     return Scaffold(
@@ -20,6 +30,7 @@ class DemoPanelPage extends ConsumerWidget {
         padding: AppSpacing.screenPadding,
         children: [
           const SizedBox(height: AppSpacing.md),
+          // Her çip farklı bir test kullanıcısıyla oturum açar.
           const Text('Hazır Personalar', style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: AppSpacing.xs),
           Wrap(
@@ -89,15 +100,18 @@ class DemoPanelPage extends ConsumerWidget {
           const Divider(height: AppSpacing.xl),
           const Text('Doğrulama & Onay Durumu', style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: AppSpacing.xs),
+          // Doğrulama durumu için segmentli buton; enum'un tüm değerleri segmente dönüştürülür.
           SegmentedButton<VerificationStatus>(
             segments: VerificationStatus.values.map((s) {
               return ButtonSegment(value: s, label: Text(s.label));
             }).toList(),
+            // SegmentedButton seçimi Set olarak ister ({...} Set literal).
             selected: {user?.verificationStatus ?? VerificationStatus.notStarted},
             onSelectionChanged: (set) {
               final status = set.first;
               ref.read(sessionProvider.notifier).setVerificationStatus(
                 status,
+                // Reddedildi seçilirse örnek bir ret nedeni de eklenir.
                 rejectionReason: status == VerificationStatus.rejected ? 'Eksik vergi beyannamesi.' : null,
               );
               ScaffoldMessenger.of(context).showSnackBar(
@@ -118,6 +132,7 @@ class DemoPanelPage extends ConsumerWidget {
             },
           ),
           const Divider(height: AppSpacing.xl),
+          // Depolardaki sahte isteklerin gecikmesi ve hata fırlatıp fırlatmayacağı buradan ayarlanır.
           const Text('Ağ ve Hata Simülasyonu', style: TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: AppSpacing.xs),
           Row(

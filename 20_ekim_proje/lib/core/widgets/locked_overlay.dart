@@ -1,3 +1,9 @@
+// =============================================================================
+// locked_overlay.dart - Kilitli içerik katmanı
+// Onaylı olmayan kullanıcılar için içeriği bulanıklaştırıp üstüne
+// "Uzman Onayı Gerekli" kartı koyar. Kilitli değilse içeriği aynen gösterir.
+// =============================================================================
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../app/theme/app_tokens.dart';
@@ -22,6 +28,7 @@ class LockedOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Kilit yoksa hiçbir ek katman eklenmez.
     if (!isLocked) return child;
 
     final theme = Theme.of(context);
@@ -29,13 +36,16 @@ class LockedOverlay extends StatelessWidget {
 
     return Stack(
       children: [
+        // AbsorbPointer: alttaki içeriğe dokunmaları engeller (bulanık butonlara basılamaz).
         AbsorbPointer(
           absorbing: true,
           child: ImageFiltered(
+            // İçeriği bulanıklaştırır; kullanıcı ne olduğunu sezer ama okuyamaz.
             imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
             child: child,
           ),
         ),
+        // Kilit kartı, Stack'in tamamını kaplayacak şekilde üste konur.
         Positioned.fill(
           child: Container(
             color: colorScheme.surface.withAlpha(160),

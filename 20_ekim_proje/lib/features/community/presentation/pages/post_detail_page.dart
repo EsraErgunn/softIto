@@ -1,3 +1,8 @@
+// =============================================================================
+// post_detail_page.dart - Gönderi detayı ve yorumlar
+// Üstte gönderi kartı, altında yorum listesi, en altta sabit yorum yazma çubuğu.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../app/theme/app_tokens.dart';
@@ -17,6 +22,7 @@ class PostDetailPage extends ConsumerStatefulWidget {
 
 class _PostDetailPageState extends ConsumerState<PostDetailPage> {
   final _commentController = TextEditingController();
+  // Yorum gönderilirken true; butonda spinner gösterilir ve çift gönderim engellenir.
   bool _isSending = false;
 
   @override
@@ -25,6 +31,8 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
     super.dispose();
   }
 
+  // Tarihi "5 dk önce", "3 saat önce", "2 gün önce" biçimine çevirir.
+  // clamp(1, 60): az önce yazılan yorum "0 dk önce" yerine "1 dk önce" görünür.
   String _formatTimeAgo(DateTime dt) {
     final diff = DateTime.now().difference(dt);
     if (diff.inMinutes < 60) {
@@ -36,6 +44,7 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
     }
   }
 
+  // Yorum gönderir; boşsa veya zaten gönderiliyorsa hiçbir şey yapmaz.
   Future<void> _sendComment() async {
     final text = _commentController.text.trim();
     if (text.isEmpty || _isSending) return;
@@ -44,6 +53,7 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
 
     try {
       final user = ref.read(sessionProvider).user;
+      // Oturumdaki kullanıcıdan yorum yazarı bilgisi oluşturulur (giriş yoksa misafir değerleri).
       final author = PostAuthor(
         id: user?.id ?? 'usr_guest',
         name: user?.name ?? 'Girişimci',
@@ -58,8 +68,10 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
           );
 
       _commentController.clear();
+      // Yorum listesi ve gönderi (yorum sayısı) yeniden yüklenir; ekran güncellenir.
       ref.invalidate(commentsProvider(widget.id));
       ref.invalidate(postProvider(widget.id));
+    // finally: hata olsa da olmasa da çalışır; yükleniyor durumu her koşulda kapatılır.
     } finally {
       if (mounted) setState(() => _isSending = false);
     }
@@ -67,6 +79,7 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    // family provider'lar id parametresiyle çağrılır.
     final postAsync = ref.watch(postProvider(widget.id));
     final commentsAsync = ref.watch(commentsProvider(widget.id));
     final theme = Theme.of(context);
@@ -165,6 +178,7 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
             ),
           ),
 
+          // SafeArea: çentik / alt gezinme çubuğu altında kalmaması için.
           // Bottom comment input bar
           SafeArea(
             child: Container(

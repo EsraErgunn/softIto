@@ -1,3 +1,9 @@
+// =============================================================================
+// water_progress_gauge.dart - Dairesel su ilerleme göstergesi
+// Stack ile üç katman: hafif parlayan arka daire, ilerleme halkası, ortadaki rakamlar.
+// Altında yüzde ve kalan miktarı gösteren bilgi şeridi vardır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/water_tracker_model.dart';
@@ -24,6 +30,7 @@ class WaterProgressGauge extends StatelessWidget {
         color: cardColor,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: borderColor),
+        // Hafif cyan gölge: kartın "neon parıltı" efekti (0x15 -> çok saydam).
         boxShadow: const [
           BoxShadow(
             color: Color(0x1500E5FF),
@@ -43,6 +50,7 @@ class WaterProgressGauge extends StatelessWidget {
     );
   }
 
+  // Katmanlar Stack içinde ortalanarak üst üste dizilir (ilk yazılan en altta).
   Widget _buildCircularIndicator(BuildContext context) {
     return SizedBox(
       width: 190,
@@ -58,6 +66,7 @@ class WaterProgressGauge extends StatelessWidget {
     );
   }
 
+  // Halkanın içindeki renkli daire; temaya göre koyu lacivert veya açık su mavisi.
   Widget _buildGlowBackground(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
@@ -72,6 +81,7 @@ class WaterProgressGauge extends StatelessWidget {
     );
   }
 
+  // value: model.progressRatio -> halkanın ne kadar dolu olacağı (0.0 - 1.0).
   Widget _buildProgressRing(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
@@ -89,6 +99,7 @@ class WaterProgressGauge extends StatelessWidget {
     );
   }
 
+  // Ortada içilen ml ve hedef bilgisi.
   Widget _buildCenterStats(BuildContext context) {
     final textColor =
         Theme.of(context).textTheme.bodyLarge?.color ?? AppColors.textPrimary;
@@ -125,6 +136,7 @@ class WaterProgressGauge extends StatelessWidget {
     );
   }
 
+  // Alttaki "%50 tamamlandı • Kalan: 1250 ml" şeridi.
   Widget _buildGoalSubtitle(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bg = isDark ? AppColors.surfaceElevated : AppColors.lightSurfaceElevated;

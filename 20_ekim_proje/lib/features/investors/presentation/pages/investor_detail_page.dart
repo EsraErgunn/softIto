@@ -1,3 +1,9 @@
+// =============================================================================
+// investor_detail_page.dart - Yatırımcı detay sayfası
+// Profil başlığı, yatırım aralığı kartı, hakkında, yatırım tezi, portföy,
+// sektör/aşama etiketleri ve altta sabit "Eşleşme İste" butonu.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../app/theme/app_tokens.dart';
@@ -19,6 +25,8 @@ class InvestorDetailPage extends ConsumerWidget {
     return '₺$amount';
   }
 
+  // Alttan açılan eşleşme isteği formu (not alanı + gönder butonu). Demo: gönderince
+  // sadece bilgilendirme mesajı gösterilir, istek kaydedilmez.
   void _showMatchRequestDialog(BuildContext context, String investorName) {
     final noteController = TextEditingController();
     showModalBottomSheet(
@@ -26,6 +34,7 @@ class InvestorDetailPage extends ConsumerWidget {
       isScrollControlled: true,
       builder: (ctx) => Padding(
         padding: EdgeInsets.only(
+          // Klavye açılınca form yukarı kayar.
           bottom: MediaQuery.of(ctx).viewInsets.bottom,
           left: AppSpacing.md,
           right: AppSpacing.md,
@@ -47,6 +56,7 @@ class InvestorDetailPage extends ConsumerWidget {
             const SizedBox(height: AppSpacing.md),
             TextField(
               controller: noteController,
+              // Not en fazla 300 karakter; altta sayaç otomatik görünür.
               maxLength: 300,
               maxLines: 4,
               decoration: const InputDecoration(
@@ -74,6 +84,7 @@ class InvestorDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // id ile yatırımcı yüklenir; AsyncValueView yükleniyor/hata durumlarını yönetir.
     final investorAsync = ref.watch(investorProvider(id));
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -119,6 +130,7 @@ class InvestorDetailPage extends ConsumerWidget {
               ),
               const SizedBox(height: AppSpacing.lg),
 
+              // Yatırımcının tek girişime ayırdığı minimum - maksimum tutar.
               // Ticket Size Card
               Card(
                 color: colorScheme.secondaryContainer.withAlpha(90),
@@ -158,6 +170,7 @@ class InvestorDetailPage extends ConsumerWidget {
               const SizedBox(height: AppSpacing.lg),
 
               // Investment Thesis
+              // Yatırım tezi (neye neden yatırım yaptığı) varsa gösterilir.
               if (investor.thesis != null) ...[
                 const SectionHeader(title: 'Yatırım Tezi'),
                 Card(
@@ -203,6 +216,7 @@ class InvestorDetailPage extends ConsumerWidget {
                 spacing: AppSpacing.xs,
                 runSpacing: AppSpacing.xs,
                 children: [
+                  // Sektör ve aşama çipleri iki spread ile tek Wrap içinde birleştirilir.
                   ...investor.sectors.map((s) => Chip(label: Text(s.label))),
                   ...investor.stages.map((st) => Chip(
                         label: Text(st.label),
@@ -213,6 +227,7 @@ class InvestorDetailPage extends ConsumerWidget {
               const SizedBox(height: AppSpacing.xl),
             ],
           ),
+          // Sayfa kaydırılsa da eşleşme butonu ekranın altında sabit kalır.
           bottomNavigationBar: SafeArea(
             child: Container(
               padding: const EdgeInsets.all(AppSpacing.md),

@@ -1,3 +1,7 @@
+// =============================================================================
+// profile_edit_page.dart - Profil düzenleme sayfası (şimdilik yer tutucu)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 class ProfileEditPage extends StatelessWidget {

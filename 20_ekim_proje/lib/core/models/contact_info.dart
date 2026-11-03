@@ -1,3 +1,7 @@
+// =============================================================================
+// contact_info.dart - İletişim bilgisi modeli (mentör/yatırımcı profillerinde kullanılır)
+// =============================================================================
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'contact_info.freezed.dart';

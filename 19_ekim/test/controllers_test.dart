@@ -1,3 +1,10 @@
+// =============================================================================
+// controllers_test.dart - Controller birim (unit) testleri
+// Arayüz olmadan sadece iş mantığı test edilir: su, antrenman ve başarım hesapları.
+// group: ilgili testleri gruplar. setUp: her testten ÖNCE çalışır ve temiz bir
+// controller oluşturur; böylece testler birbirini etkilemez.
+// =============================================================================
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:susadim/features/achivement/controller/achivement_controller.dart';
 import 'package:susadim/features/water_tracker/controller/water_controller.dart';
@@ -21,6 +28,7 @@ void main() {
     });
 
     test('Su ekleme ve ilerleme hesaplama doğru çalışmalı', () {
+      // 2000 ml hedefin 500 ml'si = %25 -> progress 0.25 olmalı.
       controller.addIntake(500);
       expect(controller.currentAmountMl, 500);
       expect(controller.progress, 0.25);
@@ -29,6 +37,7 @@ void main() {
     });
 
     test('Hedef tamamlandığında isGoalReached true olmalı', () {
+      // Hedefe tam ulaşınca kalan 0 ve ilerleme 1.0 olmalı.
       controller.addIntake(2000);
       expect(controller.isGoalReached, true);
       expect(controller.remainingMl, 0);
@@ -67,6 +76,7 @@ void main() {
       );
       expect(controller.totalCalories, 300);
       expect(controller.totalMinutes, 30);
+      // 400 kcal hedefin 300 kcal'si = 0.75.
       expect(controller.progress, 0.75);
       expect(controller.entries.length, 1);
     });
@@ -114,6 +124,7 @@ void main() {
     });
 
     test('Yeterli puana ulaşıldığında hayvan hediyesi açılmalı', () {
+      // Başlangıç 120 + 300 = 420 XP; Siber Kurt'un eşiği 200 olduğu için açılmalı.
       controller.addBonusPoints(300);
       final cyberWolf = controller.pets.firstWhere((p) => p.id == 'cyber_wolf');
       expect(cyberWolf.isUnlocked, true);

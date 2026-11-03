@@ -1,6 +1,12 @@
+// =============================================================================
+// verified_avatar.dart - Profil avatarı (+ doğrulanmışsa mavi tik rozeti)
+// Resim yoksa isim baş harfleri renkli daire içinde gösterilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
 
+// Üç hazır boyut; her biri çap, yazı boyutu ve rozet boyutunu birlikte taşır.
 enum AvatarSize {
   sm(32, 12, 12),
   md(48, 18, 16),
@@ -28,6 +34,7 @@ class VerifiedAvatar extends StatelessWidget {
   final AvatarSize size;
   final String? heroTag;
 
+  // "Esra Ergün" -> "EE", tek kelimeyse ilk harf, boşsa "?".
   String _getInitials(String str) {
     final parts = str.trim().split(RegExp(r'\s+'));
     if (parts.isEmpty || parts[0].isEmpty) return '?';
@@ -35,6 +42,7 @@ class VerifiedAvatar extends StatelessWidget {
     return '${parts[0][0]}${parts[parts.length - 1][0]}'.toUpperCase();
   }
 
+  // İsmin hash değerine göre 3 renkten biri seçilir: aynı kişi hep aynı renkte görünür.
   Color _getBackgroundColor(ColorScheme colorScheme, String str) {
     final hash = str.hashCode.abs();
     final mod = hash % 3;
@@ -87,13 +95,16 @@ class VerifiedAvatar extends StatelessWidget {
           : null,
     );
 
+    // Hero: liste -> detay sayfası geçişinde avatarın uçarak büyümesi animasyonu.
     if (heroTag != null) {
       avatar = Hero(tag: heroTag!, child: avatar);
     }
 
+    // Doğrulanmamışsa rozet eklenmeden sadece avatar döner.
     if (!isVerified) return avatar;
 
     return Stack(
+      // Rozet avatarın kenarından taşabilsin diye kırpma kapatılır.
       clipBehavior: Clip.none,
       children: [
         avatar,

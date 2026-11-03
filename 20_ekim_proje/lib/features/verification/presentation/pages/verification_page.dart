@@ -1,3 +1,8 @@
+// =============================================================================
+// verification_page.dart - Uzman onayı / hesap doğrulama
+// Mevcut durum rozeti, gerekli belgeler listesi ve başvuru butonu.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../app/theme/app_tokens.dart';
@@ -11,6 +16,7 @@ class VerificationPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final session = ref.watch(sessionProvider);
+    // Giriş yoksa veya durum belirsizse "Başvurulmadı" kabul edilir.
     final status = session.user?.verificationStatus ?? VerificationStatus.notStarted;
 
     return Scaffold(
@@ -47,9 +53,11 @@ class VerificationPage extends ConsumerWidget {
               subtitle: Text('Girişim özeti'),
             ),
             const Spacer(),
+            // Zaten onaylıysa başvuru butonu gizlenir.
             if (status != VerificationStatus.approved)
               FilledButton(
                 onPressed: () {
+                  // Durum "İncelemede" (pending) yapılır; onay/ret Demo Panelinden simüle edilebilir.
                   ref.read(sessionProvider.notifier).submitVerification();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Başvurunuz incelemeye alındı.')),

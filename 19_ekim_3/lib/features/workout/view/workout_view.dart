@@ -1,3 +1,7 @@
+// =============================================================================
+// workout_view.dart - Egzersiz sekmesi
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../controller/workout_controller.dart';
 import '../models/workout_model.dart';
@@ -16,6 +20,7 @@ class _WorkoutViewState extends State<WorkoutView> {
   @override
   void initState() {
     super.initState();
+    // Controller ekran açılınca oluşturulur.
     _controller = WorkoutController();
   }
 
@@ -37,6 +42,7 @@ class _WorkoutViewState extends State<WorkoutView> {
             WorkoutCard(data: data),
             const SizedBox(height: 16),
             FilledButton.icon(
+              // Tek dokunuşla hazır egzersiz (15 dk, 120 kcal) ekleyen demo butonu.
               onPressed: () => _controller.addWorkout(minutes: 15, calories: 120),
               icon: const Icon(Icons.add),
               label: const Text('+15 Dk Koşu / Kardiyo (120 kcal)'),

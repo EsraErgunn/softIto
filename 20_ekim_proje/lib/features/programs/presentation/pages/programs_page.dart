@@ -1,3 +1,7 @@
+// =============================================================================
+// programs_page.dart - Destek programları listesi (arama + filtre çipleri + liste)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -12,6 +16,7 @@ class ProgramsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Filtrelenmiş liste; arama/çip değişince yeniden hesaplanır.
     final filteredAsync = ref.watch(filteredProgramsProvider);
     final filter = ref.watch(programFilterProvider);
     final theme = Theme.of(context);
@@ -51,11 +56,13 @@ class ProgramsPage extends ConsumerWidget {
                       ),
                       const SizedBox(width: AppSpacing.xs),
                       FilterChip(
+                        // Süresi dolan programları gizleme filtresi.
                         label: const Text('Aktif (Süresi Dolmamış)'),
                         selected: filter.hideExpired,
                         onSelected: (val) => ref.read(programFilterProvider.notifier).setHideExpired(val),
                       ),
                       const SizedBox(width: AppSpacing.xs),
+                      // Program türü çipleri; ardından kapsam (yurt içi/dışı) çipleri gelir.
                       ...ProgramType.values.map((type) {
                         return Padding(
                           padding: const EdgeInsets.only(right: AppSpacing.xs),
@@ -86,6 +93,7 @@ class ProgramsPage extends ConsumerWidget {
           // List
           Expanded(
             child: RefreshIndicator(
+              // Aşağı çekerek yenileme.
               onRefresh: () async => ref.invalidate(programsProvider),
               child: AsyncValueView(
                 value: filteredAsync,

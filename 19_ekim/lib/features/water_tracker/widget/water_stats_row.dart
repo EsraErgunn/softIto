@@ -1,3 +1,7 @@
+// =============================================================================
+// water_stats_row.dart - "Kalan" ve "Günlük Hedef" istatistik kutuları
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 
@@ -19,6 +23,7 @@ class WaterStatsRow extends StatelessWidget {
       children: [
         _StatTile(
           title: 'Kalan',
+          // Hedefe ulaşıldıysa metin, ikon ve renk "başarı" haline geçer.
           value: isGoalReached ? 'Hedef Tamam!' : '$remainingMl ml',
           icon: isGoalReached ? Icons.check_circle_outline : Icons.hourglass_bottom_rounded,
           iconColor: isGoalReached ? AppColors.neonLime : AppColors.neonAmber,
@@ -35,6 +40,7 @@ class WaterStatsRow extends StatelessWidget {
   }
 }
 
+// Tek bir istatistik kutusu: renkli ikon + başlık + değer.
 class _StatTile extends StatelessWidget {
   final String title;
   final String value;
@@ -63,6 +69,7 @@ class _StatTile extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 18,
+              // İkon renginin %15 opak hali: yumuşak renkli daire arka planı.
               backgroundColor: iconColor.withValues(alpha: 0.15),
               child: Icon(icon, color: iconColor, size: 20),
             ),

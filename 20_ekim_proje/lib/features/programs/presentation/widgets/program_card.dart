@@ -1,3 +1,9 @@
+// =============================================================================
+// program_card.dart - Program listesindeki kart
+// Üstte tür/kapsam/onay etiketleri ve kaydet (yer imi) butonu, ortada başlık ve
+// özet, altta maksimum tutar ve kalan gün rozeti.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../app/theme/app_tokens.dart';
@@ -35,6 +41,7 @@ class ProgramCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    // Program kayıtlıysa dolu yer imi ikonu gösterilir.
     final isSaved = ref.watch(savedProgramIdsProvider).contains(program.id);
     final daysLeft = _calculateDaysLeft(program.deadline);
 
@@ -79,6 +86,7 @@ class ProgramCard extends ConsumerWidget {
                       style: theme.textTheme.labelSmall?.copyWith(fontSize: 11),
                     ),
                   ),
+                  // Onay gerektiren programlarda kırmızımsı "Onay Gerekli" etiketi.
                   if (program.requiresVerification) ...[
                     const SizedBox(width: AppSpacing.xs),
                     Container(
@@ -103,6 +111,7 @@ class ProgramCard extends ConsumerWidget {
                       isSaved ? Icons.bookmark : Icons.bookmark_border,
                       color: isSaved ? colorScheme.primary : colorScheme.onSurfaceVariant,
                     ),
+                    // Kaydet / kaydı kaldır; seçim cihazda saklanır.
                     onPressed: () => ref.read(savedProgramIdsProvider.notifier).toggle(program.id),
                     tooltip: isSaved ? 'Kaydedilenlerden Çıkar' : 'Kaydet',
                   ),
@@ -155,6 +164,7 @@ class ProgramCard extends ConsumerWidget {
                       ),
                     ],
                   ),
+                  // Kalan güne göre renk değiştiren rozet (geçti / 7 gün içinde / normal).
                   StatusBadge.deadline(daysLeft),
                 ],
               ),

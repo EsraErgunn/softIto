@@ -1,3 +1,9 @@
+// =============================================================================
+// mentor_detail_page.dart - Mentör detay sayfası
+// Profil başlığı, biyografi, uzmanlık sektörleri, rehberlik konuları, iletişim
+// ve altta sabit "Mentörlük Eşleşmesi İste" butonu.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../app/theme/app_tokens.dart';
@@ -9,6 +15,7 @@ class MentorDetailPage extends ConsumerWidget {
   const MentorDetailPage({super.key, required this.id});
   final String id;
 
+  // Eşleşme isteği formu (demo: gönderince sadece bilgilendirme mesajı).
   void _showMatchRequestDialog(BuildContext context, String mentorName) {
     final noteController = TextEditingController();
     showModalBottomSheet(
@@ -64,6 +71,7 @@ class MentorDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // id ile mentör yüklenir.
     final mentorAsync = ref.watch(mentorProvider(id));
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -115,6 +123,7 @@ class MentorDetailPage extends ConsumerWidget {
               const SizedBox(height: AppSpacing.lg),
 
               // Expertise Sectors
+              // Boş bölümler hiç gösterilmez (collection if).
               if (mentor.expertise.isNotEmpty) ...[
                 const SectionHeader(title: 'Uzmanlık Sektörleri'),
                 Wrap(
@@ -155,6 +164,7 @@ class MentorDetailPage extends ConsumerWidget {
                         subtitle: const Text('Eşleşme sağlandığında doğrudan iletişime geçebilirsiniz.'),
                         dense: true,
                       ),
+                      // LinkedIn adresi varsa ek satır gösterilir.
                       if (mentor.contact.linkedinUrl != null)
                         ListTile(
                           leading: const Icon(Icons.link),

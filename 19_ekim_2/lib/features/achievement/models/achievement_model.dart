@@ -1,3 +1,12 @@
+// =============================================================================
+// achievement_model.dart - Başarım ekranının veri modelleri
+//   DailyRecord      -> haftalık grafikteki tek gün
+//   BadgeItem        -> rozet
+//   PetGiftItem      -> hediye evcil hayvan
+//   AchievementModel -> hepsini bir arada tutan ana model (controller'ın state'i)
+// Her modelde: copyWith (kopyalayarak değiştirme), fromJson/toJson (JSON dönüşümü).
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -36,6 +45,8 @@ class DailyRecord {
     );
   }
 
+  // fromJson: API'den / yerel depodan gelen Map verisini nesneye çevirir.
+  // "as String? ?? ''" -> alan yoksa veya null ise varsayılan değer kullanılır, uygulama çökmez.
   factory DailyRecord.fromJson(Map<String, dynamic> json) {
     return DailyRecord(
       dayName: json['dayName'] as String? ?? '',
@@ -64,6 +75,8 @@ class BadgeItem {
   final String id;
   final String title;
   final String description;
+  // İkon doğrudan IconData değil isim (String) olarak saklanır; JSON'a yazılabilmesi için.
+  // Ekranda bu isim ikona çevrilir (badge_grid.dart).
   final String iconName;
   final bool isUnlocked;
   final int pointsReward;
@@ -201,6 +214,7 @@ class AchievementModel {
     required this.activePetId,
   });
 
+  // Demo amaçlı başlangıç verisi: 1250 puan, 5 günlük seri, örnek hafta, rozet ve petler.
   factory AchievementModel.initial() {
     return const AchievementModel(
       totalPoints: 1250,
@@ -308,6 +322,8 @@ class AchievementModel {
     );
   }
 
+  // İç içe listeler: her eleman ilgili modelin fromJson'u ile nesneye çevrilir.
+  // "?.map" liste null ise hata vermez; "?? const []" ile boş liste kullanılır.
   factory AchievementModel.fromJson(Map<String, dynamic> json) {
     return AchievementModel(
       totalPoints: json['totalPoints'] as int? ?? 0,
@@ -333,6 +349,7 @@ class AchievementModel {
       'totalPoints': totalPoints,
       'streakDays': streakDays,
       'activePetId': activePetId,
+      // toJson: nesneleri tekrar Map listesine çevirir (kaydetme/gönderme için).
       'weeklyRecords': weeklyRecords.map((r) => r.toJson()).toList(),
       'badges': badges.map((b) => b.toJson()).toList(),
       'pets': pets.map((p) => p.toJson()).toList(),

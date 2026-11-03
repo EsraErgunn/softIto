@@ -1,9 +1,16 @@
+// =============================================================================
+// app_theme.dart - Açık ve koyu tema tanımları
+// Bileşenler Theme.of(context).colorScheme.primary gibi değerleri kullandığı için
+// widget'larda renk sabit yazılmaz; tema değişince her şey otomatik uyum sağlar.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
 class AppTheme {
   AppTheme._();
 
+  // Açık tema: enerjik mavi (primary), taze yeşil (secondary), turuncu (tertiary).
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
@@ -42,6 +49,7 @@ class AppTheme {
     );
   }
 
+  // Koyu tema: neon cyan (primary), neon mint (secondary), neon mercan (tertiary).
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
@@ -52,6 +60,7 @@ class AppTheme {
         secondary: AppColors.darkSecondary,
         tertiary: AppColors.darkTertiary,
         surface: AppColors.darkSurface,
+        // Kartların içindeki vurgulu kutuların arka plan rengi (ör. hediye hayvan bandı).
         surfaceContainerHighest: AppColors.darkSurfaceContainer,
         outline: AppColors.darkBorder,
         onPrimary: Colors.black,

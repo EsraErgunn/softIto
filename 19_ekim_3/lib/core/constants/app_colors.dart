@@ -1,9 +1,14 @@
+// =============================================================================
+// app_colors.dart - Koyu (dark) ve açık (light) tema renk paletleri
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 /// 'project.md' dosyasında belirtilen tasarım diline uygun renk paletidir:
 /// - Koyu Tema: Gece spor salonu paleti (Dark Obsidian & Neon)
 /// - Aydınlık Tema: Açık enerji ve ferah spor paleti
 class AppColors {
+  // Private constructor: sınıftan nesne üretilmesini engeller (sadece sabitler).
   AppColors._();
 
   // Dark Obsidian & Neon Paleti

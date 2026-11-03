@@ -1,3 +1,7 @@
+// =============================================================================
+// workout_controller.dart - Egzersiz süresi ve kalori mantığı
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 import '../models/workout_model.dart';
 
@@ -8,6 +12,7 @@ class WorkoutController {
   WorkoutModel get current => state.value;
 
   void addWorkout({required int minutes, required int calories}) {
+    // Geçersiz süre yok sayılır.
     if (minutes <= 0) return;
     state.value = current.copyWith(
       activeMinutes: current.activeMinutes + minutes,
@@ -16,6 +21,7 @@ class WorkoutController {
     );
   }
 
+  // Günlük egzersiz değerleri sıfırlanır; hedefler korunur.
   void reset() {
     state.value = current.copyWith(
       activeMinutes: 0,

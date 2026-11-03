@@ -1,7 +1,12 @@
+// =============================================================================
+// app_colors.dart - Renk paleti (koyu + açık tema renkleri ve gradientler)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 /// Spor salonu karanlık obsidyen neon ve dinamik açık enerji renk paleti
 class AppColors {
+  // Private constructor: AppColors() ile nesne oluşturulamaz; sınıf sadece sabit deposudur.
   AppColors._();
 
   // Koyu Tema Arka Planlar (Dark Obsidian & Graphite)
@@ -55,6 +60,7 @@ class AppColors {
   static const Color error = Color(0xFFCF222E);
 
   // Gradientler
+  // Gradient (renk geçişi): sol üstten sağ alta iki renk arasında yumuşak geçiş.
   static const LinearGradient waterGradient = LinearGradient(
     colors: [neonCyan, waterSecondary],
     begin: Alignment.topLeft,

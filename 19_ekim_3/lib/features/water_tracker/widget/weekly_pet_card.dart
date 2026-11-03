@@ -1,3 +1,7 @@
+// =============================================================================
+// weekly_pet_card.dart - Haftalık puan, seri ve hediye hayvan durumu kartı
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../models/water_tracker_model.dart';
 
@@ -13,6 +17,7 @@ class WeeklyPetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // 40 satır kuralına uygun
     final theme = Theme.of(context);
+    // Hayvan açıldıysa pati ikonu ve adı, açılmadıysa madalya ikonu ve hedef metni.
     final hasPet = data.unlockedPetName != null;
 
     return Card(

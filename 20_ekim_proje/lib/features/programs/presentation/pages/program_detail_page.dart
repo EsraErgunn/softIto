@@ -1,3 +1,10 @@
+// =============================================================================
+// program_detail_page.dart - Destek programı detay sayfası
+// Tür/kapsam etiketleri, kalan gün rozeti, maksimum tutar, özet, başvuru koşulları,
+// hedef aşamalar ve altta başvuru butonu. Onay gerektiren programlarda onaysız
+// kullanıcıya "Uzman Onayı Gerekli" butonu gösterilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +18,7 @@ class ProgramDetailPage extends ConsumerWidget {
   const ProgramDetailPage({super.key, required this.id});
   final String id;
 
+  // Tutarı okunur yazar: 5.000.000 -> "₺5 Milyon", 250.000 -> "₺250.000".
   String _formatAmount(int amount) {
     if (amount >= 1000000) {
       final m = amount / 1000000;
@@ -21,6 +29,7 @@ class ProgramDetailPage extends ConsumerWidget {
     return '₺$amount';
   }
 
+  // Bugünün gece yarısı baz alınarak son başvuru tarihine kalan gün; geçmişse negatif.
   int _calculateDaysLeft(DateTime deadline) {
     final now = DateTime.now();
     final difference = deadline.difference(DateTime(now.year, now.month, now.day));
@@ -38,12 +47,15 @@ class ProgramDetailPage extends ConsumerWidget {
       value: programAsync,
       data: (program) {
         final daysLeft = _calculateDaysLeft(program.deadline);
+        // Program onay istiyorsa ve kullanıcı onaylı değilse başvuru kilitlidir.
         final isLocked = program.requiresVerification && !isApproved;
 
         return Scaffold(
           appBar: AppBar(
             title: Text(program.provider),
             actions: [
+              // Consumer: sayfanın sadece bu küçük kısmını (kaydet ikonu) provider'a bağlar;
+              // kaydet'e basınca tüm sayfa değil sadece ikon yeniden çizilir.
               Consumer(builder: (context, ref, _) {
                 final isSaved = ref.watch(savedProgramIdsProvider).contains(program.id);
                 return IconButton(
@@ -85,6 +97,7 @@ class ProgramDetailPage extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(AppRadius.full),
                     ),
                     child: Text(
+                      // Yurt dışı programlarda ülke adı (varsa) gösterilir.
                       program.scope == ProgramScope.international
                           ? (program.country != null ? '🌍 ${program.country}' : '🌍 Yurt Dışı')
                           : '🇹🇷 Yurt İçi',
@@ -149,6 +162,7 @@ class ProgramDetailPage extends ConsumerWidget {
               // Eligibility
               if (program.eligibility.isNotEmpty) ...[
                 const SectionHeader(title: 'Başvuru Koşulları'),
+                // Her başvuru koşulu tikli bir satır olarak listelenir.
                 ...program.eligibility.map((item) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: AppSpacing.xs),
@@ -212,6 +226,7 @@ class ProgramDetailPage extends ConsumerWidget {
                 color: colorScheme.surface,
                 border: Border(top: BorderSide(color: colorScheme.outlineVariant)),
               ),
+              // Kilitliyse doğrulama sayfasına yönlendiren buton, değilse "Başvuru Yap" (demo: bilgi mesajı).
               child: isLocked
                   ? OutlinedButton.icon(
                       icon: const Icon(Icons.lock_outline),

@@ -1,3 +1,7 @@
+// =============================================================================
+// consultant.dart - Danışman ve danışmanlık randevusu modelleri (freezed)
+// =============================================================================
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'enums.dart';
 
@@ -5,6 +9,7 @@ part 'consultant.freezed.dart';
 part 'consultant.g.dart';
 
 @freezed
+// Hukuk, vergi, SGK vb. alanlardaki danışman.
 abstract class Consultant with _$Consultant {
   const factory Consultant({
     required String id,
@@ -20,6 +25,7 @@ abstract class Consultant with _$Consultant {
 }
 
 @freezed
+// Kullanıcının bir danışmanla aldığı randevu.
 abstract class ConsultationSession with _$ConsultationSession {
   const factory ConsultationSession({
     required String id,

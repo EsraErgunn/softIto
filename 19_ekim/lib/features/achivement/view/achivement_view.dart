@@ -1,3 +1,8 @@
+// =============================================================================
+// achivement_view.dart - Başarı & Ödüller sekmesi
+// Haftalık takip, puan kartı, evcil hayvan koleksiyonu ve rozet listesini gösterir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../controller/achivement_controller.dart';
 import '../widget/badges_grid_view.dart';
@@ -12,9 +17,11 @@ class AchivementView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Başarım controller'ı (su/antrenman değişince HomeView üzerinden) güncellenince yeniden çizilir.
     return ListenableBuilder(
       listenable: controller,
       builder: (context, _) {
+        // Henüz açılmamış ilk pet = sıradaki hedef. Hepsi açıldıysa firstOrNull null döner.
         final nextPet = controller.pets.where((p) => !p.isUnlocked).firstOrNull;
 
         return SingleChildScrollView(
@@ -45,6 +52,7 @@ class AchivementView extends StatelessWidget {
   }
 }
 
+// Bölüm başlığı + açıklama satırı.
 class _SectionHeader extends StatelessWidget {
   final String title;
   final String subtitle;

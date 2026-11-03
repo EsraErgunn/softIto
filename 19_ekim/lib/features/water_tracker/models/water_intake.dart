@@ -1,5 +1,10 @@
+// =============================================================================
+// water_intake.dart - Tek bir su içme kaydı
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 
+// @immutable: tüm alanların final olması gerektiğini belirtir; aksi halde analiz uyarı verir.
 @immutable
 class WaterIntake {
   final String id;
@@ -12,6 +17,7 @@ class WaterIntake {
     required this.timestamp,
   });
 
+  // Saati "09:05" biçiminde döner. padLeft(2, '0') tek haneli sayının başına 0 ekler.
   String get formattedTime {
     final hour = timestamp.hour.toString().padLeft(2, '0');
     final minute = timestamp.minute.toString().padLeft(2, '0');

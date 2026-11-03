@@ -1,3 +1,9 @@
+// =============================================================================
+// pet_gift_card.dart - Hediye hayvan (maskot) kartı
+// Üstte toplam puan, ortada seçili (aktif) pet'in büyük kartı,
+// altta tüm petlerin mini kartları (kilitliler soluk, seçilemez).
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/achievement_model.dart';
@@ -19,6 +25,7 @@ class PetGiftCard extends StatelessWidget {
     final cardColor = theme.cardTheme.color ?? AppColors.surfaceCard;
     final borderColor = theme.dividerTheme.color ?? AppColors.surfaceBorder;
 
+    // Aktif pet id'sine göre bulunur; bulunamazsa ilk pet gösterilir (orElse).
     final activePet = model.pets.firstWhere(
       (p) => p.id == model.activePetId,
       orElse: () => model.pets.first,
@@ -96,6 +103,7 @@ class PetGiftCard extends StatelessWidget {
     );
   }
 
+  // "Hero" alanı: seçili pet'in emojisi, adı, türü ve açıklaması.
   Widget _buildActivePetHero(BuildContext context, PetGiftItem pet) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final heroBg =
@@ -169,6 +177,7 @@ class PetGiftCard extends StatelessWidget {
     );
   }
 
+  // Tüm petlerin küçük kartları; seçili olan mor kenarlıkla vurgulanır.
   Widget _buildPetList() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -198,6 +207,7 @@ class PetGiftCard extends StatelessWidget {
   }
 }
 
+// Tek mini pet kartı.
 class _PetMiniCard extends StatelessWidget {
   final PetGiftItem pet;
   final bool isSelected;
@@ -219,6 +229,7 @@ class _PetMiniCard extends StatelessWidget {
         Theme.of(context).textTheme.bodyLarge?.color ?? AppColors.textPrimary;
 
     return GestureDetector(
+      // GestureDetector: dokunmayı yakalar. Kilitli pet'te onTap null -> dokunma etkisiz.
       onTap: pet.isUnlocked ? onTap : null,
       child: Container(
         width: 76,
@@ -236,6 +247,7 @@ class _PetMiniCard extends StatelessWidget {
         child: Column(
           children: [
             Opacity(
+              // Kilitli petlerin emojisi %40 görünürlükle soluk gösterilir.
               opacity: pet.isUnlocked ? 1.0 : 0.4,
               child: Text(pet.emoji, style: const TextStyle(fontSize: 26)),
             ),

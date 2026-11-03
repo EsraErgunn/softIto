@@ -1,3 +1,7 @@
+// =============================================================================
+// achievement_view.dart - Haftalık takip, hediye hayvan ve rozetler sekmesi
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_strings.dart';
 import '../controllers/achievement_controller.dart';
@@ -19,6 +23,7 @@ class AchievementView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        // Puan / pet seçimi değişince ekran yeni model ile yeniden çizilir.
         child: ValueListenableBuilder<AchievementModel>(
           valueListenable: controller.state,
           builder: (context, model, _) {
@@ -39,6 +44,7 @@ class AchievementView extends StatelessWidget {
         const SizedBox(height: 20),
         PetGiftCard(
           model: model,
+          // Mini pet kartına dokununca seçilen pet'in id'si controller'a iletilir.
           onSelectPet: controller.selectActivePet,
         ),
         const SizedBox(height: 20),
@@ -48,6 +54,7 @@ class AchievementView extends StatelessWidget {
     );
   }
 
+  // Başlık ve sağdaki "🔥 5 Gün Seri" etiketi.
   Widget _buildHeader(int streak) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

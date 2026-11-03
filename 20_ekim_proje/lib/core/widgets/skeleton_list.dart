@@ -1,7 +1,15 @@
+// =============================================================================
+// skeleton_list.dart - Yükleniyor iskeleti (skeleton / shimmer efekti)
+// Veri gelene kadar gerçek kartların şeklini taklit eden gri kutular gösterilir;
+// shimmer paketi üzerlerinde parlayan bir ışık animasyonu oluşturur.
+// Spinner'a göre daha "hızlı" algılanır çünkü kullanıcı sayfanın yapısını hemen görür.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../app/theme/app_tokens.dart';
 
+// Hangi kart tipinin taklit edileceği.
 enum SkeletonVariant { person, program, post, tile }
 
 class SkeletonList extends StatelessWidget {
@@ -20,6 +28,7 @@ class SkeletonList extends StatelessWidget {
     final baseColor = theme.colorScheme.surfaceContainerHigh;
     final highlightColor = theme.colorScheme.surfaceContainerHighest;
 
+    // baseColor ile highlightColor arasında kayan parıltı animasyonu.
     return Shimmer.fromColors(
       baseColor: baseColor,
       highlightColor: highlightColor,
@@ -29,12 +38,14 @@ class SkeletonList extends StatelessWidget {
           vertical: AppSpacing.sm,
         ),
         itemCount: itemCount,
+        // "(_, _)": kullanılmayan parametreler için alt çizgi (Dart 3 wildcard).
         separatorBuilder: (_, _) => const SizedBox(height: AppSpacing.sm),
         itemBuilder: (_, _) => _buildItem(context, baseColor),
       ),
     );
   }
 
+  // Varyanta göre doğru iskelet şekli seçilir.
   Widget _buildItem(BuildContext context, Color color) {
     return switch (variant) {
       SkeletonVariant.person => _buildPersonSkeleton(color),
@@ -44,6 +55,7 @@ class SkeletonList extends StatelessWidget {
     };
   }
 
+  // Mentör/yatırımcı kartı iskeleti: yuvarlak avatar + isim + etiket çubukları.
   Widget _buildPersonSkeleton(Color color) {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.md),
@@ -114,6 +126,7 @@ class SkeletonList extends StatelessWidget {
     );
   }
 
+  // Program kartı iskeleti.
   Widget _buildProgramSkeleton(Color color) {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.md),
@@ -177,6 +190,7 @@ class SkeletonList extends StatelessWidget {
     );
   }
 
+  // Gönderi kartı iskeleti.
   Widget _buildPostSkeleton(Color color) {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.md),
@@ -245,6 +259,7 @@ class SkeletonList extends StatelessWidget {
     );
   }
 
+  // Basit liste satırı iskeleti.
   Widget _buildTileSkeleton(Color color) {
     return Container(
       height: 72,

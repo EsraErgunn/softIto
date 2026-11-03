@@ -1,8 +1,14 @@
+// =============================================================================
+// quick_add_card.dart - Hızlı su ekleme kartı
+// +250 / +500 / +750 ml butonları, "Son Kaydı Geri Al" ve "Sıfırla" aksiyonları.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 
 /// Hızlı su ekleme butonlarını içeren modüler bileşen - Tema duyarlı
 class QuickAddCard extends StatelessWidget {
+  // ValueChanged<int> = void Function(int): basılan miktarı üst katmana iletir.
   final ValueChanged<int> onAddWater;
   final VoidCallback onUndo;
   final VoidCallback onReset;
@@ -61,6 +67,7 @@ class QuickAddCard extends StatelessWidget {
     );
   }
 
+  // Üç hızlı ekleme butonu; Expanded ile satırı eşit paylaşırlar.
   Widget _buildQuickButtonsGrid() {
     return Row(
       children: [
@@ -94,6 +101,7 @@ class QuickAddCard extends StatelessWidget {
     );
   }
 
+  // Geri al (sol) ve sıfırla (sağ, kırmızı) butonları.
   Widget _buildActionRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,6 +127,7 @@ class QuickAddCard extends StatelessWidget {
   }
 }
 
+// Tek hızlı ekleme butonu.
 class _QuickButton extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -140,6 +149,8 @@ class _QuickButton extends StatelessWidget {
     final titleColor =
         Theme.of(context).textTheme.bodyLarge?.color ?? AppColors.textPrimary;
 
+    // InkWell'in dalga efektinin görünmesi için üstte bir Material widget'ı gerekir;
+    // şeffaf renk verilerek görünümü etkilemez.
     return Material(
       color: Colors.transparent,
       child: InkWell(

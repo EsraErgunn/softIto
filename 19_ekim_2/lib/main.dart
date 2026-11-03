@@ -1,3 +1,11 @@
+// =============================================================================
+// main.dart - "Susadım v1" uygulamasının giriş noktası
+// 19_ekim projesinin geliştirilmiş hali. Farklar:
+//   - Aydınlık / karanlık / sistem teması arasında geçiş (ThemeController)
+//   - State yönetimi ChangeNotifier yerine ValueNotifier + immutable model ile yapılır
+//   - Modellerde JSON dönüşümü (fromJson / toJson) hazır
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'core/constants/app_colors.dart';
 import 'core/constants/app_strings.dart';
@@ -23,6 +31,7 @@ class SusadimApp extends StatefulWidget {
   State<SusadimApp> createState() => _SusadimAppState();
 }
 
+// Tema controller'ı uygulamanın en tepesinde tutulur, böylece tüm ekranlar aynı temayı paylaşır.
 class _SusadimAppState extends State<SusadimApp> {
   final ThemeController _themeController = ThemeController();
 
@@ -35,6 +44,7 @@ class _SusadimAppState extends State<SusadimApp> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<ThemeMode>(
+      // Tema modu değişince MaterialApp yeniden oluşturulur ve tüm uygulama yeni temaya geçer.
       valueListenable: _themeController.themeModeNotifier,
       builder: (context, themeMode, _) {
         return MaterialApp(
@@ -42,6 +52,8 @@ class _SusadimAppState extends State<SusadimApp> {
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
+          // theme (açık) ve darkTheme (koyu) ikisi de verilir; hangisinin kullanılacağını themeMode seçer.
+          // ThemeMode.system ise telefonun kendi ayarına uyulur.
           themeMode: themeMode,
           home: MainNavigationShell(themeController: _themeController),
         );
@@ -63,6 +75,7 @@ class MainNavigationShell extends StatefulWidget {
   State<MainNavigationShell> createState() => _MainNavigationShellState();
 }
 
+// Alt menülü ana kabuk. Üç özelliğin controller'ları burada oluşturulup sekmelere verilir.
 class _MainNavigationShellState extends State<MainNavigationShell> {
   int _currentIndex = 0;
 
@@ -80,6 +93,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
 
   @override
   void dispose() {
+    // Controller'ların içindeki ValueNotifier'lar dispose edilerek bellek serbest bırakılır.
     _waterController.dispose();
     _workoutController.dispose();
     _achievementController.dispose();
@@ -96,6 +110,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
 
     return Scaffold(
       appBar: _buildAppBar(),
+      // IndexedStack: tüm sekmeler canlı tutulur, sadece seçili index görünür (durum kaybolmaz).
       body: IndexedStack(
         index: _currentIndex,
         children: screens,
@@ -114,6 +129,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
     );
   }
 
+  // Logo + uygulama adı. Logo dosyası bulunamazsa errorBuilder ile damla ikonu gösterilir.
   Widget _buildAppTitle() {
     return Row(
       children: [
@@ -150,6 +166,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
     );
   }
 
+  // Mevcut tema moduna göre ikon/ipucu seçen ve basınca temayı döngüsel değiştiren buton.
   Widget _buildThemeToggleBtn() {
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: widget.themeController.themeModeNotifier,
@@ -180,6 +197,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
     );
   }
 
+  // AppBar'daki puan rozeti; başarım state'i değişince sadece bu küçük parça yeniden çizilir.
   Widget _buildPointsBadge() {
     return ValueListenableBuilder(
       valueListenable: _achievementController.state,
@@ -212,6 +230,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
     );
   }
 
+  // Alt gezinme çubuğu; etiketler AppStrings'ten gelir.
   Widget _buildBottomNav() {
     return NavigationBar(
       selectedIndex: _currentIndex,

@@ -1,3 +1,7 @@
+// =============================================================================
+// error_state.dart - Hata ekranı (ikon + mesaj + "Tekrar Dene" butonu)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../app/theme/app_tokens.dart';
 
@@ -44,6 +48,7 @@ class ErrorState extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
+            // Tekrar deneme fonksiyonu verildiyse buton gösterilir.
             if (onRetry != null) ...[
               const SizedBox(height: AppSpacing.lg),
               OutlinedButton.icon(

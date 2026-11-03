@@ -1,3 +1,9 @@
+// =============================================================================
+// workout_model.dart - Egzersiz modelleri
+//   WorkoutItem         -> tek bir egzersiz kaydı
+//   WorkoutSummaryModel -> günlük hedef + tüm kayıtlar ve hesaplanan toplamlar
+// =============================================================================
+
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -71,6 +77,7 @@ class WorkoutSummaryModel {
     required this.workouts,
   });
 
+  // Demo verisi: bugün 4 ve 2 saat önce yapılmış iki örnek egzersiz.
   factory WorkoutSummaryModel.initial() {
     return WorkoutSummaryModel(
       dailyCalorieGoal: 600,
@@ -95,6 +102,7 @@ class WorkoutSummaryModel {
     );
   }
 
+  // Toplamlar ayrı alan olarak saklanmaz, listeden her seferinde hesaplanır (tutarsızlık olmaz).
   int get totalCaloriesBurned =>
       workouts.fold(0, (sum, item) => sum + item.caloriesBurned);
 
@@ -105,6 +113,7 @@ class WorkoutSummaryModel {
       ? (totalCaloriesBurned / dailyCalorieGoal).clamp(0.0, 1.0)
       : 0.0;
 
+  // Hedefe kalan kalori, 0'ın altına düşmez.
   int get remainingCalories =>
       (dailyCalorieGoal - totalCaloriesBurned).clamp(0, dailyCalorieGoal);
 

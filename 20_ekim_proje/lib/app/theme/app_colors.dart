@@ -1,8 +1,18 @@
+// =============================================================================
+// app_colors.dart - Tema rengi ve durum (status) renkleri
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
+// Material 3 tüm renk paletini bu tek "tohum" renkten üretir.
 const kSeedColor = Color(0xFF3F51B5); // GEÇİCİ: renk kararı bekliyor
 
 @immutable
+// ThemeExtension: Flutter temasına kendi özel renk grubumuzu ekleme yolu.
+// Onaylı / beklemede / reddedildi / bilgi / nötr durumları için renkler.
+// Kullanım: Theme.of(context).extension<StatusColors>()!.approved
+// Her durum için 4 renk: ana renk, üstündeki yazı (on...), açık zemin (container)
+// ve o zeminin üstündeki yazı rengi.
 class StatusColors extends ThemeExtension<StatusColors> {
   const StatusColors({
     required this.approved,
@@ -52,6 +62,7 @@ class StatusColors extends ThemeExtension<StatusColors> {
   final Color neutralContainer;
   final Color onNeutralContainer;
 
+  // Açık tema durum renkleri.
   static const light = StatusColors(
     approved: Color(0xFF2E7D32),
     onApproved: Colors.white,
@@ -75,6 +86,7 @@ class StatusColors extends ThemeExtension<StatusColors> {
     onNeutralContainer: Color(0xFF212121),
   );
 
+  // Koyu tema durum renkleri (koyu zeminde okunabilir olması için daha açık tonlar).
   static const dark = StatusColors(
     approved: Color(0xFF81C784),
     onApproved: Color(0xFF1B5E20),
@@ -99,6 +111,7 @@ class StatusColors extends ThemeExtension<StatusColors> {
   );
 
   @override
+  // ThemeExtension'ın zorunlu kıldığı metot: bazı renkleri değiştirip kopya üretir.
   StatusColors copyWith({
     Color? approved,
     Color? onApproved,
@@ -146,6 +159,8 @@ class StatusColors extends ThemeExtension<StatusColors> {
   }
 
   @override
+  // lerp (linear interpolation): tema geçişlerinde renkler arasında yumuşak animasyon
+  // için ara renk hesaplar (t: 0.0 -> eski renk, 1.0 -> yeni renk).
   StatusColors lerp(ThemeExtension<StatusColors>? other, double t) {
     if (other is! StatusColors) return this;
     return StatusColors(
@@ -162,6 +177,7 @@ class StatusColors extends ThemeExtension<StatusColors> {
       rejectedContainer: Color.lerp(rejectedContainer, other.rejectedContainer, t)!,
       onRejectedContainer: Color.lerp(onRejectedContainer, other.onRejectedContainer, t)!,
       info: Color.lerp(info, other.info, t)!,
+      // NOT: Burada muhtemelen other.onInfo olmalıydı (diğer satırlarla aynı kalıp).
       onInfo: Color.lerp(onInfo, other.info, t)!,
       infoContainer: Color.lerp(infoContainer, other.infoContainer, t)!,
       onInfoContainer: Color.lerp(onInfoContainer, other.onInfoContainer, t)!,

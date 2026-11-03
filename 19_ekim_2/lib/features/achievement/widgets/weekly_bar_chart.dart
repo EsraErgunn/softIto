@@ -1,3 +1,9 @@
+// =============================================================================
+// weekly_bar_chart.dart - 7 günlük performans çubuk grafiği
+// Paket kullanmadan Container yükseklikleriyle çizilmiş basit bir bar chart.
+// Çubuk boyu o günkü su miktarına, rengi hedef durumuna göre belirlenir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/achievement_model.dart';
@@ -61,6 +67,7 @@ class WeeklyBarChart extends StatelessWidget {
   Widget _buildBarsRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      // Çubuklar alttan hizalanır; böylece farklı yükseklikler gerçek grafik gibi görünür.
       crossAxisAlignment: CrossAxisAlignment.end,
       children: records.map((rec) => _buildDayColumn(context, rec)).toList(),
     );
@@ -68,7 +75,9 @@ class WeeklyBarChart extends StatelessWidget {
 
   Widget _buildDayColumn(BuildContext context, DailyRecord rec) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    // 3000 ml = tam boy. En az 0.15 ile sınırlanır ki su içilmemiş günde de çubuk görünsün.
     final heightRatio = (rec.waterMl / 3000).clamp(0.15, 1.0);
+    // Su VE kalori hedefi tutturulduysa "tam başarı" (yeşil çubuk + tik ikonu).
     final isComplete = rec.waterGoalReached && rec.calorieGoalReached;
     final inactiveBg =
         isDark ? AppColors.surfaceElevated : AppColors.lightSurfaceElevated;
@@ -80,6 +89,7 @@ class WeeklyBarChart extends StatelessWidget {
       children: [
         Container(
           width: 32,
+          // Maksimum çubuk yüksekliği 110 px; oranla çarpılarak gerçek yükseklik bulunur.
           height: 110 * heightRatio,
           decoration: BoxDecoration(
             color: isComplete
@@ -116,6 +126,7 @@ class WeeklyBarChart extends StatelessWidget {
     );
   }
 
+  // Renklerin anlamını gösteren açıklama satırı.
   Widget _buildLegend(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final dotColor =
@@ -134,6 +145,7 @@ class WeeklyBarChart extends StatelessWidget {
   }
 }
 
+// Lejanttaki renkli nokta + etiket.
 class _LegendDot extends StatelessWidget {
   final Color color;
   final String label;

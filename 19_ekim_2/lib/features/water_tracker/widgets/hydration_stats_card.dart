@@ -1,3 +1,7 @@
+// =============================================================================
+// hydration_stats_card.dart - Hidrasyon ipucu ve istatistik kartı
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/water_tracker_model.dart';
@@ -14,8 +18,11 @@ class HydrationStatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    // Renkler sabit değil aktif temadan okunur; böylece kart açık ve koyu temada doğru görünür.
+    // Tema rengi tanımlı değilse "??" ile varsayılan renge düşülür.
     final cardColor = theme.cardTheme.color ?? AppColors.surfaceCard;
     final borderColor = theme.dividerTheme.color ?? AppColors.surfaceBorder;
+    // İçilen suyu 250 ml'lik bardak sayısına çevirir; floor aşağı yuvarlar (1250 / 250 = 5).
     final glassCount = (model.consumedMl / 250).floor();
 
     return Container(
@@ -82,6 +89,7 @@ class HydrationStatsCard extends StatelessWidget {
   }
 }
 
+// Tek istatistik kutusu: ikon + etiket + değer.
 class _StatBox extends StatelessWidget {
   final String label;
   final String value;
@@ -97,6 +105,7 @@ class _StatBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Aktif temanın koyu olup olmadığına göre kutu arka plan ve kenarlık rengi seçilir.
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final boxBg = isDark ? AppColors.surfaceElevated : AppColors.lightSurfaceElevated;
     final boxBorder = isDark ? AppColors.surfaceBorder : AppColors.lightSurfaceBorder;

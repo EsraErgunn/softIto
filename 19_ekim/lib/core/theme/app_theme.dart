@@ -1,12 +1,20 @@
+// =============================================================================
+// app_theme.dart - Uygulamanın karanlık (dark) teması
+// ThemeData'da bileşenlerin varsayılan görünümü tanımlanır; widget'larda tek tek
+// stil vermek yerine Theme.of(context) ile buradaki değerler kullanılır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
 abstract final class AppTheme {
+  // Getter olarak tanımlandı: AppTheme.darkTheme yazınca tema nesnesi oluşturulur.
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       scaffoldBackgroundColor: AppColors.background,
+      // Material bileşenlerinin (buton, switch vb.) otomatik kullandığı ana renkler.
       colorScheme: const ColorScheme.dark(
         primary: AppColors.neonCyan,
         secondary: AppColors.neonLime,
@@ -18,6 +26,7 @@ abstract final class AppTheme {
         backgroundColor: AppColors.background,
         elevation: 0,
         centerTitle: true,
+        // Liste kaydırılınca AppBar'ın renk değiştirip gölgelenmesini engeller.
         scrolledUnderElevation: 0,
         iconTheme: IconThemeData(color: AppColors.neonCyan),
         titleTextStyle: TextStyle(
@@ -27,6 +36,7 @@ abstract final class AppTheme {
           letterSpacing: 0.5,
         ),
       ),
+      // Tüm Card widget'ları için varsayılan görünüm: yuvarlak köşe + ince kenarlık.
       cardTheme: CardThemeData(
         color: AppColors.surface,
         elevation: 0,
@@ -49,6 +59,7 @@ abstract final class AppTheme {
           ),
         ),
       ),
+      // Tüm TextField'ların görünümü: normal, aktif (enabled) ve odaklanmış (focused) kenarlıklar.
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.surfaceElevated,
@@ -67,10 +78,13 @@ abstract final class AppTheme {
         labelStyle: const TextStyle(color: AppColors.textSecondary),
         hintStyle: const TextStyle(color: AppColors.textMuted),
       ),
+      // Alt gezinme çubuğu teması.
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: AppColors.surface,
         indicatorColor: AppColors.neonCyanGlow,
         elevation: 0,
+        // WidgetStateProperty: widget'ın durumuna göre (seçili, basılı...) farklı stil döner.
+        // Burada seçili sekme neon cyan, diğerleri soluk renkte gösterilir.
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
             return const TextStyle(
@@ -92,6 +106,7 @@ abstract final class AppTheme {
           return const IconThemeData(color: AppColors.textMuted);
         }),
       ),
+      // Yazı stilleri: Theme.of(context).textTheme.titleLarge gibi kullanılır.
       textTheme: const TextTheme(
         headlineMedium: TextStyle(
           color: AppColors.textPrimary,

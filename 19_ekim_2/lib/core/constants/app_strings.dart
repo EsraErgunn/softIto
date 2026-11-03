@@ -1,5 +1,12 @@
+// =============================================================================
+// app_strings.dart - Ekran metinleri tek yerde
+// Metinleri merkezde toplamak yazım tutarlılığı sağlar ve ileride çoklu dil
+// (localization) desteğine geçişi kolaylaştırır. Testlerde de bu sabitler kullanılır.
+// =============================================================================
+
 /// Uygulama genelinde kullanılan sabit metinler
 class AppStrings {
+  // Nesne oluşturulmasın diye private constructor.
   AppStrings._();
 
   static const String appName = 'Susadım v1';

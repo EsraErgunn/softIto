@@ -1,3 +1,7 @@
+// =============================================================================
+// workout_quick_presets.dart - Hazır antrenman şablonları (Ağırlık, Koşu, Bisiklet, HIIT)
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 
@@ -6,6 +10,8 @@ class WorkoutQuickPresets extends StatelessWidget {
 
   const WorkoutQuickPresets({super.key, required this.onSelect});
 
+  // Dart 3 "record" (kayıt) listesi: ayrı bir model sınıfı yazmadan
+  // (title: ..., duration: ...) şeklinde isimli alanlı küçük veri paketleri.
   static const _presets = [
     (title: 'Ağırlık', duration: 45, calories: 280, icon: Icons.fitness_center),
     (title: 'Koşu', duration: 30, calories: 320, icon: Icons.directions_run),
@@ -16,6 +22,7 @@ class WorkoutQuickPresets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      // Her şablon için eşit genişlikte (Expanded) bir kart üretilir.
       children: _presets.map((preset) {
         return Expanded(
           child: Padding(
@@ -34,6 +41,7 @@ class WorkoutQuickPresets extends StatelessWidget {
   }
 }
 
+// Tek bir şablon kartı. Dokunulunca onTap ile şablon bilgisi üst katmana gönderilir.
 class _PresetCard extends StatelessWidget {
   final String title;
   final int duration;

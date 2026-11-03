@@ -1,3 +1,9 @@
+// =============================================================================
+// post_composer_page.dart - Yeni gönderi yazma sayfası
+// Şimdilik yer tutucu (placeholder); form henüz yapılmadı.
+// Repository'de createPost metodu hazır, form bağlandığında kullanılabilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 
 class PostComposerPage extends StatelessWidget {

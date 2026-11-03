@@ -1,3 +1,8 @@
+// =============================================================================
+// widget_test.dart - Uygulama akış (widget) testi
+// Uygulamayı sanal ekranda açıp kullanıcı gibi butonlara basar ve sonucu kontrol eder.
+// =============================================================================
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:susadim/main.dart';
 
@@ -17,6 +22,7 @@ void main() {
     expect(find.text('0'), findsOneWidget);
 
     // +250 ml Kupa butonuna tıkla
+    // tap: butona dokunmayı taklit eder; pumpAndSettle ekranın yeniden çizilmesini bekler.
     await tester.tap(find.text('+250'));
     await tester.pumpAndSettle();
 

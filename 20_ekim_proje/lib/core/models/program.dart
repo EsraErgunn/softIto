@@ -1,3 +1,7 @@
+// =============================================================================
+// program.dart - Destek programı modeli (hibe, yatırım, kredi, hızlandırıcı, yarışma)
+// =============================================================================
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'enums.dart';
 
@@ -19,6 +23,7 @@ abstract class Program with _$Program {
     @Default([]) List<String> eligibility,
     @Default([]) List<StartupStage> targetStages,
     @Default([]) List<Sector> sectors,
+    // true ise sadece doğrulanmış (onaylı) hesaplar başvurabilir.
     @Default(false) bool requiresVerification,
     @Default([]) List<String> tags,
   }) = _Program;

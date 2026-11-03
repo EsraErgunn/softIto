@@ -1,3 +1,8 @@
+// =============================================================================
+// badge_grid.dart - Rozet listesi kartı
+// Açılmış rozetler amber kenarlık/ikonla, kilitliler soluk renkle gösterilir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../models/achievement_model.dart';
@@ -29,6 +34,7 @@ class BadgeGrid extends StatelessWidget {
         children: [
           _buildHeader(context),
           const SizedBox(height: 16),
+          // Her rozet bir satıra dönüştürülüp spread (...) ile Column'a eklenir.
           ...badges.map((b) => _buildBadgeRow(context, b)),
         ],
       ),
@@ -56,6 +62,7 @@ class BadgeGrid extends StatelessWidget {
     );
   }
 
+  // Tek rozet satırı: ikon, başlık/açıklama, ödül puanı.
   Widget _buildBadgeRow(BuildContext context, BadgeItem badge) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final rowBg = isDark ? AppColors.surfaceElevated : AppColors.lightSurfaceElevated;
@@ -90,6 +97,7 @@ class BadgeGrid extends StatelessWidget {
     final border = isDark ? AppColors.surfaceBorder : AppColors.lightSurfaceBorder;
 
     IconData icon;
+    // Modelde metin olarak saklanan ikon adı burada gerçek Flutter ikonuna çevrilir.
     switch (badge.iconName) {
       case 'water':
         icon = Icons.water_drop_rounded;
@@ -155,6 +163,7 @@ class BadgeGrid extends StatelessWidget {
     );
   }
 
+  // Sağdaki "+150 P" etiketi.
   Widget _buildPointsReward(BadgeItem badge) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),

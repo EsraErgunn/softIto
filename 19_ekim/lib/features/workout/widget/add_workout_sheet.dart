@@ -1,17 +1,25 @@
+// =============================================================================
+// add_workout_sheet.dart - Özel antrenman ekleme formu (alttan açılan panel)
+// Kullanıcı ad, süre ve kalori girer; geçerliyse onAdd çağrılır ve panel kapanır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 
+// TextEditingController'ları tutup dispose etmek gerektiği için StatefulWidget.
 class AddWorkoutSheet extends StatefulWidget {
   final void Function(String title, int duration, int calories) onAdd;
 
   const AddWorkoutSheet({super.key, required this.onAdd});
 
+  // Kolay kullanım için statik yardımcı: AddWorkoutSheet.show(context, onAdd: ...)
   static Future<void> show(
     BuildContext context, {
     required void Function(String title, int duration, int calories) onAdd,
   }) {
     return showModalBottomSheet(
       context: context,
+      // Panelin klavye açılınca yukarı kayabilmesi ve gerektiği kadar uzayabilmesi için şart.
       isScrollControlled: true,
       backgroundColor: AppColors.surface,
       shape: const RoundedRectangleBorder(
@@ -26,11 +34,13 @@ class AddWorkoutSheet extends StatefulWidget {
 }
 
 class _AddWorkoutSheetState extends State<AddWorkoutSheet> {
+  // Her TextField'ın metnini okumak için ayrı controller.
   final _titleController = TextEditingController();
   final _durationController = TextEditingController();
   final _caloriesController = TextEditingController();
 
   @override
+  // Controller'lar bellek tutar; panel kapanınca mutlaka dispose edilmeli.
   void dispose() {
     _titleController.dispose();
     _durationController.dispose();
@@ -38,11 +48,14 @@ class _AddWorkoutSheetState extends State<AddWorkoutSheet> {
     super.dispose();
   }
 
+  // Formu doğrular ve kaydeder.
   void _submit() {
     final title = _titleController.text.trim();
+    // tryParse: metin sayıya çevrilemezse hata fırlatmak yerine null döner; "?? 0" ile 0 yapılır.
     final duration = int.tryParse(_durationController.text.trim()) ?? 0;
     final calories = int.tryParse(_caloriesController.text.trim()) ?? 0;
 
+    // Sadece tüm alanlar geçerliyse kayıt yapılır, aksi halde panel açık kalır.
     if (title.isNotEmpty && duration > 0 && calories > 0) {
       widget.onAdd(title, duration, calories);
       Navigator.of(context).pop();
@@ -51,6 +64,7 @@ class _AddWorkoutSheetState extends State<AddWorkoutSheet> {
 
   @override
   Widget build(BuildContext context) {
+    // Klavyenin yüksekliği. Alt boşluğa eklenerek form klavyenin altında kalmaz.
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Padding(
@@ -82,6 +96,7 @@ class _AddWorkoutSheetState extends State<AddWorkoutSheet> {
   }
 }
 
+// Panel başlığı ve kapatma (X) butonu.
 class _SheetHeader extends StatelessWidget {
   final VoidCallback onClose;
   const _SheetHeader({required this.onClose});
@@ -104,6 +119,7 @@ class _SheetHeader extends StatelessWidget {
   }
 }
 
+// Süre ve kalori alanları yan yana. keyboardType.number ile sayısal klavye açılır.
 class _InputsRow extends StatelessWidget {
   final TextEditingController durationController;
   final TextEditingController caloriesController;

@@ -1,3 +1,10 @@
+// =============================================================================
+// onboarding_page.dart - Girişimcinin ilk kurulum adımı
+// "İş planın var mı?" sorusunun cevabı kaydedilir; buna göre girişim sayfasındaki
+// sekmeler değişir (bkz. tab_config.dart). onboardingDone true olunca router
+// kullanıcının diğer sayfalara geçmesine izin verir.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -26,6 +33,9 @@ class OnboardingPage extends ConsumerWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: AppSpacing.lg),
+              // İki buton da aynı akışı izler: iş planı durumu + onboarding tamamlandı kaydedilir,
+              // ardından mentörler sayfasına gidilir. "context.mounted": await sırasında sayfa
+              // kapandıysa context kullanılmaz (hata önlenir).
               FilledButton.tonal(
                 onPressed: () async {
                   await ref.read(sessionProvider.notifier).setHasBusinessPlan(true);

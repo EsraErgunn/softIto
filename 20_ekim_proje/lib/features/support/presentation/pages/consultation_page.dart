@@ -1,3 +1,8 @@
+// =============================================================================
+// consultation_page.dart - Ücretsiz uzman danışmanlığı
+// Sadece doğrulanmış kullanıcılar kullanabilir; değilse LockedOverlay ile kilitli görünür.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -15,6 +20,7 @@ class ConsultationPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Ücretsiz Uzman Danışmanlığı')),
+      // Onaylı değilse içerik bulanıklaşır, "Onay İçin Başvur" butonu doğrulama sayfasına götürür.
       body: LockedOverlay(
         isLocked: !isApproved,
         onAction: () => context.push('/verification'),
@@ -27,6 +33,7 @@ class ConsultationPage extends ConsumerWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: AppSpacing.sm),
+            // Her danışmanlık alanı için bir kart (demo: dokununca bilgilendirme mesajı).
             ...ConsultantField.values.map(
               (f) => Card(
                 child: ListTile(

@@ -1,3 +1,9 @@
+// =============================================================================
+// urun.dart - Ürün veri modeli
+// Tüm alanlar final, yani nesne oluşturulduktan sonra değiştirilemez (immutable).
+// Değişiklik gerektiğinde copyWith ile yeni bir kopya üretilir.
+// =============================================================================
+
 import 'kategori.dart';
 
 class Urun{
@@ -19,9 +25,12 @@ class Urun{
         required this.resimUrl,
         required this.kategori,
         required this.stokAdedi,
+        // Opsiyonel parametre: verilmezse ürün favori değildir.
         this.favoriMi = false,
     });
 
+    // copyWith: Sadece verilen alanları değiştirip geri kalanını aynen kopyalayan yeni Urun döner.
+    // Örnek: urun.copyWith(favoriMi: true) -> diğer her şey aynı, sadece favori değişti.
     Urun copyWith({
         int? id,
         String? baslik,
@@ -33,6 +42,7 @@ class Urun{
         bool? favoriMi,   
     }){
         return Urun(
+            // "??" operatörü: soldaki null ise sağdakini kullan (yeni değer yoksa eskisini koru).
             id: id?? this.id,
             baslik:baslik?? this.baslik,
             aciklama: aciklama?? this.aciklama,
@@ -45,6 +55,7 @@ class Urun{
     }
 
     @override
+    // print(urun) yazıldığında okunabilir bir çıktı vermesi için override edildi.
     String toString(){
         return "Urun(id: $id,baslik: $baslik, fiyat: $fiyat, favoriMi: $favoriMi)";
         

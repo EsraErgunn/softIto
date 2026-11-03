@@ -1,8 +1,16 @@
+// =============================================================================
+// add_workout_dialog.dart - Yeni egzersiz ekleme paneli (bottom sheet)
+// Kategori çipleri + süre ve kalori alanları + kaydet butonu.
+// Boş bırakılan alanlar için makul varsayılanlar (30 dk, 200 kcal) kullanılır.
+// =============================================================================
+
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 
 /// Yeni egzersiz kaydetme alt sayfası (Bottom Sheet)
 class AddWorkoutBottomSheet extends StatefulWidget {
+  // onSave isimli (named) parametreli bir fonksiyon tipidir; çağıran taraf
+  // title:, category: ... şeklinde açıkça yazarak değer verir (karışıklık olmaz).
   final void Function({
     required String title,
     required String category,
@@ -15,6 +23,7 @@ class AddWorkoutBottomSheet extends StatefulWidget {
     required this.onSave,
   });
 
+  // Paneli açmak için statik kısayol: AddWorkoutBottomSheet.show(context, onSave: ...).
   static Future<void> show(
     BuildContext context, {
     required void Function({
@@ -41,8 +50,10 @@ class AddWorkoutBottomSheet extends StatefulWidget {
 
 class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
   final _titleController = TextEditingController();
+  // "text:" ile alan ön doldurulmuş başlar.
   final _durationController = TextEditingController(text: '30');
   final _calorieController = TextEditingController(text: '200');
+  // Seçili kategori state'te tutulur; çip seçilince setState ile güncellenir.
   String _selectedCategory = 'Fitness';
 
   final List<String> _categories = const [
@@ -61,6 +72,8 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
     super.dispose();
   }
 
+  // Başlık boşsa kategori adından otomatik başlık üretilir ("Koşu Seansı").
+  // Sayısal alanlar tryParse ile güvenle çevrilir; çevrilemezse varsayılan kullanılır.
   void _handleSubmit() {
     final title = _titleController.text.trim().isEmpty
         ? '$_selectedCategory Seansı'
@@ -79,6 +92,7 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    // Klavye yüksekliği kadar alt boşluk eklenir; form klavyenin altında kalmaz.
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Padding(
@@ -101,6 +115,7 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
     );
   }
 
+  // Panelin üstündeki küçük gri çizgi: kullanıcıya "aşağı çekip kapatabilirsin" ipucu.
   Widget _buildDragHandle() {
     return Center(
       child: Container(
@@ -125,6 +140,7 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
     );
   }
 
+  // Wrap: çipler satıra sığmazsa otomatik alt satıra geçer.
   Widget _buildCategoryChips() {
     return Wrap(
       spacing: 8,
@@ -173,6 +189,7 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
     );
   }
 
+  // İki TextField için ortak görünüm; kod tekrarını önlemek için ayrı metot.
   InputDecoration _inputDecoration(String label) {
     return InputDecoration(
       labelText: label,
