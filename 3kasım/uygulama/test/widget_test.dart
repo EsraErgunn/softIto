@@ -1,30 +1,65 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:uygulama/main.dart';
+import 'package:uygulama/firestore_yonetim_ekrani.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  Future<void> pencereyiAc(WidgetTester tester, {required int mevcutNot}) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Builder(
+          builder: (context) => ElevatedButton(
+            onPressed: () => showDialog<int>(
+              context: context,
+              builder: (_) => NotGuncelleDialog(mevcutNot: mevcutNot),
+            ),
+            child: const Text('Aç'),
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('Aç'));
+    await tester.pumpAndSettle();
+  }
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('Not güncelleme penceresi mevcut notla açılır', (tester) async {
+    await pencereyiAc(tester, mevcutNot: 75);
+    expect(find.text('Notu Güncelle'), findsOneWidget);
+    expect(find.text('75'), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('Geçersiz not girilince hata gösterilir, pencere kapanmaz', (tester) async {
+    await pencereyiAc(tester, mevcutNot: 75);
+    await tester.enterText(find.byType(TextField), '150');
+    await tester.tap(find.text('Güncelle'));
+    await tester.pumpAndSettle();
+    expect(find.text('0 ile 100 arasında bir sayı girin'), findsOneWidget);
+    expect(find.text('Notu Güncelle'), findsOneWidget);
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('Geçerli not girilince pencere kapanır ve not döner', (tester) async {
+    int? donenNot;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Builder(
+          builder: (context) => ElevatedButton(
+            onPressed: () async {
+              donenNot = await showDialog<int>(
+                context: context,
+                builder: (_) => const NotGuncelleDialog(mevcutNot: 40),
+              );
+            },
+            child: const Text('Aç'),
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('Aç'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), '90');
+    await tester.tap(find.text('Güncelle'));
+    await tester.pumpAndSettle();
+    expect(find.text('Notu Güncelle'), findsNothing);
+    expect(donenNot, 90);
   });
 }
